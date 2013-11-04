@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>Team Rankings</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="utilities.js"></script>
+		<script src="CurrentTime.js"></script>
+	</head>
+	<body>
+	<div id="container">
+	<div id="cell">
+	<div id="content">
+		<! ---------- MATCH AND TIME HEADER -------------------- !>
+		<center id="matchTimeHeader">
+			Current Time: <span id="current_time">NO DATA</span>&emsp;
+			Current Match: <span id="current_match">NO DATA</span>
+		<script>
+			function currentTimeUpdate(){
+				document.getElementById("current_time").innerHTML=updateTime();
+			}
+			function currentMatchUpdate(){
+				document.getElementById("current_match").innerHTML=getCurrentMatch();
+			}
+		</script>
+		<script>
+			syncTime();
+			currentTimeUpdate();
+			currentMatchUpdate();
+			setInterval(syncTime,100000);
+			setInterval(currentTimeUpdate,5000);
+			setInterval(currentMatchUpdate, 5000);
+		</script>
+		</center>
+		<! ---------- END OF HEADER -------------------- !>
+
+
+		<center><table id="rankTable">
+		</table></center>
+		<script>
+			function update(){
+				var newHTML="";
+				xmlDoc=getXML("Get_Team_Ranking_Web");
+				var match=xmlDoc.getElementsByTagName("Current_Match")[0].childNodes[0].textContent;
+				var x=xmlDoc.getElementsByTagName("Team");
+
+			//	var headers=x[0].getElementsByTagName("*");
+				newHTML+="<tr>";
+				newHTML+="<th>Rank</th><th>Number</th><th>Name</th><th>High Score</th>";
+				newHTML+="</tr>";
+
+				for (var i=0;i<x.length;i++){ 
+					if (i%2===0){
+						newHTML+="<tr class=\"rowband\">";
+					} else {
+						newHTML+="<tr>";
+					}
+					var rank = x[i].getElementsByTagName("Rank")[0].childNodes[0].textContent;
+					try{
+						var team_number = x[i].getElementsByTagName("Team_Number")[0].childNodes[0].textContent;
+					}
+					catch(err){
+						var team_number = "????";
+					}
+					try{
+						var team_name = x[i].getElementsByTagName("Team_Name")[0].childNodes[0].textContent;
+					}
+					catch(err){
+						var team_name = "????????";
+					}
+					var highest_score = x[i].getElementsByTagName("Highest_Score")[0].childNodes[0].textContent;
+					var other_scores = x[i].getElementsByTagName("Round_Scores")[0].getElementsByTagName("Round");
+					newHTML+=("<td>"+rank+"</td>");
+					newHTML+="<td>"+team_number+"</td>";
+					newHTML+="<td>"+team_name+"</td>";
+					newHTML+="<td>"+highest_score+"</td>";
+					
+					newHTML+="</tr>";
+				  }
+				
+				document.getElementById("rankTable").innerHTML=newHTML;
+				document.getElementById("match").innerHTML=match;
+			}
+
+
+			update();
+			var periodic=setInterval(update, 5000);
+		</script>
+	</div>
+	</div>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Scoring_Elements>
+
+<Element>
+<Name>Tree Branch - East branch closer to mat than cable?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Tree Branch - Models upright, TOUCHING mat?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>House Lift - House locked in high position?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Progress - Colors Reached?</Name>
+<Option>0 (Not Attempted)</Option>
+<Option>1 (White)</Option>
+<Option>2 (Purple)</Option>
+<Option>3 (Blue)</Option>
+<Option>4 (Dk Green)</Option>
+<Option>5 (Lt Green)</Option>
+<Option>6 (Yellow)</Option>
+<Option>7 (Orange)</Option>
+<Option>8 (Red)</Option>
+<Option>9 (White)</Option>
+<Option>10 (Purple)</Option>
+<Option>11 (Blue)</Option>
+<Option>12 (Dk Green)</Option>
+<Option>13 (Lt Green)</Option>
+<Option>14 (Yellow)</Option>
+<Option>15 (Orange)</Option>
+<Option>16 (Red)</Option>
+</Element>
+
+<Element>
+<Name>Base Isolation - West Tan Bldg Undamaged?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Base Isolation - East Tan Bldg Obviously Damaged?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Construction Relocation - Any Gray Bldg IN Lt Green Region?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Supply Truck - Truck TOUCHING Yellow or Lt Blue Region?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Ambulance - Ambulance IN Yellow Region, all wheels touching mat?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Cargo Plane - Plane Location?</Name>
+<Option>Lt Blue</Option>
+<Option>Yellow</Option>
+<Option>Neither</Option>
+</Element>
+
+<Element>
+<Name>Penalties - Touch-Sprawl Penalties?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+</Element>
+
+<Element>
+<Name>Penalties - Small Junk Penalties?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+<Option>9</Option>
+<Option>10</Option>
+</Element>
+
+<Element>
+<Name>Penalties - Large Junk Penalties?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+<Option>9</Option>
+<Option>10</Option>
+</Element>
+
+<Element>
+<Name>Runway - Nothing But Waves or Plane TOUCHING Mat On Runway?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Evacuation Sign - Sign is UP, No Strategic Touching?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Code Construction - Segments in Tallest Unaided Building in Pink Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+<Option>9</Option>
+<Option>10</Option>
+<Option>11</Option>
+<Option>12</Option>
+<Option>13</Option>
+</Element>
+
+<Element>
+<Name>Family - People IN Largest Group in a Single Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+</Element>
+
+<Element>
+<Name>Family - People IN Regions containing Bottled Water?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+</Element>
+
+<Element>
+<Name>Family - People IN The Yellow Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+</Element>
+
+<Element>
+<Name>Family - People IN The Red Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+</Element>
+
+<Element>
+<Name>Family - Pets IN Regions containing People?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+</Element>
+
+<Element>
+<Name>Supplies - Non-Water Items IN Yellow Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+<Option>9</Option>
+<Option>10</Option>
+<Option>11</Option>
+<Option>12</Option>
+</Element>
+
+<Element>
+<Name>Supplies - Non-Water Items IN Red Region?</Name>
+<Option>0</Option>
+<Option>1</Option>
+<Option>2</Option>
+<Option>3</Option>
+<Option>4</Option>
+<Option>5</Option>
+<Option>6</Option>
+<Option>7</Option>
+<Option>8</Option>
+<Option>9</Option>
+<Option>10</Option>
+<Option>11</Option>
+<Option>12</Option>
+</Element>
+
+<Element>
+<Name>Safe Place - Robot IN Red Region at End of Match?</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+<Element>
+<Name>Obstacles - Best Result Achieved?</Name>
+<Option>None</Option>
+<Option>Dk Blue</Option>
+<Option>Dk Green</Option>
+<Option>Purple</Option>
+<Option>Red</Option>
+</Element>
+
+<Element>
+<Name>Tsunami - All 3 Waves TOUCHING Mat</Name>
+<Option>Yes</Option>
+<Option>No</Option>
+</Element>
+
+</Scoring_Elements>

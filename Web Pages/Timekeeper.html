@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Timekeeper</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="CurrentTime.js"></script>
+		<script src="utilities.js"></script>
+		<script>
+			function doControl(action){
+				var DxmlHttp = null;
+				DxmlHttp = new XMLHttpRequest();
+				var controlString;
+				
+				if(action=="Start"){
+					controlString="0";
+				}
+
+				else if(action=="Reset"){
+					if(confirm("Are you sure you want to reset the timer?")){
+						controlString="1";
+					}
+				}
+				var URL = "Time_Control?Action="+controlString;
+				DxmlHttp.open( "GET", URL, false );
+				DxmlHttp.send( null );
+			}
+				
+			function getMatchState(numStr){
+				var num = Number(numStr);
+				var state = '';
+				switch(num){
+					case 0:
+						state="#FF0000";
+						break;
+					case 1:
+						state="#00FF00";
+						break;
+					case 2:
+						state="#FF6600";
+						break;
+					case 3:
+						state="#FFFF00";
+						break;
+				}
+				return state;
+			}
+
+			function updateData(){
+				var xmlDoc2=getXML("Time_Control?Action=2");
+				var bar=xmlDoc2.getElementsByTagName("Data")[0];
+				var time = bar.getElementsByTagName("RemainingString")[0].childNodes[0].nodeValue;
+				document.getElementById("TimeRemaining").innerHTML=time;
+				
+				var state = bar.getElementsByTagName("MatchState")[0].childNodes[0].nodeValue;
+				document.getElementById("TimeRemaining").setAttribute("bgcolor",getMatchState(state));
+				
+				var match = bar.getElementsByTagName("Current_Match")[0].childNodes[0].nodeValue;
+				document.getElementById("Match").innerHTML=match;
+				
+				var local_time = new Date().getTime() / 1000;
+				current_time=local_time+time_offset;
+				var hr_time = new Date(current_time*1000);
+				var timestring = hr_time.getHours()+':'+hr_time.getMinutes();
+				
+				document.getElementById("time").innerHTML=updateTime();
+			}
+		</script>
+	</head>
+	<body>
+	<div id="jumpmenu">
+		<a href="index.html" class="button">Index</a>
+		<a href="Score_Entry.html" class="button">Scoring</a>
+	</div>	
+	<div id="container">
+	<div id="cell">
+	<div id="content">
+		<! ---------- MATCH AND TIME HEADER -------------------- !>
+		<span id="matchTimeHeader">
+			Current Time: <span id="current_time">NO DATA</span>&emsp;
+			Current Match: <span id="current_match">NO DATA</span>
+		<script>
+			function currentTimeUpdate(){
+				document.getElementById("current_time").innerHTML=updateTime();
+			}
+			function currentMatchUpdate(){
+				document.getElementById("current_match").innerHTML=getCurrentMatch();
+			}
+		</script>
+		<script>
+			syncTime();
+			currentTimeUpdate();
+			currentMatchUpdate();
+			setInterval(syncTime,100000);
+			setInterval(currentTimeUpdate,5000);
+			setInterval(currentMatchUpdate, 5000);
+		</script>
+		</span>
+		<! ---------- END OF HEADER -------------------- !>
+		<hr />
+		<center>
+		<table align="center" id="timeData" cellpadding="100px">
+			<tr>
+				<td>Time Remaining:</td>
+				<td id="TimeRemaining" bgcolor=#FF0000 style="text-align:center;">No Data</td>
+			</tr>
+			<tr>
+				<td>Current Match:</td>
+				<td id="Match">No Data</td>
+			</tr>		
+			<tr>
+				<td>Current Time:</td>
+				<td id="time">No Data</td>
+			</tr>
+		</table>
+
+		<script>
+			syncTime();
+			updateData();
+			var periodic=setInterval(updateData, 100);
+			var serversync=setInterval(syncTime, 100000);
+		</script>
+
+		<table align="center" id="timeKeeperButtons">
+			<tr>
+				<td id="Layout"><button onclick="doControl('Start')">Start</button></td>
+				<td id="Layout"><button onclick="doControl('Reset')">Reset</button></td>
+			</tr>
+		</table>
+		</center>
+	</div>
+	</div>
+	</div>
+	</body>
+</html>

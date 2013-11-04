@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>Practice Overview</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="CurrentTime.js"></script>
+		<script src="utilities.js"></script>
+	</head>
+	<body>
+	<div id="container">
+	<div id="cell">
+	<div id="content">
+		<h1 class="centerdHeader">Practice: Schedule Overview</h1>
+		<! ---------- MATCH AND TIME HEADER -------------------- !>
+		<center id="matchTimeHeader">
+			Current Time: <span id="current_time">NO DATA</span>&emsp;
+			Current Match: <span id="current_match">NO DATA</span>
+		<script>
+			function currentTimeUpdate(){
+				document.getElementById("current_time").innerHTML=updateTime();
+			}
+			function currentMatchUpdate(){
+				document.getElementById("current_match").innerHTML=getCurrentMatch();
+			}
+		</script>
+		<script>
+			syncTime();
+			currentTimeUpdate();
+			currentMatchUpdate();
+			setInterval(syncTime,100000);
+			setInterval(currentTimeUpdate,5000);
+			setInterval(currentMatchUpdate, 5000);
+		</script>
+		</center>
+		<! ---------- END OF HEADER -------------------- !>
+		<div>
+			<center><table>
+				<thead>
+					<tr>
+						<th class="bordered">Match</th>
+						<th class="bordered">Start</th>
+						<th class="bordered">Stop</th>
+						<script>
+						var newHTML="";
+							xmlDoc=getXML("Serve_Schedules");
+							
+							var tableNames = xmlDoc.getElementsByTagName("Table_Names")[0].getElementsByTagName("Table");
+							for(var i=0;i<tableNames.length;i++){
+								document.write("<th class=\"bordered\">"+tableNames[i].childNodes[0].textContent+"</th>");
+							}
+						</script>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<script>
+						var matches = xmlDoc.getElementsByTagName("Practice_Matches")[0].getElementsByTagName("Match");
+						for(var i=0;i<matches.length;i++){
+							var matchNo = matches[i].getElementsByTagName("Match_No")[0].childNodes[0].textContent;
+							var startTime = matches[i].getElementsByTagName("Start")[0].childNodes[0].textContent;
+							var stopTime = matches[i].getElementsByTagName("Stop")[0].childNodes[0].textContent;
+							var teams = matches[i].getElementsByTagName("Team");
+							if (i%2===0){
+								document.write("<tr class=\"rowband\">");
+							} else {
+								document.write("<tr>")
+							}
+							document.write("<td id='rowHead' class=\"bordered\">"+matchNo+"</td>");
+							document.write("<td class=\"bordered\">"+startTime+"</td>");
+							document.write("<td class=\"bordered\">"+stopTime+"</td>");
+							for(var j=0;j<teams.length;j++){
+								var thisTeam = "";
+								try{
+									thisTeam=teams[j].childNodes[0].textContent;
+								}
+								catch(err){}
+								document.write("<td class=\"bordered\">"+thisTeam+"</td>");
+							}
+							document.write("</tr>");
+						}
+					</script>
+				</tbody>		
+			</table></center>
+		</div>
+	</div>
+	</div>
+	</div>
+	</body>
+</html>	

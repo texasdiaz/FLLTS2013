@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Rules>
+	<Rule desc="Cannot have more than 12 total supplies.">$Supplies_-_Non-Water_Items_IN_Red_Region$+$Supplies_-_Non-Water_Items_IN_Yellow_Region$&lt;13</Rule>
+	<Rule desc="Cannot have more than 3 total people.">$Family_-_People_IN_The_Yellow_Region$+$Family_-_People_IN_The_Red_Region$&lt;4</Rule>
+</Rules>

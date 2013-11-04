@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script>
+var stuff = window.location.search;
+stuff = stuff.slice(1);
+stuff = stuff.split("&");
+var errNo;
+var message="";
+for(var i=0;i<stuff.length;i++){
+	var name = stuff[i].split("=")[0];
+	var value = stuff[i].split("=")[1];
+	if(name=="n"){
+		errNo = parseInt(value);
+	}
+	else if(name="message"){
+		message = value;
+	}
+}
+</script>
+</head>
+<body>
+<div id="container">
+<div id="cell">
+<div id="content">
+<script>
+document.write(errNo+"<br/>");
+document.write(message);
+</script>
+</div>
+</div>
+</div>
+</body>

@@ -1,0 +1,187 @@
+/*RESET CSS*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+        user-select: none;
+        -o-user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ----------------- END RESET OF CSS ----------------------*/
+
+body {
+	background-color: #999999;
+}
+
+h1 {
+	font-size: 3em;
+	height: 2em;
+}
+
+table, td, th {
+	padding: 4px;
+}
+
+th, #rowHead {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+td.tborder {
+	border: 1px solid black;
+	padding: 4px;
+}
+
+tr.rowband {
+	background-color: #67E667;
+}
+
+select {
+	font-size: 1em;
+	margin-bottom: 8px;
+}
+
+button {
+	padding: 25px;
+	font-size: 3em;
+	box-shadow: 0px 0px 5px 5px #67E667;
+}
+
+button.invalid {
+	padding: 25px;
+	font-size: 3em;
+	box-shadow: 0px 0px 5px 5px red;
+}
+
+button.valid {
+	padding: 25px;
+	font-size: 3em;
+	box-shadow: 0px 0px 5px 5px green;
+}
+
+em {
+	font-style: italic;
+}
+
+#container {
+	display: table;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+#cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#content {
+	display: inline-block;
+	padding: 4px;
+	text-align: left;
+	background-color: #E6E6E6;
+	box-shadow: 0px 0px 10px 10px #E6E6E6;
+}
+
+#timeData {
+	font-size: 5em;
+}
+
+#jumpMenu {
+	position: absolute;
+	padding: 5px;
+	float: left;
+	z-index: 1;
+
+}
+
+#matchTimeHeader {
+	text-align: center;
+	font-size: 1.75em;
+	padding: 5px;
+	margin-bottom: 0.5em;
+}
+
+#CurrentScore {
+	font-size: 3em;
+}
+
+.errors {
+	font-size: 1em;
+}
+
+
+.centerdHeader {
+	font-size: 3em;
+	text-align: center;
+}
+
+a.biglinks {
+	display: inline-block;
+	font-size: 25px;
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #E66666;
+	box-shadow: 0px 0px 5px 5px #E66666;	
+	padding: 4px;
+	margin: 10px;
+}
+
+.bordered {
+	border: 1px solid black;
+	text-align: center;
+}
+
+a.button {
+	text-decoration: none;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 25px;
+	padding: 3px;
+	background-color: #E66666;
+	box-shadow: 0px 0px 5px 5px #E66666;
+	margin: 15px;
+}

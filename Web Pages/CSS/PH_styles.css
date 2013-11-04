@@ -1,0 +1,59 @@
+body
+{
+background-color:#4d1b7b;
+}
+a:visited 
+{color:black;}
+
+table.center
+{
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+table
+{
+float: center;
+font-size: 20px;
+font-family: "Georgia";
+color: white;
+border: 3px solid black;
+border-collapse:collapse;
+}
+
+td{
+text-align:center;
+}
+
+#layout
+{border: None;
+}
+
+h1
+{
+font-size: 30px;
+font-family: "Helvetica";
+color: white;
+text-align: center;
+}
+
+h2
+{
+font-size: 25px;
+font-family: "Times New Roman";
+color: white;
+text-align: center;
+}
+
+
+div.sticky_header
+{
+text-align: center;
+position:fixed; 
+width:100%; 
+top:0;
+border: solid black 1px;
+font-size:30px;
+background:white;
+color:black;
+}

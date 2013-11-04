@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<title>Current Practice</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="utilities.js"></script>
+		<script src="CurrentTime.js"></script>
+		<script>
+			function currentTimeUpdate(){
+				document.getElementById("current_time").innerHTML=updateTime();
+			}
+			function currentMatchUpdate(){
+				document.getElementById("current_match").innerHTML=getCurrentMatch();
+			}
+			
+			function getTeamName(number){
+				for(var i=0;i<teamDataArray.length;i++){
+					if(teamDataArray[i][0]==number){
+						return teamDataArray[i][1];
+					}
+				}
+				return "????";
+			}
+			
+			function getTeamDataArray(){
+				var theArray = [];
+				theArray[0]=[];
+				var XmlDoc=getXML("Serve_Team_Data");
+				var teamElements = XmlDoc.getElementsByTagName("Teams")[0].getElementsByTagName("Team");
+				for(var i=0;i<teamElements.length;i++){
+					var teamNumber = teamElements[i].getElementsByTagName("Team_Number")[0].childNodes[0].textContent;
+					var teamName = teamElements[i].getElementsByTagName("Team_Name")[0].childNodes[0].textContent;
+					theArray[i]=[,];
+					theArray[i][0]=teamNumber;
+					theArray[i][1]=teamName;
+				}
+				return theArray;
+			}
+			
+			var teamDataArray=getTeamDataArray();
+				
+		</script>
+	</head>
+	<body>
+	<div id="container">
+	<div id="cell">
+	<div id="content">
+		<h1 class="centerdHeader">Practice: Current Schedule</h1>
+		<! ---------- MATCH AND TIME HEADER -------------------- !>
+		<center id="matchTimeHeader">
+			Current Time: <span id="current_time">NO DATA</span>&emsp;
+			Current Match: <span id="current_match">NO DATA</span>
+		<script>
+			function currentTimeUpdate(){
+				document.getElementById("current_time").innerHTML=updateTime();
+			}
+			function currentMatchUpdate(){
+				document.getElementById("current_match").innerHTML=getCurrentMatch();
+			}
+		</script>
+		<script>
+			syncTime();
+			currentTimeUpdate();
+			currentMatchUpdate();
+			setInterval(syncTime,100000);
+			setInterval(currentTimeUpdate,5000);
+			setInterval(currentMatchUpdate, 5000);
+		</script>
+		</center>
+		<! ---------- END OF HEADER -------------------- !>
+		<div>
+			<center><table>
+				<thead>
+					<th>Match</th>
+					<th>Time</th>
+					<th>Teams</th>
+				</thead>
+				<tbody>
+					<script>
+						var tableNames = [];
+						xmlDoc=getXML("Serve_Schedules");
+						var tableNameElements = xmlDoc.getElementsByTagName("Table_Names")[0].getElementsByTagName("Table");
+						for(var i=0;i<tableNameElements.length;i++){
+							tableNames[i]=tableNameElements[i].childNodes[0].textContent;
+						}
+						var matches = xmlDoc.getElementsByTagName("Practice_Matches")[0].getElementsByTagName("Match");
+						for(var i=0;i<matches.length;i++){
+							var matchNo = matches[i].getElementsByTagName("Match_No")[0].childNodes[0].textContent;
+							var startTime = matches[i].getElementsByTagName("Start")[0].childNodes[0].textContent;
+							var stopTime = matches[i].getElementsByTagName("Stop")[0].childNodes[0].textContent;
+							var teams = matches[i].getElementsByTagName("Team");
+							if (i%2===0){
+								document.write("<tr class=\"rowband\">");
+							} else {
+								document.write("<tr>")
+							}
+							document.write("<td id='rowHead'>"+matchNo+"</td>");
+							document.write("<td>"+startTime+"<br/>To<br/>"+stopTime+"</td>");
+							document.write("<td>");
+							var count=0;
+							for(var j=0;j<teams.length;j++){
+								var thisTeam = "";
+								try{
+									thisTeam=teams[j].childNodes[0].textContent;
+									document.write(tableNames[j]+": "+thisTeam+"-"+getTeamName(thisTeam)+"<br/>");
+								}
+								catch(err){}
+								
+							}
+							document.write("</td>");
+							document.write("</tr>");
+						}
+					</script>
+				</tbody>
+			</table></center>		
+		</div>
+	</div>
+	</div>
+	</div>
+	</body>
+</html>
