@@ -276,7 +276,7 @@
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
         <Score><![CDATA[score += (this.answers['yellow_people'] || 0) * 12;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_people'] + this.answers['red_people']) > 3) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
+        <Validate><![CDATA[((this.answers['yellow_people']*1 + this.answers['red_people']*1) > 3) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
     </Element>
 
     <Element>
@@ -288,7 +288,7 @@
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
         <Score><![CDATA[score += (this.answers['red_people'] || 0) * 18;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_people'] + this.answers['red_people']) > 3) ? {'highlight': true, 'msg':'Total people cannot exceed 3'} : {'highlight': false, 'msg':''};]]></Validate>
+        <Validate><![CDATA[((this.answers['yellow_people']*1 + this.answers['red_people']*1) > 3) ? {'highlight': true, 'msg':'Total people cannot exceed 3'} : {'highlight': false, 'msg':''};]]></Validate>
     </Element>
 
     <Element>
@@ -319,7 +319,7 @@
         <Option><Label>11</Label><Value>11</Value></Option>
         <Option><Label>12</Label><Value>12</Value></Option>
         <Score><![CDATA[score += (this.answers['yellow_supplies'] || 0) * 3;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_supplies'] + this.answers['red_supplies']) > 12) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
+        <Validate><![CDATA[((this.answers['yellow_supplies']*1 + this.answers['red_supplies']*1) > 12) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
     </Element>
 
     <Element>
@@ -340,7 +340,7 @@
         <Option><Label>11</Label><Value>11</Value></Option>
         <Option><Label>12</Label><Value>12</Value></Option>
         <Score><![CDATA[score += (this.answers['red_supplies'] || 0) * 4;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_supplies'] + this.answers['red_supplies']) > 12) ? {'highlight': true, 'msg':'Total supplies cannot exceed 12'} : {'highlight': false, 'msg':''};]]></Validate>
+        <Validate><![CDATA[((this.answers['yellow_supplies']*1 + this.answers['red_supplies']*1) > 12) ? {'highlight': true, 'msg':'Total supplies cannot exceed 12'} : {'highlight': false, 'msg':''};]]></Validate>
     </Element>
 
     <Element>
