@@ -138,7 +138,6 @@
                     allChanged = allChanged && qinput.is(":checked");
                 }
             }
-
             setSubmit(allChanged);
         }
 
@@ -190,21 +189,30 @@
 
         function getElements() {
             var newHTML = "";
+            var prev_heading = "";
+            var sectionHTML = "";
 
             scoring_data = getXML("Data.xml");
 
             elements = scoring_data.getElementsByTagName("Element");
 
+            var prev_heading = elements[0].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
             for (var i = 0; i < elements.length; i++) {
                 var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
                 var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
                 var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
+                if (heading !== prev_heading) {
+                    // Start new header div
+                    newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
+                    sectionHTML = "";
+                    prev_heading = heading;
+                }
                 var values = [];
                 var name = (heading + " - " + question);
                 answer_tags[normalize(name)] = tag;
-                newHTML += ("<div id='" + tag + "-div' class='qdiv'>" + name);
-                newHTML += "<br>";
-                newHTML += ("<span id='" + normalize(name) + "'>");
+                sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
+                sectionHTML += "<br>";
+                sectionHTML += ("<span id='" + normalize(name) + "'>");
                 var options = elements[i].getElementsByTagName("Option");
                 for (var j = 0; j < options.length; j++) {
                     if (options[j].getElementsByTagName("LabelFull").length > 0) {
@@ -214,16 +222,17 @@
                     }
                     var qvalue = options[j].getElementsByTagName("Value")[0].childNodes[0].nodeValue;
                     values[qlabel] = qvalue;
-                    newHTML += ("<input type='radio' id='" + normalize(name) + j.toString() + "' name='" + normalize(name) + "' value='" + qlabel + "'/>");
-                    newHTML += ("<label for='" + normalize(name) + j.toString() + "'>" + qlabel + "</label>");
+                    sectionHTML += ("<input type='radio' id='" + normalize(name) + j.toString() + "' name='" + normalize(name) + "' value='" + qlabel + "'/>");
+                    sectionHTML += ("<label for='" + normalize(name) + j.toString() + "'>" + qlabel + "</label>");
                 }
 
                 answer_values[normalize(name)] = values;
 
-                newHTML += ("</span>");
-                newHTML += ("<span class='old' id='Old_" + normalize(name) + "'></span>");
-                newHTML += ("</div>");
+                sectionHTML += ("</span>");
+                sectionHTML += ("<span class='old' id='Old_" + normalize(name) + "'></span>");
+                sectionHTML += ("</div>");
             }
+            newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
             return newHTML;
         }
 
@@ -295,6 +304,8 @@
                         document.getElementById("CurrentScore").innerHTML = "Error";
                         if (result.msg !== '') {
                             document.getElementById("error_status").innerHTML = result.msg;
+                            $('#header').removeClass("header-normal").addClass("header-error");
+                            $('#main').removeClass("main-normal").addClass("main-error");
                             return(false);
                         }
                     } else if (qinput.is(":checked")) {
@@ -304,8 +315,9 @@
                         qdiv.removeClass("qerror");
                     }
                 }
-
             }
+            $('#header').removeClass("header-error").addClass("header-normal");
+            $('#main').removeClass("main-error").addClass("main-normal");
             document.getElementById("error_status").innerHTML = "";
             return(true);
         }
@@ -335,57 +347,37 @@
     </script>
 </head>
 <body>
-    <table id="header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
-        <tr>
-            <td id="left-header">
-                <table style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
-                    <tr>
-                        <td>
+    <div id="header" class="header-normal">
+        <div id="title-row">
+            <div id="left-header">
+                <div id="nav-buttons">
                             <a href="index.html" class="button">Index</a>
-                        </td>
-                        <td>
                             <a href="TimeKeeper.html" class="button">Timing</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding-top: 20px">
-                            <div id="CurrentScore">Score: 000</div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td id="mid-header" align="center">
-                <table style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
-                    <tr>
-                        <td id="mid-header-title">
-                            <em>FIRST</em> LEGO League <br />
-                            <em>Nature's Fury</em> Score Sheet Entry
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="team_name_header">Team: XYZ</div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                <table style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
-                    <tr><td id="current_time" >Current Time: NO DATA</td></tr>
-                    <tr><td id="current_match">Current Match: NO DATA</td></tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td id="error_status" colspan="3"> </td>
-        </tr>
-    </table>
+                </div>
+                <br/>
+                <div id="CurrentScore">Score: 000</div>
+            </div>
+            <div id="mid-header" align="center">
+                <div id="mid-header-title">
+                    <em>FIRST</em> LEGO League <br />
+                    <em>Nature's Fury</em> Score Sheet Entry
+                </div>
+                <br/>
+                <div id="team_name_header">Team: XYZ</div>
+            </div>
+            <div id="right-header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
+                <div id="current_time" >Time: NO DATA</div>
+                <div id="current_match">Match: NO DATA</div>
+            </div>
+        </div>
+        <div id="error_status"> </div>
+    </div>
     <script>
         function currentTimeUpdate(){
-            document.getElementById("current_time").innerHTML= "Current Time: " + updateTime();
+            document.getElementById("current_time").innerHTML= "Time: " + updateTime();
         }
         function currentMatchUpdate(){
-            document.getElementById("current_match").innerHTML="Current Match: " + getCurrentMatch();
+            document.getElementById("current_match").innerHTML="Match: " + getCurrentMatch();
         }
     </script>
     <script type="text/javascript">
@@ -397,7 +389,7 @@
         setInterval(currentMatchUpdate, 5000);
     </script>
     <!-- ======== END OF HEADER ======== -->
-    <div id="main">
+    <div id="main" class="main-normal">
         <div id="content">
             <center>
                 <form name='ScoreEntry' action="Process_POST" method="post">
@@ -441,7 +433,7 @@
                             BEGIN=false;
                         </script>
                         <tr>
-                            <td colspan="2">
+                            <td>
                                 <center><div id="unanswered" class="centerdHeader" style="padding: 20px; color: red"></div></center>
                                 <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
                             </td>
