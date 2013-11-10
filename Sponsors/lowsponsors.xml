@@ -1,0 +1,40 @@
+<?xml version='1.0' standalone='yes' ?>
+<LVData xmlns="http://www.ni.com/LVData">
+<Version>13.0f2</Version>
+<Cluster>
+<Name>Image Information Out</Name>
+<NumElts>2</NumElts>
+<Array>
+<Name>Image Array</Name>
+<Dimsize>2</Dimsize>
+<Cluster>
+<Name>Image Info</Name>
+<NumElts>2</NumElts>
+<String>
+<Name>Alias</Name>
+<Val>National Instruments</Val>
+</String>
+<Path>
+<Name>Path</Name>
+<Val>C:\ProgramData\FLL\Sponsors\nilogo.bmp</Val>
+</Path>
+</Cluster>
+<Cluster>
+<Name>Image Info</Name>
+<NumElts>2</NumElts>
+<String>
+<Name>Alias</Name>
+<Val>FIRST</Val>
+</String>
+<Path>
+<Name>Path</Name>
+<Val>C:\ProgramData\FLL\Sponsors\FIRSThorz_RGB.jpg</Val>
+</Path>
+</Cluster>
+</Array>
+<DBL>
+<Name>Frequency (s)</Name>
+<Val>30.00000000000000</Val>
+</DBL>
+</Cluster>
+</LVData>

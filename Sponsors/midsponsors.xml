@@ -1,0 +1,40 @@
+<?xml version='1.0' standalone='yes' ?>
+<LVData xmlns="http://www.ni.com/LVData">
+<Version>13.0f2</Version>
+<Cluster>
+<Name>Image Information Out</Name>
+<NumElts>2</NumElts>
+<Array>
+<Name>Image Array</Name>
+<Dimsize>2</Dimsize>
+<Cluster>
+<Name>Image Info</Name>
+<NumElts>2</NumElts>
+<String>
+<Name>Alias</Name>
+<Val>3M</Val>
+</String>
+<Path>
+<Name>Path</Name>
+<Val>C:\ProgramData\FLL\Sponsors\3mlogo.bmp</Val>
+</Path>
+</Cluster>
+<Cluster>
+<Name>Image Info</Name>
+<NumElts>2</NumElts>
+<String>
+<Name>Alias</Name>
+<Val>LEGO</Val>
+</String>
+<Path>
+<Name>Path</Name>
+<Val>C:\ProgramData\FLL\Sponsors\lego_scaled.jpg</Val>
+</Path>
+</Cluster>
+</Array>
+<DBL>
+<Name>Frequency (s)</Name>
+<Val>30.00000000000000</Val>
+</DBL>
+</Cluster>
+</LVData>

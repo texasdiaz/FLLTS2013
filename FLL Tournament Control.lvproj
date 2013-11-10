@@ -71,6 +71,12 @@
 			<Item Name="Log Message.vi" Type="VI" URL="../Log Message.vi"/>
 			<Item Name="ReadScheduleFile.vi" Type="VI" URL="../ReadScheduleFile.vi"/>
 			<Item Name="Timer.vi" Type="VI" URL="../Timer.vi"/>
+			<Item Name="GetSetTopSponsorImage.vi" Type="VI" URL="../GetSetTopSponsorImage.vi"/>
+			<Item Name="ImageListManager.vi" Type="VI" URL="../ImageListManager.vi"/>
+			<Item Name="Score Display - Show Web Image (LV).vi" Type="VI" URL="../Score Display - Show Web Image (LV).vi"/>
+			<Item Name="LoadImageListFromXML.vi" Type="VI" URL="../LoadImageListFromXML.vi"/>
+			<Item Name="Get Images and Freq.vi" Type="VI" URL="../Get Images and Freq.vi"/>
+			<Item Name="GetSetProfileInfo.vi" Type="VI" URL="../GetSetProfileInfo.vi"/>
 		</Item>
 		<Item Name="Typedefs" Type="Folder">
 			<Item Name="Error File Queue Contents.ctl" Type="VI" URL="../Error File Queue Contents.ctl"/>
@@ -84,6 +90,7 @@
 			<Item Name="Team Data Array.ctl" Type="VI" URL="../Team Data Array.ctl"/>
 			<Item Name="Team Data.ctl" Type="VI" URL="../Team Data.ctl"/>
 			<Item Name="Timer_Details_Ctrl.ctl" Type="VI" URL="../Timer_Details_Ctrl.ctl"/>
+			<Item Name="ImageInfoList.ctl" Type="VI" URL="../ImageInfoList.ctl"/>
 		</Item>
 		<Item Name="sounds" Type="Folder" URL="../sounds">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
@@ -97,13 +104,22 @@
 		<Item Name="BryanLeeTS" Type="Folder" URL="../BryanLeeTS">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
+		<Item Name="Sponsors" Type="Folder" URL="../Sponsors">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
+		<Item Name="Images" Type="Folder" URL="../Images">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
+		<Item Name="profiles" Type="Folder">
+			<Item Name="profile.xml" Type="Document" URL="../profiles/profile.xml"/>
+		</Item>
 		<Item Name="FLL Tournament Control.vi" Type="VI" URL="../FLL Tournament Control.vi">
 			<Property Name="ws.type" Type="Int">2</Property>
 		</Item>
 		<Item Name="FLL Tournament Display.vi" Type="VI" URL="../FLL Tournament Display.vi"/>
 		<Item Name="FLL" Type="Web Service">
 			<Property Name="Bld_buildSpecName" Type="Str"></Property>
-			<Property Name="Bld_version.build" Type="Int">93</Property>
+			<Property Name="Bld_version.build" Type="Int">105</Property>
 			<Property Name="ws.autoIncrementVersion" Type="Bool">true</Property>
 			<Property Name="ws.disconnectInline" Type="Bool">false</Property>
 			<Property Name="ws.disconnectTypeDefs" Type="Bool">false</Property>
@@ -116,7 +132,7 @@
 			<Property Name="ws.serveDefaultDoc" Type="Bool">true</Property>
 			<Property Name="ws.SSE2" Type="Bool">false</Property>
 			<Property Name="ws.static_permissions" Type="Str"></Property>
-			<Property Name="ws.version.build" Type="Int">37</Property>
+			<Property Name="ws.version.build" Type="Int">41</Property>
 			<Property Name="ws.version.fix" Type="Int">0</Property>
 			<Property Name="ws.version.major" Type="Int">1</Property>
 			<Property Name="ws.version.minor" Type="Int">0</Property>
@@ -147,7 +163,7 @@
 					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
 					<Property Name="ws.method" Type="Int">3</Property>
 					<Property Name="ws.outputFormat" Type="Int">2</Property>
-					<Property Name="ws.outputType" Type="Int">0</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
 					<Property Name="ws.permissions" Type="Str"></Property>
 					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
 					<Property Name="ws.type" Type="Int">1</Property>
@@ -275,6 +291,81 @@
 					<Property Name="ws.useHeaders" Type="Bool">true</Property>
 					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
 				</Item>
+				<Item Name="GetSponsorLow.vi" Type="VI" URL="../GetSponsorLow.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="GetSponsorMid.vi" Type="VI" URL="../GetSponsorMid.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="GetSponsorTop.vi" Type="VI" URL="../GetSponsorTop.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="GetLogo.vi" Type="VI" URL="../GetLogo.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="Get_Game_Title.vi" Type="VI" URL="../Get_Game_Title.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
 			</Item>
 		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -365,6 +456,21 @@
 				<Item Name="Get System Directory.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/sysdir.llb/Get System Directory.vi"/>
 				<Item Name="ex_BuildTextVarProps.ctl" Type="VI" URL="/&lt;vilib&gt;/express/express output/BuildTextBlock.llb/ex_BuildTextVarProps.ctl"/>
 				<Item Name="Clear Errors.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Clear Errors.vi"/>
+				<Item Name="FixBadRect.vi" Type="VI" URL="/&lt;vilib&gt;/picture/pictutil.llb/FixBadRect.vi"/>
+				<Item Name="imagedata.ctl" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/imagedata.ctl"/>
+				<Item Name="Draw Flattened Pixmap.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Draw Flattened Pixmap.vi"/>
+				<Item Name="Flip and Pad for Picture Control.vi" Type="VI" URL="/&lt;vilib&gt;/picture/bmp.llb/Flip and Pad for Picture Control.vi"/>
+				<Item Name="Calc Long Word Padded Width.vi" Type="VI" URL="/&lt;vilib&gt;/picture/bmp.llb/Calc Long Word Padded Width.vi"/>
+				<Item Name="Read BMP Header Info.vi" Type="VI" URL="/&lt;vilib&gt;/picture/bmp.llb/Read BMP Header Info.vi"/>
+				<Item Name="Read BMP File Data.vi" Type="VI" URL="/&lt;vilib&gt;/picture/bmp.llb/Read BMP File Data.vi"/>
+				<Item Name="Read BMP File.vi" Type="VI" URL="/&lt;vilib&gt;/picture/bmp.llb/Read BMP File.vi"/>
+				<Item Name="Directory of Top Level VI.vi" Type="VI" URL="/&lt;vilib&gt;/picture/jpeg.llb/Directory of Top Level VI.vi"/>
+				<Item Name="Check Path.vi" Type="VI" URL="/&lt;vilib&gt;/picture/jpeg.llb/Check Path.vi"/>
+				<Item Name="Bit-array To Byte-array.vi" Type="VI" URL="/&lt;vilib&gt;/picture/pictutil.llb/Bit-array To Byte-array.vi"/>
+				<Item Name="Create Mask By Alpha.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Create Mask By Alpha.vi"/>
+				<Item Name="Read PNG File.vi" Type="VI" URL="/&lt;vilib&gt;/picture/png.llb/Read PNG File.vi"/>
+				<Item Name="Read JPEG File.vi" Type="VI" URL="/&lt;vilib&gt;/picture/jpeg.llb/Read JPEG File.vi"/>
+				<Item Name="LVBoundsTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVBoundsTypeDef.ctl"/>
 			</Item>
 			<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -381,6 +487,9 @@
 			<Item Name="Translate Schedule to Teams.vi" Type="VI" URL="../TeamManager/Translate Schedule to Teams.vi"/>
 			<Item Name="FindMatchEqualizationPoints.vi" Type="VI" URL="../TeamManager/FindMatchEqualizationPoints.vi"/>
 			<Item Name="Team Data Array2.ctl" Type="VI" URL="../TeamManager/Team Data Array2.ctl"/>
+			<Item Name="Score Display - Auto Scale Image (LV).vi" Type="VI" URL="../Score Display - Auto Scale Image (LV).vi"/>
+			<Item Name="Score Display - Load Image (LV).vi" Type="VI" URL="../Score Display - Load Image (LV).vi"/>
+			<Item Name="Score Display - Display Image (LV).vi" Type="VI" URL="../Score Display - Display Image (LV).vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="FLL Tournament Server" Type="EXE">
@@ -400,7 +509,7 @@
 				<Property Name="Bld_previewCacheID" Type="Str">{EF7E6A62-7B77-436C-81C6-82D704FD0122}</Property>
 				<Property Name="Bld_supportedLanguage[0]" Type="Str">English</Property>
 				<Property Name="Bld_supportedLanguageCount" Type="Int">1</Property>
-				<Property Name="Bld_version.build" Type="Int">41</Property>
+				<Property Name="Bld_version.build" Type="Int">45</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Server.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/FLL Tournament Server.exe</Property>
@@ -464,7 +573,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{01B6EB58-B92A-4A43-80BA-331183D62DED}</Property>
-				<Property Name="Bld_version.build" Type="Int">3</Property>
+				<Property Name="Bld_version.build" Type="Int">7</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display/FLL Tournament Display.exe</Property>
@@ -626,10 +735,22 @@
 				<Property Name="Destination[4].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
 				<Property Name="Destination[4].tag" Type="Str">{E496D311-33A7-4A7D-804E-D214114BD410}</Property>
 				<Property Name="Destination[4].type" Type="Str">userFolder</Property>
-				<Property Name="DestinationCount" Type="Int">5</Property>
+				<Property Name="Destination[5].name" Type="Str">sponsors</Property>
+				<Property Name="Destination[5].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Destination[5].tag" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Destination[5].type" Type="Str">userFolder</Property>
+				<Property Name="Destination[6].name" Type="Str">profiles</Property>
+				<Property Name="Destination[6].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Destination[6].tag" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Destination[6].type" Type="Str">userFolder</Property>
+				<Property Name="Destination[7].name" Type="Str">images</Property>
+				<Property Name="Destination[7].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Destination[7].tag" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Destination[7].type" Type="Str">userFolder</Property>
+				<Property Name="DestinationCount" Type="Int">8</Property>
 				<Property Name="DistPart[0].flavorID" Type="Str">DefaultFull</Property>
-				<Property Name="DistPart[0].productID" Type="Str">{C0446EC0-D69F-44C3-B3AD-E04EA7FAE72B}</Property>
-				<Property Name="DistPart[0].productName" Type="Str">NI LabVIEW Run-Time Engine 2013</Property>
+				<Property Name="DistPart[0].productID" Type="Str">{CD4CAB41-CAB7-436F-8D66-A83B95F2F3E6}</Property>
+				<Property Name="DistPart[0].productName" Type="Str">NI LabVIEW Run-Time Engine 2013 f2</Property>
 				<Property Name="DistPart[0].SoftDep[0].exclude" Type="Bool">false</Property>
 				<Property Name="DistPart[0].SoftDep[0].productName" Type="Str">NI LabVIEW 2013 Run-Time Engine Non-English Support.</Property>
 				<Property Name="DistPart[0].SoftDep[0].upgradeCode" Type="Str">{DDE96050-C9ED-4EAC-B310-5EA217776FEA}</Property>
@@ -669,11 +790,11 @@
 				<Property Name="INST_buildSpecName" Type="Str">FLL Software Installer</Property>
 				<Property Name="INST_defaultDir" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
 				<Property Name="INST_productName" Type="Str">FLL Tournament Software</Property>
-				<Property Name="INST_productVersion" Type="Str">1.0.6</Property>
+				<Property Name="INST_productVersion" Type="Str">1.0.9</Property>
 				<Property Name="INST_webService.count" Type="Int">1</Property>
 				<Property Name="INST_webService[0].itemID" Type="Ref">/My Computer/FLL</Property>
 				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
-				<Property Name="InstSpecVersion" Type="Str">13008048</Property>
+				<Property Name="InstSpecVersion" Type="Str">13008046</Property>
 				<Property Name="MSI_autoselectDrivers" Type="Bool">true</Property>
 				<Property Name="MSI_distID" Type="Str">{4E7C5B4F-65D1-4719-8B53-3E5A61E8D6BA}</Property>
 				<Property Name="MSI_osCheck" Type="Int">0</Property>
@@ -706,10 +827,62 @@
 				<Property Name="Source[10].ShortcutCount" Type="Int">1</Property>
 				<Property Name="Source[10].tag" Type="Ref">/My Computer/Score Sheets/FLL 2013 Nature's Fury Score Sheet.pdf</Property>
 				<Property Name="Source[10].type" Type="Str">File</Property>
+				<Property Name="Source[11].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Source[11].name" Type="Str">FLLicon_RGB.jpg</Property>
+				<Property Name="Source[11].tag" Type="Ref">/My Computer/Images/FLLicon_RGB.jpg</Property>
+				<Property Name="Source[11].type" Type="Str">File</Property>
+				<Property Name="Source[12].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Source[12].name" Type="Str">powered-by-labview-horiz-logo-rgb.png</Property>
+				<Property Name="Source[12].tag" Type="Ref">/My Computer/Images/powered-by-labview-horiz-logo-rgb.png</Property>
+				<Property Name="Source[12].type" Type="Str">File</Property>
+				<Property Name="Source[13].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Source[13].name" Type="Str">res Fury Logo SM.jpg</Property>
+				<Property Name="Source[13].tag" Type="Ref">/My Computer/Images/res Fury Logo SM.jpg</Property>
+				<Property Name="Source[13].type" Type="Str">File</Property>
+				<Property Name="Source[14].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[14].name" Type="Str">3mlogo.bmp</Property>
+				<Property Name="Source[14].tag" Type="Ref">/My Computer/Sponsors/3mlogo.bmp</Property>
+				<Property Name="Source[14].type" Type="Str">File</Property>
+				<Property Name="Source[15].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[15].name" Type="Str">FIRSThorz_RGB.jpg</Property>
+				<Property Name="Source[15].tag" Type="Ref">/My Computer/Sponsors/FIRSThorz_RGB.jpg</Property>
+				<Property Name="Source[15].type" Type="Str">File</Property>
+				<Property Name="Source[16].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[16].name" Type="Str">lego_scaled.jpg</Property>
+				<Property Name="Source[16].tag" Type="Ref">/My Computer/Sponsors/lego_scaled.jpg</Property>
+				<Property Name="Source[16].type" Type="Str">File</Property>
+				<Property Name="Source[17].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[17].name" Type="Str">nilogo.bmp</Property>
+				<Property Name="Source[17].tag" Type="Ref">/My Computer/Sponsors/nilogo.bmp</Property>
+				<Property Name="Source[17].type" Type="Str">File</Property>
+				<Property Name="Source[18].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[18].name" Type="Str">rockwellauto_scaled.jpg</Property>
+				<Property Name="Source[18].tag" Type="Ref">/My Computer/Sponsors/rockwellauto_scaled.jpg</Property>
+				<Property Name="Source[18].type" Type="Str">File</Property>
+				<Property Name="Source[19].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[19].name" Type="Str">statoil_horizontal.png</Property>
+				<Property Name="Source[19].tag" Type="Ref">/My Computer/Sponsors/statoil_horizontal.png</Property>
+				<Property Name="Source[19].type" Type="Str">File</Property>
 				<Property Name="Source[2].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[2].name" Type="Str">CHARGE.wav</Property>
 				<Property Name="Source[2].tag" Type="Ref">/My Computer/sounds/CHARGE.wav</Property>
 				<Property Name="Source[2].type" Type="Str">File</Property>
+				<Property Name="Source[20].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[20].name" Type="Str">profile.xml</Property>
+				<Property Name="Source[20].tag" Type="Ref">/My Computer/profiles/profile.xml</Property>
+				<Property Name="Source[20].type" Type="Str">File</Property>
+				<Property Name="Source[21].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[21].name" Type="Str">topsponsors.xml</Property>
+				<Property Name="Source[21].tag" Type="Ref">/My Computer/Sponsors/topsponsors.xml</Property>
+				<Property Name="Source[21].type" Type="Str">File</Property>
+				<Property Name="Source[22].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[22].name" Type="Str">lowsponsors.xml</Property>
+				<Property Name="Source[22].tag" Type="Ref">/My Computer/Sponsors/lowsponsors.xml</Property>
+				<Property Name="Source[22].type" Type="Str">File</Property>
+				<Property Name="Source[23].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[23].name" Type="Str">midsponsors.xml</Property>
+				<Property Name="Source[23].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
+				<Property Name="Source[23].type" Type="Str">File</Property>
 				<Property Name="Source[3].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[3].name" Type="Str">FOGHORN.wav</Property>
 				<Property Name="Source[3].tag" Type="Ref">/My Computer/sounds/FOGHORN.wav</Property>
@@ -758,7 +931,7 @@
 				<Property Name="Source[9].ShortcutCount" Type="Int">1</Property>
 				<Property Name="Source[9].tag" Type="Ref">/My Computer/Score Sheets/FLL 2013 Nature's Fury Accessible Score Sheet wChecklist.pdf</Property>
 				<Property Name="Source[9].type" Type="Str">File</Property>
-				<Property Name="SourceCount" Type="Int">11</Property>
+				<Property Name="SourceCount" Type="Int">24</Property>
 			</Item>
 		</Item>
 	</Item>

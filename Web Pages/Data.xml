@@ -1,247 +1,384 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Scoring_Elements>
 
-<Element>
-<Name>Tree Branch - East branch closer to mat than cable?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Tree Branch</Heading>
+        <Question>East branch closer to mat than cable?</Question>
+        <Tag>tree_branch</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+    </Element>
 
-<Element>
-<Name>Tree Branch - Models upright, TOUCHING mat?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Tree Branch</Heading>
+        <Question>Models upright, TOUCHING mat?</Question>
+        <Tag>cables</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if ((this.answers['tree_branch'] == 'Yes') && (this.answers['cables'] == 'Yes')) {score += 30;}]]></Score>
+    </Element>
 
-<Element>
-<Name>House Lift - House locked in high position?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>House Lift</Heading>
+        <Question>House locked in high position?</Question>
+        <Tag>house</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['house'] == 'Yes') {score += 25;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Progress - Colors Reached?</Name>
-<Option>0 (Not Attempted)</Option>
-<Option>1 (White)</Option>
-<Option>2 (Purple)</Option>
-<Option>3 (Blue)</Option>
-<Option>4 (Dk Green)</Option>
-<Option>5 (Lt Green)</Option>
-<Option>6 (Yellow)</Option>
-<Option>7 (Orange)</Option>
-<Option>8 (Red)</Option>
-<Option>9 (White)</Option>
-<Option>10 (Purple)</Option>
-<Option>11 (Blue)</Option>
-<Option>12 (Dk Green)</Option>
-<Option>13 (Lt Green)</Option>
-<Option>14 (Yellow)</Option>
-<Option>15 (Orange)</Option>
-<Option>16 (Red)</Option>
-</Element>
+    <Element>
+        <Heading>Progress</Heading>
+        <Question>Colors Reached?</Question>
+        <Tag>progress</Tag>
+        <Option><LabelFull>0 (Not Attempted)</LabelFull><Label>0</Label><Value>0</Value></Option>
+        <Option><LabelFull>1 (White)</LabelFull><Label>1</Label><Value>1</Value></Option>
+        <Option><LabelFull>2 (Purple)</LabelFull><Label>2</Label><Value>2</Value></Option>
+        <Option><LabelFull>3 (Blue)</LabelFull><Label>3</Label><Value>3</Value></Option>
+        <Option><LabelFull>4 (Dk Green)</LabelFull><Label>4</Label><Value>4</Value></Option>
+        <Option><LabelFull>5 (Lt Green)</LabelFull><Label>5</Label><Value>5</Value></Option>
+        <Option><LabelFull>6 (Yellow)</LabelFull><Label>6</Label><Value>6</Value></Option>
+        <Option><LabelFull>7 (Orange)</LabelFull><Label>7</Label><Value>7</Value></Option>
+        <Option><LabelFull>8 (Red)</LabelFull><Label>8</Label><Value>8</Value></Option>
+        <Option><LabelFull>9 (White)</LabelFull><Label>9</Label><Value>9</Value></Option>
+        <Option><LabelFull>10 (Purple)</LabelFull><Label>10</Label><Value>10</Value></Option>
+        <Option><LabelFull>11 (Blue)</LabelFull><Label>11</Label><Value>11</Value></Option>
+        <Option><LabelFull>12 (Dk Green)</LabelFull><Label>12</Label><Value>12</Value></Option>
+        <Option><LabelFull>13 (Lt Green)</LabelFull><Label>13</Label><Value>13</Value></Option>
+        <Option><LabelFull>14 (Yellow)</LabelFull><Label>14</Label><Value>14</Value></Option>
+        <Option><LabelFull>15 (Orange)</LabelFull><Label>15</Label><Value>15</Value></Option>
+        <Option><LabelFull>16 (Red)</LabelFull><Label>16</Label><Value>16</Value></Option>
+        <Score><![CDATA[score += (this.answers['progress'] || 0) * 2;]]></Score>
+    </Element>
 
-<Element>
-<Name>Base Isolation - West Tan Bldg Undamaged?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Base Isolation</Heading>
+        <Question>West Tan Bldg Undamaged?</Question>
+        <Tag>isolation1</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+    </Element>
 
-<Element>
-<Name>Base Isolation - East Tan Bldg Obviously Damaged?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Base Isolation</Heading>
+        <Question>East Tan Bldg Obviously Damaged?</Question>
+        <Tag>isolation2</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if ((this.answers['isolation1'] == 'Yes') && (this.answers['isolation2'] == 'Yes')) {score += 30;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Construction Relocation - Any Gray Bldg IN Lt Green Region?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Construction Relocation</Heading>
+        <Question>Any Gray Bldg IN Lt Green Region?</Question>
+        <Tag>relocation</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['relocation'] == 'No') {score += 20;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Supply Truck - Truck TOUCHING Yellow or Lt Blue Region?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Supply Truck</Heading>
+        <Question>Truck TOUCHING Yellow or Lt Blue Region?</Question>
+        <Tag>supply_truck</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['supply_truck'] == 'Yes') {score += 20;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Ambulance - Ambulance IN Yellow Region, all wheels touching mat?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Ambulance</Heading>
+        <Question>Ambulance IN Yellow Region, all wheels touching mat?</Question>
+        <Tag>ambulance</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['ambulance'] == 'Yes') {score += 25;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Cargo Plane - Plane Location?</Name>
-<Option>Lt Blue</Option>
-<Option>Yellow</Option>
-<Option>Neither</Option>
-</Element>
+    <Element>
+        <Heading>Cargo Plane</Heading>
+        <Question>Plane Location?</Question>
+        <Tag>cargo_plane</Tag>
+        <Option>
+            <Label>Lt Blue</Label><Value>Lt Blue</Value>
+        </Option>
+        <Option>
+            <Label>Yellow</Label><Value>Yellow</Value>
+        </Option>
+        <Option>
+            <Label>Neither</Label><Value>Neither</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['cargo_plane'] == 'Yellow') {
+                           score += 20;
+                        } else if (this.answers['cargo_plane'] == 'Lt Blue') {
+                           score += 30;
+                        }]]></Score>
+    </Element>
 
-<Element>
-<Name>Penalties - Touch-Sprawl Penalties?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-</Element>
+    <Element>
+        <Heading>Penalties</Heading>
+        <Question>Touch-Sprawl Penalties?</Question>
+        <Tag>touch</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>10</Value></Option>
+        <Option><Label>2</Label><Value>20</Value></Option>
+        <Option><Label>3</Label><Value>30</Value></Option>
+        <Option><Label>4</Label><Value>40</Value></Option>
+        <Option><Label>5</Label><Value>43</Value></Option>
+        <Option><Label>6</Label><Value>46</Value></Option>
+        <Option><Label>7</Label><Value>49</Value></Option>
+        <Option><Label>8</Label><Value>52</Value></Option>
+        <Score><![CDATA[score -= (this.answers['touch'] || 0);]]></Score>
+    </Element>
 
-<Element>
-<Name>Penalties - Small Junk Penalties?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-<Option>9</Option>
-<Option>10</Option>
-</Element>
+    <Element>
+        <Heading>Penalties</Heading>
+        <Question>Small Junk Penalties?</Question>
+        <Tag>small_junk</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Score><![CDATA[score -= (this.answers['small_junk'] || 0) * 5;]]></Score>
+    </Element>
 
-<Element>
-<Name>Penalties - Large Junk Penalties?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-<Option>9</Option>
-<Option>10</Option>
-</Element>
+    <Element>
+        <Heading>Penalties</Heading>
+        <Question>Large Junk Penalties?</Question>
+        <Tag>large_junk</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Score><![CDATA[score -= (this.answers['large_junk'] || 0) * 13;]]></Score>
+    </Element>
 
-<Element>
-<Name>Runway - Nothing But Waves or Plane TOUCHING Mat On Runway?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Runway</Heading>
+        <Question>Nothing But Waves or Plane TOUCHING Mat On Runway?</Question>
+        <Tag>runway</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['runway'] == 'Yes') {score += 30;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Evacuation Sign - Sign is UP, No Strategic Touching?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Evacuation Sign</Heading>
+        <Question>Sign is UP, No Strategic Touching?</Question>
+        <Tag>evacuation_sign</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['evacuation_sign'] == 'Yes') {score += 30;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Code Construction - Segments in Tallest Unaided Building in Pink Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-<Option>9</Option>
-<Option>10</Option>
-<Option>11</Option>
-<Option>12</Option>
-<Option>13</Option>
-</Element>
+    <Element>
+        <Heading>Code Construction</Heading>
+        <Question>Segments in Tallest Unaided Building in Pink Region?</Question>
+        <Tag>construction</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Score><![CDATA[score += (this.answers['construction'] || 0) * 5;]]></Score>
+    </Element>
 
-<Element>
-<Name>Family - People IN Largest Group in a Single Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-</Element>
+    <Element>
+        <Heading>Family</Heading>
+        <Question>People IN Largest Group in a Single Region?</Question>
+        <Tag>family1</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>0</Value></Option>
+        <Option><Label>2</Label><Value>33</Value></Option>
+        <Option><Label>3</Label><Value>66</Value></Option>
+        <Score><![CDATA[score += (this.answers['family1'] || 0)*1;]]></Score>
+    </Element>
 
-<Element>
-<Name>Family - People IN Regions containing Bottled Water?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-</Element>
+    <Element>
+        <Heading>Family</Heading>
+        <Question>People IN Regions containing Bottled Water?</Question>
+        <Tag>water</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Score><![CDATA[score += (this.answers['water'] || 0) * 15;]]></Score>
+    </Element>
 
-<Element>
-<Name>Family - People IN The Yellow Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-</Element>
+    <Element>
+        <Heading>Family</Heading>
+        <Question>People IN The Yellow Region?</Question>
+        <Tag>yellow_people</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Score><![CDATA[score += (this.answers['yellow_people'] || 0) * 12;]]></Score>
+        <Validate><![CDATA[((this.answers['yellow_people'] + this.answers['red_people']) > 3) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
+    </Element>
 
-<Element>
-<Name>Family - People IN The Red Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-</Element>
+    <Element>
+        <Heading>Family</Heading>
+        <Question>People IN The Red Region?</Question>
+        <Tag>red_people</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Score><![CDATA[score += (this.answers['red_people'] || 0) * 18;]]></Score>
+        <Validate><![CDATA[((this.answers['yellow_people'] + this.answers['red_people']) > 3) ? {'highlight': true, 'msg':'Total people cannot exceed 3'} : {'highlight': false, 'msg':''};]]></Validate>
+    </Element>
 
-<Element>
-<Name>Family - Pets IN Regions containing People?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-</Element>
+    <Element>
+        <Heading>Family</Heading>
+        <Question>Pets IN Regions containing People?</Question>
+        <Tag>pets</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Score><![CDATA[score += (this.answers['pets'] || 0) * 15;]]></Score>
+    </Element>
 
-<Element>
-<Name>Supplies - Non-Water Items IN Yellow Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-<Option>9</Option>
-<Option>10</Option>
-<Option>11</Option>
-<Option>12</Option>
-</Element>
+    <Element>
+        <Heading>Supplies</Heading>
+        <Question>Non-Water Items IN Yellow Region?</Question>
+        <Tag>yellow_supplies</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Score><![CDATA[score += (this.answers['yellow_supplies'] || 0) * 3;]]></Score>
+        <Validate><![CDATA[((this.answers['yellow_supplies'] + this.answers['red_supplies']) > 12) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
+    </Element>
 
-<Element>
-<Name>Supplies - Non-Water Items IN Red Region?</Name>
-<Option>0</Option>
-<Option>1</Option>
-<Option>2</Option>
-<Option>3</Option>
-<Option>4</Option>
-<Option>5</Option>
-<Option>6</Option>
-<Option>7</Option>
-<Option>8</Option>
-<Option>9</Option>
-<Option>10</Option>
-<Option>11</Option>
-<Option>12</Option>
-</Element>
+    <Element>
+        <Heading>Supplies</Heading>
+        <Question>Non-Water Items IN Red Region?</Question>
+        <Tag>red_supplies</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Score><![CDATA[score += (this.answers['red_supplies'] || 0) * 4;]]></Score>
+        <Validate><![CDATA[((this.answers['yellow_supplies'] + this.answers['red_supplies']) > 12) ? {'highlight': true, 'msg':'Total supplies cannot exceed 12'} : {'highlight': false, 'msg':''};]]></Validate>
+    </Element>
 
-<Element>
-<Name>Safe Place - Robot IN Red Region at End of Match?</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Safe Place</Heading>
+        <Question>Robot IN Red Region at End of Match?</Question>
+        <Tag>safe_place</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['safe_place'] == 'Yes') {score += 25;}]]></Score>
+    </Element>
 
-<Element>
-<Name>Obstacles - Best Result Achieved?</Name>
-<Option>None</Option>
-<Option>Dk Blue</Option>
-<Option>Dk Green</Option>
-<Option>Purple</Option>
-<Option>Red</Option>
-</Element>
+    <Element>
+        <Heading>Obstacles</Heading>
+        <Question>Best Result Achieved?</Question>
+        <Tag>obstacles</Tag>
+        <Option><Label>None</Label><Value>0</Value></Option>
+        <Option><Label>Dk Blue</Label><Value>10</Value></Option>
+        <Option><Label>Dk Green</Label><Value>16</Value></Option>
+        <Option><Label>Purple</Label><Value>23</Value></Option>
+        <Option><Label>Red</Label><Value>31</Value></Option>
+        <Score><![CDATA[score += (this.answers['obstacles'] || 0)*1;]]></Score>
+    </Element>
 
-<Element>
-<Name>Tsunami - All 3 Waves TOUCHING Mat</Name>
-<Option>Yes</Option>
-<Option>No</Option>
-</Element>
+    <Element>
+        <Heading>Tsunami</Heading>
+        <Question>All 3 Waves TOUCHING Mat</Question>
+        <Tag>tsunami</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value>
+        </Option>
+        <Score><![CDATA[if (this.answers['tsunami'] == 'Yes') {score += 20;}]]></Score>
+    </Element>
 
 </Scoring_Elements>
