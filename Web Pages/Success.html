@@ -1,22 +1,25 @@
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="styles.css">
-<script>
-function redirect() {
-	theLink = "Score_Entry.html";
-	window.location = theLink;
-}
-</script>
-</head>
-<body>
-	<div id="container">
-	<div id="cell">
-	<div id="content">
-Score submitted successfully.
-<input type='button' onclick="redirect()" value="Submit Another Score">
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script>
+            function redirect(theLink) {
+                // theLink = "Score_Entry.html";
+                window.location = theLink;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="cell">
+                <div id="centerdHeader">
+                    Score submitted successfully.<br/>
+                    <input type='button' class="valid" onclick="redirect('Score_Entry.html')" value="Submit Another Score">
+                </div>
+                <div id="centerdHeader">
+                    <input type='button' class="valid" onclick="redirect('tester.html')" value="Mobile Scoring">
 
-</div>
-</div>
-</div>
-</body>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
