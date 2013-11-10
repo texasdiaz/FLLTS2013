@@ -379,8 +379,7 @@
                     <em>FIRST</em> LEGO League <br />
                     <em>Nature's Fury</em> Score Sheet Entry
                 </div>
-<!--                <br/>-->
-                <div id="team_name_header">Team: XYZ</div>
+                <div id="team_name_header">Select Team</div>
             </div>
             <div id="right-header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
                 <div id="current_time" >Time: NO DATA</div>
@@ -408,56 +407,54 @@
     <!-- ======== END OF HEADER ======== -->
     <div id="main" class="main-normal">
         <div id="content">
-            <center>
-                <form name='ScoreEntry' action="Process_POST" method="post">
-                    <table>
-                        <tr>
-                            <td id="form">
-                                <center>
-                                    <div id="setup">
-                                        Mode:
-                                        <select id="Mode" name="Mode" onChange='setFormForMode();'>
-                                            <option>Automatic</option>
-                                            <!--		<option>Manual</option>  -->
-                                        </select>
-                                        Team:
-                                        <script>
-                                            getTeams();
-                                        </script>
-                                        Round:
-                                        <select name='Round' onChange='getPreviousData();'>
-                                            <option value=[null]>    </option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                </center>
-                                <hr />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div id="data" >
-                                    <div class="centerdHeader" style="padding: 50px">
-                                    Select Team to open score sheet.
-                                    </div>
+            <form name='ScoreEntry' action="Process_POST" method="post">
+                <table>
+                    <tr>
+                        <td id="form">
+                            <center>
+                                <div id="setup">
+                                    Mode:
+                                    <select id="Mode" name="Mode" onChange='setFormForMode();'>
+                                        <option>Automatic</option>
+                                        <!--		<option>Manual</option>  -->
+                                    </select>
+                                    Team:
+                                    <script>
+                                        getTeams();
+                                    </script>
+                                    Round:
+                                    <select name='Round' onChange='getPreviousData();'>
+                                        <option value=[null]>    </option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
                                 </div>
-                            </td>
-                        </tr>
-                        <script>
-                            BEGIN=false;
-                        </script>
-                        <tr>
-                            <td>
-                                <center><div id="unanswered" class="centerdHeader" style="padding: 20px; color: red"></div></center>
-                                <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </center>
+                            </center>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="data" >
+                                <div class="centerdHeader" style="padding: 50px">
+                                Select Team to open score sheet.
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <script>
+                        BEGIN=false;
+                    </script>
+                    <tr>
+                        <td>
+                            <center><div id="unanswered" class="centerdHeader" style="padding: 20px; color: red"></div></center>
+                            <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <script>
             function setFormForMode(){
