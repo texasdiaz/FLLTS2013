@@ -120,12 +120,10 @@ em {
 
 #content {
 	display: block;
-        margin-left: auto;
-        margin-right: auto;
 	padding: 4px;
 	text-align: left;
 	background-color: #E6E6E6;
-	/*box-shadow: 0px 0px 10px 10px #E6E6E6;*/
+	box-shadow: 0px 0px 10px 10px #E6E6E6;
 }
 
 #error_status {
@@ -219,19 +217,12 @@ a.button {
 	box-shadow: 0px 0px 5px 5px #E66666;
 	margin: 15px;
 }
-body {
-    /* Disable scrollbars and ensure that the body fills the window */
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-}
 
 #header {
     /* Provide scrollbars if needed and fix the header dimensions */
     overflow: auto;
     position: absolute;
     width: 100%;
-/*    height: 150px;*/
 }
 .header-normal {
     height: 110px;
@@ -277,7 +268,6 @@ body {
     overflow: auto;
     position: absolute;
     width: 100%;
-    /*top: 150px;*/
     bottom: 0;
 }
 .main-normal {
