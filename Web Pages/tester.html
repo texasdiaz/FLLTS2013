@@ -236,7 +236,6 @@
                 document.getElementById("data").innerHTML = getElements();
                 document.getElementById("unanswered").innerHTML = "Unanswered questions present";
                 activateElements();
-                getRules();
                 validate();
                 FIRST = false;
             }
@@ -459,7 +458,6 @@
                     document.getElementById("data").innerHTML=getElements();
                     document.getElementById("Validation").setAttribute("style","display: inherit;");
                     activateElements();
-                    getRules();
                     validate();
                 }
                 else if(mode=="Manual"){
