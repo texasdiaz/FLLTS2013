@@ -186,3 +186,91 @@ a.button {
 	box-shadow: 0px 0px 5px 5px #E66666;
 	margin: 15px;
 }
+body {
+    /* Disable scrollbars and ensure that the body fills the window */
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    /* Provide scrollbars if needed and fix the header dimensions */
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    height: 150px;
+}
+
+#left-header {
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+#mid-header {
+    padding: 0px 20px 0px 20px;
+    border: 0px;
+    margin: 0px;
+    text-align: center;
+    vertical-align: top;
+}
+
+#mid-header-title {
+    font-size: 2em;
+}
+
+#right-header {
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+#main {
+    /* Provide scrollbars if needed, position below header, and derive height from top/bottom */
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    top: 150px;
+    bottom: 0;
+}
+
+#fll_title
+{
+	float: left;
+	width: 542px;
+	background-color: #999999;
+	font-size: 2em;
+	color: #000000;
+	text-align: center;
+}
+#team_name_header
+{
+	font-size: 1.5em;
+        text-align: center;
+}
+#score_header
+{
+	float: left;
+	width: 299px;
+	background-color: #999999;
+	font-size: 3em;
+	text-align: center;
+}
+#error_status
+{
+	font-size: 1em;
+}
+#current_time
+{
+    padding: 10px;
+    font-size: 1em;
+}
+#current_match
+{
+    padding: 10px;
+    font-size: 1em;
+}
+#node8
+{
+	background-color: #162934;
+}

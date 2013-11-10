@@ -130,7 +130,7 @@
                 color = "green";
             }
             if (!BEGIN) {
-                document.getElementById("teamSelectedError").setAttribute("style", "color:" + color);
+                // document.getElementById("teamSelectedError").setAttribute("style", "color:" + color);
             }
 
             //Ensure all radio button groups have had values set
@@ -364,7 +364,7 @@
 <body>
     <table id="header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
         <tr>
-            <td style="padding-botton: 0px">
+            <td id="left-header">
                 <table style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
                     <tr>
                         <td>
@@ -381,10 +381,10 @@
                     </tr>
                 </table>
             </td>
-            <td align="center" style="padding: 0px 20px 0px 20px;">
+            <td id="mid-header" align="center">
                 <table style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
                     <tr>
-                        <td class="centerdHeader">
+                        <td id="mid-header-title">
                             <em>FIRST</em> LEGO League <br />
                             <em>Nature's Fury</em> Score Sheet Entry
                         </td>
