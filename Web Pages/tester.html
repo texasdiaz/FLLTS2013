@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script  type="text/javascript">
         BEGIN=true;
+        FIRST=true;
         mode="Automatic";
         var previousDataExists = new Boolean;
         var previousData = [];
@@ -100,96 +101,45 @@
             return string;
         }
 
+        function setSubmit(status) {
+            if (!BEGIN) {
+                document.getElementById("submitButton").disabled = !(status);
+                if (status) {
+                    document.getElementById("unanswered").innerHTML = "";
+                    $("#submitButton").removeClass('invalid').addClass('valid');
+                } else {
+                    $("#submitButton").removeClass('valid').addClass('invalid');
+                }
+            }
+        }
+
         function validate() {
 
-            if (validAnswers())
-                computeScore();
+            if (!validAnswers()) {
+                setSubmit(false);
+                return;
+            }
 
-            var radioInputs = document.forms["ScoreEntry"].getElementsByTagName("input");
-            var dropdowns = document.forms["ScoreEntry"].getElementsByTagName("select");
-
-            function getBoolValue(match, p1) {
-                return $("input:radio[name=" + p1 + "]:checked").val() == "Yes";
-            }
-            ;
-
-            function getNumValue(match, p1) {
-                return parseInt($("input:radio[name=" + p1 + "]:checked").val());
-            }
-            ;
-
-            // Look at team name and round
-            var teamChanged = true;
-            for (var j = 0; j < dropdowns.length; j++) {
-                var val = dropdowns[j].options[dropdowns[j].selectedIndex].value;
-                var isChanged = (val != "[null]");
-                teamChanged = teamChanged && isChanged;
-            }
-            var color = "red";
-            if (teamChanged) {
-                color = "green";
-            }
-            if (!BEGIN) {
-                // document.getElementById("teamSelectedError").setAttribute("style", "color:" + color);
-            }
+            computeScore();
 
             //Ensure all radio button groups have had values set
             //Walk through the radio buttons, keying off the name and whether it's "checked"
-            var allChanged = true;
-            var lastNameChanged = false;
-            if (!BEGIN && radioInputs != null && radioInputs.length > 0) {
-                var lastName = radioInputs[0].name;
-                for (var i = 0; i < radioInputs.length; i++) {
-                    if (radioInputs[i].name == lastName)
-                    {
-                        // Found same name, see if it's checked and update persistent boolean
-                        lastNameChanged = lastNameChanged || radioInputs[i].checked;
-                    }
-                    else
-                    {
-                        // New name, collate value into global
-                        allChanged = allChanged && lastNameChanged;
-                        // Set up new name and value structure.
-                        lastNameChanged = radioInputs[i].checked;
-                        lastName = radioInputs[i].name;
-                    }
-                }
-                allChanged = allChanged && lastNameChanged;
-
-                color = "red";
-                if (allChanged) {
-                    color = "green";
-                }
-                document.getElementById("allSelectedError").setAttribute("style", "color:" + color);
-            }
-
-            //Verify against "rules" document
-            var allRulesGood = true;
-            var boolRef = /%(.*?)%/g;
-            var numRef = /\$(.*?)\$/g;
-            for (var i = 0; i < rulesArray.length; i++) {
-                var thisRule = rulesArray[i];
-                var rule = thisRule.replace(boolRef, getBoolValue);
-                rule = rule.replace(numRef, getNumValue);
-                var isGood = eval(rule);
-                var color = "red";
-                if (isGood) {
-                    color = "green";
-                }
-                ;
-                if (!BEGIN) {
-                    document.getElementById("R" + i.toString()).setAttribute("style", "color:" + color);
-                }
-                allRulesGood = allRulesGood && isGood;
-            }
-
+            var allChanged = true
             if (!BEGIN) {
-                document.getElementById("submitButton").disabled = !(teamChanged && allChanged && allRulesGood);
-                if (teamChanged && allChanged && allRulesGood) {
-                    $("#submitButton").removeClass('invalid').addClass('valid');
+                var elements = scoring_data.getElementsByTagName("Element");
+
+                for (var i = 0; i < elements.length; i++) {
+                    var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
+                    var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+                    var name = normalize(heading + " - " + question);
+                    // Look up the clicked status of named buttonset
+                    var qinput = $("#"+name + " :radio:checked");
+
+                    allChanged = allChanged && qinput.is(":checked");
                 }
             }
 
+            setSubmit(allChanged);
         }
 
         function getTeams() {
@@ -200,20 +150,14 @@
             for (var i = 0; i < teams.length; i++) {
                 var teamName = teams[i].getElementsByTagName("Team_Name")[0].childNodes[0].nodeValue;
                 var teamNumber = teams[i].getElementsByTagName("Team_Number")[0].childNodes[0].nodeValue;
+
+                // Do not put a team ID of 0 in the selection list
+                if (teamNumber === "0") continue;
                 var theString = teamNumber + " - " + teamName;
                 document.write("<option value='" + teamNumber + "'>" + theString + "</option>");
             }
             document.write("</select>");
             // validate();
-        }
-
-        function getRules() {
-            rulesXml = getXML("Constraints.xml");
-            rulesArray = new Array();
-            rules = rulesXml.getElementsByTagName("Rules")[0].getElementsByTagName("Rule");
-            for (var foo = 0; foo < rules.length; foo++) {
-                rulesArray[foo] = rules[foo].childNodes[0].nodeValue;
-            }
         }
 
         function activateElements() {
@@ -224,13 +168,24 @@
                 var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
                 var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
                 // var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
-                var name = (heading + " - " + question);
-                $("#" + normalize(name)).buttonset();
-                $("input[name='" + normalize(name) + "']").change(function() {
+                var name = normalize(heading + " - " + question);
+                // Turn inputs into button sets - pressable buttons rather than radio box
+                $("#" + name).buttonset();
+                $("input[name='" + name + "']").change(function() {
                     saveAnswer(this, $(this).val());
+                    $(this).addClass("qdone");
                     validate();
                 });
             }
+            // Make button click happen with mousedown
+            // Allows for faster entry on computer
+            // This must happen after the buttons have been added to the DOM
+            $('label').on('mousedown', function(event) {
+               switch (event.which) {
+                   case 1:
+                       $(this).click();
+               }
+           });
         }
 
         function getElements() {
@@ -247,7 +202,7 @@
                 var values = [];
                 var name = (heading + " - " + question);
                 answer_tags[normalize(name)] = tag;
-                newHTML += ("<div id='" + tag + "-div'>" + name);
+                newHTML += ("<div id='" + tag + "-div' class='qdiv'>" + name);
                 newHTML += "<br>";
                 newHTML += ("<span id='" + normalize(name) + "'>");
                 var options = elements[i].getElementsByTagName("Option");
@@ -268,7 +223,6 @@
                 newHTML += ("</span>");
                 newHTML += ("<span class='old' id='Old_" + normalize(name) + "'></span>");
                 newHTML += ("</div>");
-                newHTML += ("<br/>");
             }
             return newHTML;
         }
@@ -277,6 +231,16 @@
             var e = document.getElementsByName("Teams")[0];
             var teamName = "Team: " + e.options[e.selectedIndex].text;
             document.getElementById("team_name_header").innerHTML = teamName;
+
+            if (FIRST) {
+                document.getElementById("data").innerHTML = getElements();
+                document.getElementById("unanswered").innerHTML = "Unanswered questions present";
+                activateElements();
+                getRules();
+                validate();
+                FIRST = false;
+            }
+
             if (mode == "Automatic") {
                 var teamNo = e.options[e.selectedIndex].value;
                 NRhttp = new XMLHttpRequest();
@@ -296,10 +260,14 @@
         }
 
         function saveAnswer(element, value) {
-            answers[answer_tags[element.name]] = answer_values[element.name][value];
+            var tag = answer_tags[element.name];
+            var qdiv = $('#'+tag + "-div");
+            answers[tag] = answer_values[element.name][value];
+            qdiv.removeClass("qerror").addClass("qdone");
         }
 
         function validAnswers() {
+            var result = {};
             elements = scoring_data.getElementsByTagName("Element");
             for (var i = 0; i < elements.length; i++) {
                 var validate = elements[i].getElementsByTagName("Validate");
@@ -310,25 +278,31 @@
                         result = eval(validate_script);
                     } catch (err) {
                         // Okay to get errors for answers that aren't ready
-                        result = {'highlight': true, 'msg':''};
+                        result = {'highlight': false, 'msg':''};
                     }
 
+                    var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
+                    var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+                    var name = normalize(heading + " - " + question);
+                    // Look up the clicked status of named buttonset
+                    var qinput = $("#"+name + " :radio:checked");
+
+                    var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue + "-div";
+                    var qdiv = $('#'+tag);
                     if (result.highlight) {
-                        var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
-                        var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
-                        // var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
-                        // var error_div = document.getElementbyId(tag+"-div");
-                        // error_div.style.backgroundColor = "red";
+                        // This will switch the style to our error class
+                        qdiv.removeClass("qdone").addClass("qerror");
 
-                        var normalized_name = normalize(heading + " - " + question);
-                        var error_span = document.getElementbyId(normalized_name);
-                        error_span.style.backgroundColor = "red";
-
-                        document.getElementById("CurrentScore").innerHTML = "Invalid";
+                        document.getElementById("CurrentScore").innerHTML = "Error";
                         if (result.msg !== '') {
                             document.getElementById("error_status").innerHTML = result.msg;
                             return(false);
                         }
+                    } else if (qinput.is(":checked")) {
+                        // Sets style to 'qdone' which is light green
+                        qdiv.removeClass("qerror").addClass("qdone");
+                    } else {
+                        qdiv.removeClass("qerror");
                     }
                 }
 
@@ -404,7 +378,7 @@
             </td>
         </tr>
         <tr>
-            <td id="error_status" colspan="3" style="padding-left: 15px;color: red"> </td>
+            <td id="error_status" colspan="3"> </td>
         </tr>
     </table>
     <script>
@@ -425,86 +399,85 @@
     </script>
     <!-- ======== END OF HEADER ======== -->
     <div id="main">
-        <div id="cell">
-            <div id="content">
-                <center>
-                    <form name='ScoreEntry' action="Process_POST" method="post">
-                        <table>
-                            <tr>
-                                <td id="form" colspan="2">
-                                    <center>
-                                        <div id="setup">
-                                            Mode:
-                                            <select id="Mode" name="Mode" onChange='setFormForMode();'>
-                                                <option>Automatic</option>
-                                                <!--		<option>Manual</option>  -->
-                                            </select>
-                                            Team:
-                                            <script>
-                                                getTeams();
-                                            </script>
-                                            Round:
-                                            <select name='Round' onChange='getPreviousData();'>
-                                                <option value=[null]>    </option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                            </select>
-                                        </div>
-                                    </center>
-                                    <hr />
-                                </td>
-                                <tr>
-                                    <td width="75%">
-                                        <div id="data">
-                                            <script>
-                                                document.write(getElements());
-                                                activateElements();
-                                                getRules();
-                                                validate();
-                                            </script>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <script>
-                                    BEGIN=false;
-                                </script>
-                                <tr>
-                                    <td colspan="2">
-                                        <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
-                                    </td>
-                                </tr>
-                        </table>
-                    </form>
-                </center>
-            </div>
-            <script>
-                function setFormForMode(){
-                    var e = document.getElementsByName("Mode")[0];
-                    mode = e.options[e.selectedIndex].text;
-                    if(mode=="Automatic"){
-                        document.getElementById("data").innerHTML=getElements();
-                        document.getElementById("Validation").setAttribute("style","display: inherit;");
-                        activateElements();
-                        getRules();
-                        validate();
-                    }
-                    else if(mode=="Manual"){
-                        document.getElementById("data").innerHTML="Score: <input type='number' name='Score' min='0'><span class='old' id='Old_Score'></span>";
-                        rulesArray=[];
-                        document.getElementById("Validation").setAttribute("style","display: none;");
-                        validate();
-                    }
-                }
-             $('label').on('mousedown', function(e) {
-                switch (event.which) {
-                    case 1:
-                        $(this).click();
-                }
-            });
-            </script>
+        <div id="content">
+            <center>
+                <form name='ScoreEntry' action="Process_POST" method="post">
+                    <table>
+                        <tr>
+                            <td id="form">
+                                <center>
+                                    <div id="setup">
+                                        Mode:
+                                        <select id="Mode" name="Mode" onChange='setFormForMode();'>
+                                            <option>Automatic</option>
+                                            <!--		<option>Manual</option>  -->
+                                        </select>
+                                        Team:
+                                        <script>
+                                            getTeams();
+                                        </script>
+                                        Round:
+                                        <select name='Round' onChange='getPreviousData();'>
+                                            <option value=[null]>    </option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                        </select>
+                                    </div>
+                                </center>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="data" >
+                                    <div class="centerdHeader" style="padding: 50px">
+                                    Select Team to open score sheet.
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <script>
+                            BEGIN=false;
+                        </script>
+                        <tr>
+                            <td colspan="2">
+                                <center><div id="unanswered" class="centerdHeader" style="padding: 20px; color: red"></div></center>
+                                <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </center>
         </div>
+        <script>
+            function setFormForMode(){
+                var e = document.getElementsByName("Mode")[0];
+                mode = e.options[e.selectedIndex].text;
+                if(mode=="Automatic"){
+                    document.getElementById("data").innerHTML=getElements();
+                    document.getElementById("Validation").setAttribute("style","display: inherit;");
+                    activateElements();
+                    getRules();
+                    validate();
+                }
+                else if(mode=="Manual"){
+                    document.getElementById("data").innerHTML="Score: <input type='number' name='Score' min='0'><span class='old' id='Old_Score'></span>";
+                    rulesArray=[];
+                    document.getElementById("Validation").setAttribute("style","display: none;");
+                    validate();
+                }
+            }
+            // Make button click happen with mousedown
+            // Allows for faster entry on computer
+            $('label').on('mousedown', function(event) {
+               switch (event.which) {
+                   case 1:
+                       $(this).click();
+               }
+           });
+        </script>
     </div>
 </body>
 </html>
