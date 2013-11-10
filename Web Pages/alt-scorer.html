@@ -20,6 +20,7 @@
         var rules;
         var scoring_data;
         var answers = [];
+        var old_answers = [];
         var answer_tags = [];
         var answer_values = [];
 
@@ -79,6 +80,7 @@
                     previousData[i] = [tag, value];
                     try {
                         document.getElementById("Old_" + tag).innerHTML = value;
+                        old_answers[tag] = value;
                     }
                     catch (err) {
                     }
@@ -270,7 +272,19 @@
         function saveAnswer(element, value) {
             var tag = answer_tags[element.name];
             var qdiv = $('#'+tag + "-div");
+            // Translate form input value into something the scoring code likes
             answers[tag] = answer_values[element.name][value];
+            if (previousDataExists) {
+                var old = $("#Old_" + element.name);
+                if (value !== old_answers[element.name]){
+                    qdiv.removeClass("qerror").addClass("qwarn");
+                    old.removeClass("old").addClass("warn");
+                    return;
+                } else {
+                    qdiv.removeClass("qwarn");
+                    old.removeClass("warn").addClass("old");
+                }
+            }
             qdiv.removeClass("qerror").addClass("qdone");
         }
 
@@ -342,7 +356,11 @@
             if (score < 0)
                 score = 0;
 
-            document.getElementById("CurrentScore").innerHTML = "Score: " + score;
+            if (previousDataExists) {
+                document.getElementById("CurrentScore").innerHTML = "Verify: " + score;
+            } else {
+                document.getElementById("CurrentScore").innerHTML = "Score: " + score;
+            }
         }
     </script>
 </head>
@@ -350,9 +368,8 @@
     <div id="header" class="header-normal">
         <div id="title-row">
             <div id="left-header">
-                <div id="nav-buttons">
-                            <a href="index.html" class="button">Index</a>
-                            <a href="TimeKeeper.html" class="button">Timing</a>
+                <div id="nav-buttons" align="center">
+                    <a href="index.html" class="button">Index</a>
                 </div>
                 <br/>
                 <div id="CurrentScore">Score: 000</div>
@@ -362,7 +379,7 @@
                     <em>FIRST</em> LEGO League <br />
                     <em>Nature's Fury</em> Score Sheet Entry
                 </div>
-                <br/>
+<!--                <br/>-->
                 <div id="team_name_header">Team: XYZ</div>
             </div>
             <div id="right-header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
