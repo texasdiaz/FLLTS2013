@@ -9,7 +9,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
     </Element>
 
@@ -18,7 +18,7 @@
         <Question>Models upright, TOUCHING mat?</Question>
         <Tag>cables</Tag>
         <Option>
-            <Label>Yes</Label><Value>Yes</Value>
+            <Label>Yes</Label><Value>Yes</Value><Default/>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value>
@@ -34,7 +34,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['house'] == 'Yes') {score += 25;}]]></Score>
     </Element>
@@ -43,7 +43,7 @@
         <Heading>Progress</Heading>
         <Question>Colors Reached?</Question>
         <Tag>progress</Tag>
-        <Option><LabelFull>0 (Not Attempted)</LabelFull><Label>0</Label><Value>0</Value></Option>
+        <Option><LabelFull>0 (Not Attempted)</LabelFull><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><LabelFull>1 (White)</LabelFull><Label>1</Label><Value>1</Value></Option>
         <Option><LabelFull>2 (Purple)</LabelFull><Label>2</Label><Value>2</Value></Option>
         <Option><LabelFull>3 (Blue)</LabelFull><Label>3</Label><Value>3</Value></Option>
@@ -68,7 +68,7 @@
         <Question>West Tan Bldg Undamaged?</Question>
         <Tag>isolation1</Tag>
         <Option>
-            <Label>Yes</Label><Value>Yes</Value>
+            <Label>Yes</Label><Value>Yes</Value><Default/>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value>
@@ -83,7 +83,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if ((this.answers['isolation1'] == 'Yes') && (this.answers['isolation2'] == 'Yes')) {score += 30;}]]></Score>
     </Element>
@@ -93,7 +93,7 @@
         <Question>Any Gray Bldg IN Lt Green Region?</Question>
         <Tag>relocation</Tag>
         <Option>
-            <Label>Yes</Label><Value>Yes</Value>
+            <Label>Yes</Label><Value>Yes</Value><Default/>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value>
@@ -109,7 +109,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['supply_truck'] == 'Yes') {score += 20;}]]></Score>
     </Element>
@@ -122,7 +122,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['ambulance'] == 'Yes') {score += 25;}]]></Score>
     </Element>
@@ -138,7 +138,7 @@
             <Label>Yellow</Label><Value>Yellow</Value>
         </Option>
         <Option>
-            <Label>Neither</Label><Value>Neither</Value>
+            <Label>Neither</Label><Value>Neither</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['cargo_plane'] == 'Yellow') {
                            score += 20;
@@ -151,7 +151,7 @@
         <Heading>Penalties</Heading>
         <Question>Touch-Sprawl Penalties?</Question>
         <Tag>touch</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>10</Value></Option>
         <Option><Label>2</Label><Value>20</Value></Option>
         <Option><Label>3</Label><Value>30</Value></Option>
@@ -167,7 +167,7 @@
         <Heading>Penalties</Heading>
         <Question>Small Junk Penalties?</Question>
         <Tag>small_junk</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -185,7 +185,7 @@
         <Heading>Penalties</Heading>
         <Question>Large Junk Penalties?</Question>
         <Tag>large_junk</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -204,7 +204,7 @@
         <Question>Nothing But Waves or Plane TOUCHING Mat On Runway?</Question>
         <Tag>runway</Tag>
         <Option>
-            <Label>Yes</Label><Value>Yes</Value>
+            <Label>Yes</Label><Value>Yes</Value><Default/>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value>
@@ -220,7 +220,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['evacuation_sign'] == 'Yes') {score += 30;}]]></Score>
     </Element>
@@ -229,7 +229,7 @@
         <Heading>Code Construction</Heading>
         <Question>Segments in Tallest Unaided Building in Pink Region?</Question>
         <Tag>construction</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -250,7 +250,7 @@
         <Question>People IN Largest Group in a Single Region?</Question>
         <Tag>family1</Tag>
         <Option><Label>0</Label><Value>0</Value></Option>
-        <Option><Label>1</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>0</Value><Default/></Option>
         <Option><Label>2</Label><Value>33</Value></Option>
         <Option><Label>3</Label><Value>66</Value></Option>
         <Score><![CDATA[score += (this.answers['family1'] || 0)*1;]]></Score>
@@ -260,7 +260,7 @@
         <Heading>Family</Heading>
         <Question>People IN Regions containing Bottled Water?</Question>
         <Tag>water</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -271,7 +271,7 @@
         <Heading>Family</Heading>
         <Question>People IN The Yellow Region?</Question>
         <Tag>yellow_people</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -283,7 +283,7 @@
         <Heading>Family</Heading>
         <Question>People IN The Red Region?</Question>
         <Tag>red_people</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -295,7 +295,7 @@
         <Heading>Family</Heading>
         <Question>Pets IN Regions containing People?</Question>
         <Tag>pets</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Score><![CDATA[score += (this.answers['pets'] || 0) * 15;]]></Score>
@@ -305,7 +305,7 @@
         <Heading>Supplies</Heading>
         <Question>Non-Water Items IN Yellow Region?</Question>
         <Tag>yellow_supplies</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -326,7 +326,7 @@
         <Heading>Supplies</Heading>
         <Question>Non-Water Items IN Red Region?</Question>
         <Tag>red_supplies</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
@@ -351,7 +351,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['safe_place'] == 'Yes') {score += 25;}]]></Score>
     </Element>
@@ -360,7 +360,7 @@
         <Heading>Obstacles</Heading>
         <Question>Best Result Achieved?</Question>
         <Tag>obstacles</Tag>
-        <Option><Label>None</Label><Value>0</Value></Option>
+        <Option><Label>None</Label><Value>0</Value><Default/></Option>
         <Option><Label>Dk_Blue</Label><Value>10</Value></Option>
         <Option><Label>Dk_Green</Label><Value>16</Value></Option>
         <Option><Label>Purple</Label><Value>23</Value></Option>
@@ -376,7 +376,7 @@
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
-            <Label>No</Label><Value>No</Value>
+            <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['tsunami'] == 'Yes') {score += 20;}]]></Score>
     </Element>
