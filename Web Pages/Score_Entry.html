@@ -211,11 +211,11 @@
                     prev_heading = heading;
                 }
                 var values = [];
-                var name = (heading + " - " + question);
-                answer_tags[normalize(name)] = tag;
+                var name = normalize(heading + " - " + question);
+                answer_tags[name] = tag;
                 sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
                 sectionHTML += "<br>";
-                sectionHTML += ("<span id='" + normalize(name) + "'>");
+                sectionHTML += ("<span id='" + name + "'>");
                 var options = elements[i].getElementsByTagName("Option");
                 for (var j = 0; j < options.length; j++) {
                     if (options[j].getElementsByTagName("LabelFull").length > 0) {
@@ -225,18 +225,18 @@
                     }
                     var qvalue = options[j].getElementsByTagName("Value")[0].childNodes[0].nodeValue;
                     values[qlabel] = qvalue;
-                    sectionHTML += ("<input type='radio' id='" + normalize(name) + j.toString() + "' name='" + normalize(name) + "' value='" + qlabel + "'/>");
-                    sectionHTML += ("<label for='" + normalize(name) + j.toString() + "'>" + qlabel + "</label>");
                     var default_element = options[j].getElementsByTagName("Default");
                     if (default_element.length > 0) {
-                        default_answers[normalize(name)] = normalize(name) + j.toString();
+                        default_answers[name] = name + j.toString();
                     }
+                    sectionHTML += ("<input type='radio' id='" + name + j.toString() + "' name='" + name + "' value='" + qlabel + "'/>");
+                    sectionHTML += ("<label for='" + name + j.toString() + "'>" + qlabel + "</label>");
                 }
 
-                answer_values[normalize(name)] = values;
+                answer_values[name] = values;
 
                 sectionHTML += ("</span>");
-                sectionHTML += ("<span class='old' id='Old_" + normalize(name) + "'></span>");
+                sectionHTML += ("<span class='old' id='Old_" + name + "'></span>");
                 sectionHTML += ("</div>");
             }
             newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
