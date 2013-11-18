@@ -156,10 +156,10 @@
         <Option><Label>2</Label><Value>20</Value></Option>
         <Option><Label>3</Label><Value>30</Value></Option>
         <Option><Label>4</Label><Value>40</Value></Option>
-        <Option><Label>5</Label><Value>43</Value></Option>
-        <Option><Label>6</Label><Value>46</Value></Option>
-        <Option><Label>7</Label><Value>49</Value></Option>
-        <Option><Label>8</Label><Value>52</Value></Option>
+        <Option><Label>5</Label><Value>53</Value></Option>
+        <Option><Label>6</Label><Value>66</Value></Option>
+        <Option><Label>7</Label><Value>79</Value></Option>
+        <Option><Label>8</Label><Value>92</Value></Option>
         <Score><![CDATA[score -= (this.answers['touch'] || 0);]]></Score>
     </Element>
 
