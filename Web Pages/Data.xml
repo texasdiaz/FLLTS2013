@@ -132,7 +132,7 @@
         <Question>Plane Location?</Question>
         <Tag>cargo_plane</Tag>
         <Option>
-            <Label>Lt_Blue</Label><Value>Lt_Blue</Value>
+            <Label>Lt Blue</Label><Value>Lt_Blue</Value>
         </Option>
         <Option>
             <Label>Yellow</Label><Value>Yellow</Value>
@@ -361,8 +361,8 @@
         <Question>Best Result Achieved?</Question>
         <Tag>obstacles</Tag>
         <Option><Label>None</Label><Value>0</Value><Default/></Option>
-        <Option><Label>Dk_Blue</Label><Value>10</Value></Option>
-        <Option><Label>Dk_Green</Label><Value>16</Value></Option>
+        <Option><Label>Dk Blue</Label><Value>10</Value></Option>
+        <Option><Label>Dk Green</Label><Value>16</Value></Option>
         <Option><Label>Purple</Label><Value>23</Value></Option>
         <Option><Label>Red</Label><Value>31</Value></Option>
         <Score><![CDATA[score += (this.answers['obstacles'] || 0)*1;]]></Score>
