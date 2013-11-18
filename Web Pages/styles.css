@@ -100,6 +100,16 @@ button.valid {
 	box-shadow: 0px 0px 5px 5px green;
 }
 
+#set_defaults {
+    padding: 2px 5px 2px 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /*padding-bottom: 2px;*/
+    /*padding-top: 2px;*/
+    font-size: 1em;
+    box-shadow: none;
+}
+
 em {
 	font-style: italic;
 }
