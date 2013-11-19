@@ -18,6 +18,7 @@
                 var answers = [];
                 var answer_tags = [];
                 var answer_values = [];
+                var default_answers = [];
 
                 function checkData(){
                     var theForm = document.getElementsByName("ScoreEntry")[0];
@@ -259,6 +260,10 @@
                         }
                         var qvalue = options[j].getElementsByTagName("Value")[0].childNodes[0].nodeValue;
                         values[normalize(qlabel)] = qvalue;
+                        var default_element = options[j].getElementsByTagName("Default");
+                        if (default_element.length > 0) {
+                            default_answers[normalize(name)] = normalize(name) + j.toString();
+                        }
                         newHTML += ("<input type='radio' id='"
                                 + normalize(name) + j.toString() + "' name='"
                                 + normalize(name) + "' value='" + normalize(qlabel) + "'/>");
@@ -321,6 +326,24 @@
 
                 document.getElementById("CurrentScore").innerHTML = "Score: " + score;
             }
+
+            function setDefaults() {
+                if (!confirm("All answers will be set to default values.\n"
+                          + "Are you sure you want this?")) {
+                    return;
+                }
+                elements = scoring_data.getElementsByTagName("Element");
+
+                for (var i = 0; i < elements.length; i++) {
+                    var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
+                    var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+
+                    var name = normalize(heading + " - " + question);
+                    var default_button = $("#" + default_answers[name]);
+                    default_button.click();
+                    // $("#" + name).buttonset("refresh");
+                }
+            }
         </script>
     </head>
 
@@ -364,6 +387,8 @@
                             <td id="form" colspan="2">
                                 <center>
                                     <div id="setup">
+                                        <button id="set_defaults"
+                                            type="button" onClick="setDefaults();">Set Defaults</button>
                                         Mode:
                                         <select id="Mode" name="Mode" onChange='setFormForMode();'>
                                             <option>Automatic</option>
