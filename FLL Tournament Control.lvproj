@@ -77,6 +77,8 @@
 			<Item Name="LoadImageListFromXML.vi" Type="VI" URL="../LoadImageListFromXML.vi"/>
 			<Item Name="Get Images and Freq.vi" Type="VI" URL="../Get Images and Freq.vi"/>
 			<Item Name="GetSetProfileInfo.vi" Type="VI" URL="../GetSetProfileInfo.vi"/>
+			<Item Name="ConfigureSounds.vi" Type="VI" URL="../ConfigureSounds.vi"/>
+			<Item Name="GetConfiguredSounds.vi" Type="VI" URL="../GetConfiguredSounds.vi"/>
 		</Item>
 		<Item Name="Typedefs" Type="Folder">
 			<Item Name="Error File Queue Contents.ctl" Type="VI" URL="../Error File Queue Contents.ctl"/>
@@ -112,6 +114,8 @@
 		</Item>
 		<Item Name="profiles" Type="Folder">
 			<Item Name="profile.xml" Type="Document" URL="../profiles/profile.xml"/>
+			<Item Name="soundconfig.xml" Type="Document" URL="../profiles/soundconfig.xml"/>
+			<Item Name="dispsoundconfig.xml" Type="Document" URL="../profiles/dispsoundconfig.xml"/>
 		</Item>
 		<Item Name="FLL Tournament Control.vi" Type="VI" URL="../FLL Tournament Control.vi">
 			<Property Name="ws.type" Type="Int">2</Property>
@@ -119,7 +123,7 @@
 		<Item Name="FLL Tournament Display.vi" Type="VI" URL="../FLL Tournament Display.vi"/>
 		<Item Name="FLL" Type="Web Service">
 			<Property Name="Bld_buildSpecName" Type="Str"></Property>
-			<Property Name="Bld_version.build" Type="Int">111</Property>
+			<Property Name="Bld_version.build" Type="Int">119</Property>
 			<Property Name="ws.autoIncrementVersion" Type="Bool">true</Property>
 			<Property Name="ws.disconnectInline" Type="Bool">false</Property>
 			<Property Name="ws.disconnectTypeDefs" Type="Bool">false</Property>
@@ -381,6 +385,21 @@
 					<Property Name="ws.useHeaders" Type="Bool">true</Property>
 					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
 				</Item>
+				<Item Name="Get_Last_Sound.vi" Type="VI" URL="../Get_Last_Sound.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
 			</Item>
 		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -486,6 +505,31 @@
 				<Item Name="Read PNG File.vi" Type="VI" URL="/&lt;vilib&gt;/picture/png.llb/Read PNG File.vi"/>
 				<Item Name="Read JPEG File.vi" Type="VI" URL="/&lt;vilib&gt;/picture/jpeg.llb/Read JPEG File.vi"/>
 				<Item Name="LVBoundsTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVBoundsTypeDef.ctl"/>
+				<Item Name="GetHelpDir.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetHelpDir.vi"/>
+				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
+				<Item Name="Get String Text Bounds.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Get String Text Bounds.vi"/>
+				<Item Name="Get Text Rect.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Get Text Rect.vi"/>
+				<Item Name="Convert property node font to graphics font.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Convert property node font to graphics font.vi"/>
+				<Item Name="Longest Line Length in Pixels.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Longest Line Length in Pixels.vi"/>
+				<Item Name="Three Button Dialog CORE.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Three Button Dialog CORE.vi"/>
+				<Item Name="Three Button Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Three Button Dialog.vi"/>
+				<Item Name="DialogTypeEnum.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogTypeEnum.ctl"/>
+				<Item Name="Not Found Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Not Found Dialog.vi"/>
+				<Item Name="Set Bold Text.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set Bold Text.vi"/>
+				<Item Name="eventvkey.ctl" Type="VI" URL="/&lt;vilib&gt;/event_ctls.llb/eventvkey.ctl"/>
+				<Item Name="ErrWarn.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/ErrWarn.ctl"/>
+				<Item Name="Details Display Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Details Display Dialog.vi"/>
+				<Item Name="Find Tag.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Find Tag.vi"/>
+				<Item Name="Format Message String.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Format Message String.vi"/>
+				<Item Name="Error Code Database.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Code Database.vi"/>
+				<Item Name="GetRTHostConnectedProp.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetRTHostConnectedProp.vi"/>
+				<Item Name="Set String Value.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set String Value.vi"/>
+				<Item Name="TagReturnType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/TagReturnType.ctl"/>
+				<Item Name="Check Special Tags.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Check Special Tags.vi"/>
+				<Item Name="General Error Handler CORE.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/General Error Handler CORE.vi"/>
+				<Item Name="DialogType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogType.ctl"/>
+				<Item Name="General Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/General Error Handler.vi"/>
+				<Item Name="Simple Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Simple Error Handler.vi"/>
 			</Item>
 			<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -524,7 +568,7 @@
 				<Property Name="Bld_previewCacheID" Type="Str">{EF7E6A62-7B77-436C-81C6-82D704FD0122}</Property>
 				<Property Name="Bld_supportedLanguage[0]" Type="Str">English</Property>
 				<Property Name="Bld_supportedLanguageCount" Type="Int">1</Property>
-				<Property Name="Bld_version.build" Type="Int">49</Property>
+				<Property Name="Bld_version.build" Type="Int">54</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Server.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/FLL Tournament Server.exe</Property>
@@ -588,7 +632,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{01B6EB58-B92A-4A43-80BA-331183D62DED}</Property>
-				<Property Name="Bld_version.build" Type="Int">9</Property>
+				<Property Name="Bld_version.build" Type="Int">12</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display/FLL Tournament Display.exe</Property>
@@ -806,11 +850,11 @@
 				<Property Name="INST_buildSpecName" Type="Str">FLL Software Installer</Property>
 				<Property Name="INST_defaultDir" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
 				<Property Name="INST_productName" Type="Str">FLL Tournament Software</Property>
-				<Property Name="INST_productVersion" Type="Str">1.0.11</Property>
+				<Property Name="INST_productVersion" Type="Str">1.0.14</Property>
 				<Property Name="INST_webService.count" Type="Int">1</Property>
 				<Property Name="INST_webService[0].itemID" Type="Ref">/My Computer/FLL</Property>
 				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
-				<Property Name="InstSpecVersion" Type="Str">13008048</Property>
+				<Property Name="InstSpecVersion" Type="Str">13008051</Property>
 				<Property Name="MSI_autoselectDrivers" Type="Bool">true</Property>
 				<Property Name="MSI_distID" Type="Str">{4E7C5B4F-65D1-4719-8B53-3E5A61E8D6BA}</Property>
 				<Property Name="MSI_osCheck" Type="Int">0</Property>
@@ -899,6 +943,18 @@
 				<Property Name="Source[23].name" Type="Str">midsponsors.xml</Property>
 				<Property Name="Source[23].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
 				<Property Name="Source[23].type" Type="Str">File</Property>
+				<Property Name="Source[24].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[24].name" Type="Str">soundconfig.xml</Property>
+				<Property Name="Source[24].tag" Type="Ref">/My Computer/profiles/soundconfig.xml</Property>
+				<Property Name="Source[24].type" Type="Str">File</Property>
+				<Property Name="Source[25].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
+				<Property Name="Source[25].name" Type="Str">TimeToRun.wav</Property>
+				<Property Name="Source[25].tag" Type="Ref">/My Computer/sounds/TimeToRun.wav</Property>
+				<Property Name="Source[25].type" Type="Str">File</Property>
+				<Property Name="Source[26].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[26].name" Type="Str">dispsoundconfig.xml</Property>
+				<Property Name="Source[26].tag" Type="Ref">/My Computer/profiles/dispsoundconfig.xml</Property>
+				<Property Name="Source[26].type" Type="Str">File</Property>
 				<Property Name="Source[3].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[3].name" Type="Str">FOGHORN.wav</Property>
 				<Property Name="Source[3].tag" Type="Ref">/My Computer/sounds/FOGHORN.wav</Property>
@@ -947,7 +1003,7 @@
 				<Property Name="Source[9].ShortcutCount" Type="Int">1</Property>
 				<Property Name="Source[9].tag" Type="Ref">/My Computer/Score Sheets/FLL 2013 Nature's Fury Accessible Score Sheet wChecklist.pdf</Property>
 				<Property Name="Source[9].type" Type="Str">File</Property>
-				<Property Name="SourceCount" Type="Int">24</Property>
+				<Property Name="SourceCount" Type="Int">27</Property>
 			</Item>
 		</Item>
 	</Item>

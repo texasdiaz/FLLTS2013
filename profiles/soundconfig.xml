@@ -1,0 +1,64 @@
+<?xml version='1.0' standalone='yes' ?>
+<LVData xmlns="http://www.ni.com/LVData">
+<Version>13.0f2</Version>
+<Cluster>
+<Name></Name>
+<NumElts>14</NumElts>
+<DBL>
+<Name>Master Volume</Name>
+<Val>100.00000000000000</Val>
+</DBL>
+<DBL>
+<Name>Pre-Primary (s)</Name>
+<Val>0.00000000000000</Val>
+</DBL>
+<DBL>
+<Name>Primary (s)</Name>
+<Val>150.00000000000000</Val>
+</DBL>
+<DBL>
+<Name>Secondary (s)</Name>
+<Val>0.00000000000000</Val>
+</DBL>
+<Path>
+<Name>Start Sound Path</Name>
+<Val>C:\ProgramData\FLL\sounds\CHARGE.wav</Val>
+</Path>
+<Path>
+<Name>Stop Sound Path</Name>
+<Val>C:\ProgramData\FLL\sounds\BUZZER.wav</Val>
+</Path>
+<Path>
+<Name>Uh-Oh Sound Path</Name>
+<Val>C:\ProgramData\FLL\sounds\FOGHORN.wav</Val>
+</Path>
+<Path>
+<Name>Pre-Match Countdown Sound</Name>
+<Val>C:\ProgramData\FLL\sounds\TheGameBeginsIn321.wav</Val>
+</Path>
+<Path>
+<Name>Hurry Up Sound</Name>
+<Val>C:\ProgramData\FLL\sounds\TimeToRun.wav</Val>
+</Path>
+<DBL>
+<Name>Start Sound Volume</Name>
+<Val>100.00000000000000</Val>
+</DBL>
+<DBL>
+<Name>Stop Sound Volume</Name>
+<Val>100.00000000000000</Val>
+</DBL>
+<DBL>
+<Name>Uh-Oh Sound Volume</Name>
+<Val>88.46153846153847</Val>
+</DBL>
+<DBL>
+<Name>Pre-Match Coundown Sound Volume</Name>
+<Val>88.46153846153847</Val>
+</DBL>
+<DBL>
+<Name>Hurry Up Sound Volume</Name>
+<Val>88.46153846153847</Val>
+</DBL>
+</Cluster>
+</LVData>

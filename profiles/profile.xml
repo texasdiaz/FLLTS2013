@@ -1,9 +1,9 @@
 <?xml version='1.0' standalone='yes' ?>
 <LVData xmlns="http://www.ni.com/LVData">
-<Version>13.0f1</Version>
+<Version>13.0f2</Version>
 <Cluster>
 <Name></Name>
-<NumElts>4</NumElts>
+<NumElts>5</NumElts>
 <Path>
 <Name>Logo Path In</Name>
 <Val>C:\ProgramData\FLL\images\res Fury Logo SM.jpg</Val>
@@ -270966,6 +270966,10 @@
 </Cluster>
 <I32>
 <Name>Rounds To Show In</Name>
+<Val>0</Val>
+</I32>
+<I32>
+<Name>LastSoundIn</Name>
 <Val>0</Val>
 </I32>
 </Cluster>

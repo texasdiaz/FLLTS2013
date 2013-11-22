@@ -20,6 +20,7 @@
         var rules;
         var scoring_data;
         var answers = [];
+        var default_answers = [];
         var old_answers = [];
         var answer_tags = [];
         var answer_values = [];
@@ -210,11 +211,11 @@
                     prev_heading = heading;
                 }
                 var values = [];
-                var name = (heading + " - " + question);
-                answer_tags[normalize(name)] = tag;
+                var name = normalize(heading + " - " + question);
+                answer_tags[name] = tag;
                 sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
                 sectionHTML += "<br>";
-                sectionHTML += ("<span id='" + normalize(name) + "'>");
+                sectionHTML += ("<span id='" + name + "'>");
                 var options = elements[i].getElementsByTagName("Option");
                 for (var j = 0; j < options.length; j++) {
                     if (options[j].getElementsByTagName("LabelFull").length > 0) {
@@ -223,15 +224,27 @@
                         var qlabel = options[j].getElementsByTagName("Label")[0].childNodes[0].nodeValue;
                     }
                     var qvalue = options[j].getElementsByTagName("Value")[0].childNodes[0].nodeValue;
-                    values[qlabel] = qvalue;
-                    sectionHTML += ("<input type='radio' id='" + normalize(name) + j.toString() + "' name='" + normalize(name) + "' value='" + qlabel + "'/>");
-                    sectionHTML += ("<label for='" + normalize(name) + j.toString() + "'>" + qlabel + "</label>");
+
+                    // normalize(qlabel) is the input form value expected
+                    // by the webserver. However, that's not the value expected
+                    // by the javascript score computation engine. So, we save
+                    // the "real" value in this table so that we can substitute
+                    // the right one for the score computation. Ugly hack.
+                    // Really need score computation to happen in only one place
+                    // or to use the exact same input values.
+                    values[normalize(qlabel)] = qvalue;
+                    var default_element = options[j].getElementsByTagName("Default");
+                    if (default_element.length > 0) {
+                        default_answers[name] = name + j.toString();
+                    }
+                    sectionHTML += ("<input type='radio' id='" + name + j.toString() + "' name='" + name + "' value='" + normalize(qlabel) + "'/>");
+                    sectionHTML += ("<label for='" + name + j.toString() + "'>" + qlabel + "</label>");
                 }
 
-                answer_values[normalize(name)] = values;
+                answer_values[name] = values;
 
                 sectionHTML += ("</span>");
-                sectionHTML += ("<span class='old' id='Old_" + normalize(name) + "'></span>");
+                sectionHTML += ("<span class='old' id='Old_" + name + "'></span>");
                 sectionHTML += ("</div>");
             }
             newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
@@ -362,6 +375,24 @@
                 document.getElementById("CurrentScore").innerHTML = "Score: " + score;
             }
         }
+
+        function setDefaults() {
+            if (!confirm("All answers will be set to default values.\n"
+                      + "Are you sure you want this?")) {
+                return;
+            }
+            elements = scoring_data.getElementsByTagName("Element");
+
+            for (var i = 0; i < elements.length; i++) {
+                var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
+                var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+
+                var name = normalize(heading + " - " + question);
+                var default_button = $("#" + default_answers[name]);
+                default_button.click();
+                // $("#" + name).buttonset("refresh");
+            }
+        }
     </script>
 </head>
 <body>
@@ -414,6 +445,8 @@
                         <td id="form">
                             <center>
                                 <div id="setup">
+                                    <button id="set_defaults"
+                                            type="button" onClick="setDefaults();">Set Defaults</button>
                                     Mode:
                                     <select id="Mode" name="Mode" onChange='setFormForMode();'>
                                         <option>Automatic</option>
