@@ -283,8 +283,8 @@
         <Heading>Family</Heading>
         <Question>People IN The Red Region?</Question>
         <Tag>red_people</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>0</Label><Value>0</Value></Option>
+	<Option><Label>1</Label><Value>1</Value><Default/></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
         <Score><![CDATA[score += (this.answers['red_people'] || 0) * 18;]]></Score>
