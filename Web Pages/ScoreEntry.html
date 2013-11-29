@@ -194,6 +194,7 @@
             var newHTML = "";
             var prev_heading = "";
             var sectionHTML = "";
+            var section_num = 1;
 
             scoring_data = getXML("Data.xml");
 
@@ -206,9 +207,10 @@
                 var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
                 if (heading !== prev_heading) {
                     // Start new header div
-                    newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
+                    newHTML += "<div class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
                     sectionHTML = "";
                     prev_heading = heading;
+                    section_num++;
                 }
                 var values = [];
                 var name = normalize(heading + " - " + question);
@@ -247,8 +249,7 @@
                 sectionHTML += ("<span class='old' id='Old_" + name + "'></span>");
                 sectionHTML += ("</div>");
             }
-            newHTML += "<div class='qsection'><em>" + prev_heading + "</em>" + sectionHTML + "</div>";
-            return newHTML;
+            newHTML += "<div class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
         }
 
         function getNextRound() {
