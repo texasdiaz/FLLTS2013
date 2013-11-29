@@ -225,7 +225,7 @@
 
                 if (heading !== prev_heading) {
                     // Start new header div
-                    newHTML += "<div class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+                    newHTML += "<div id='" + normalize(prev_heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
                     sectionHTML = "";
                     prev_heading = heading;
                     section_num++;
@@ -275,7 +275,7 @@
                         validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
                     };
             }
-            newHTML += "<div class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+            newHTML += "<div id='" + normalize(heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
             document.write(newHTML);
         }
 
@@ -443,6 +443,25 @@
             document.getElementById("team_name_header").innerHTML = "Select Team";
             setSubmit(false);
         }
+
+        function findUnanswered(event) {
+            event.preventDefault();
+
+            var main = $("#main");
+            var content_top = $("#content").offset().top;
+
+            for (var i = 0; i < elements.length; i++) {
+                // Look up the clicked status of named buttonset
+                var qinput = $("#" + score_info[i].name + " :radio:checked");
+                var qdiv = $("#" + normalize(score_info[i].heading));
+
+                if (!qinput.is(":checked")) {
+                    var offset = qdiv.offset().top;
+                    main.animate({scrollTop: offset-content_top}, 800);
+                    return;
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -533,9 +552,12 @@
                                 </script>
                             </div>
                             <div id="unanswered" class="qhidden">
-                                <div class="errorHeader" style="padding: 50px">
-                                Unanswered questions present.
-                                </div>
+                                <center>
+                                    <button class="invalid" style="padding: 50px"
+                                         onClick="findUnanswered(event);">
+                                    Unanswered questions present.
+                                    </button>
+                                </center>
                             </div>
                         </td>
                     </tr>
@@ -544,7 +566,9 @@
                     </script>
                     <tr>
                         <td>
-                            <center><button id="submitButton" class="invalid" type="button" onClick="checkData();" disabled>Submit</button></center>
+                            <center><button id="submitButton" class="invalid"
+                                            type="button" onClick="checkData();"
+                                            disabled>Submit</button></center>
                         </td>
                     </tr>
                 </table>
