@@ -148,14 +148,9 @@
             //Walk through the radio buttons, keying off the name and whether it's "checked"
             var allChanged = true
             if (!BEGIN) {
-                var elements = scoring_data.getElementsByTagName("Element");
-
-                for (var i = 0; i < elements.length; i++) {
-                    var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
-                    var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
-                    var name = normalize(heading + " - " + question);
+                for (var i = 0; i < score_info.length; i++) {
                     // Look up the clicked status of named buttonset
-                    var qinput = $("#"+name + " :radio:checked");
+                    var qinput = $("#"+score_info[i].name + " :radio:checked");
 
                     allChanged = allChanged && qinput.is(":checked");
                 }
@@ -186,7 +181,7 @@
         }
 
         function activateElements() {
-            for (var i = 0; i < elements.length; i++) {
+            for (var i = 0; i < score_info.length; i++) {
                 // Turn inputs into button sets - pressable buttons rather than radio box
                 $("#" + score_info[i]["name"]).buttonset();
                 $("input[name='" + score_info[i]["name"] + "']").change(function() {
@@ -222,6 +217,7 @@
                 var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
                 var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
                 var validate = elements[i].getElementsByTagName("Validate");
+                var score_element = elements[i].getElementsByTagName("Score");
 
                 if (heading !== prev_heading) {
                     // Start new header div
@@ -272,6 +268,7 @@
                         heading: heading,
                         tag: tag,
                         name: name,
+                        score: (score_element.length > 0) ? score_element[0].childNodes[0].nodeValue : "",
                         validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
                     };
             }
@@ -328,8 +325,7 @@
 
         function validAnswers() {
             var result = {};
-            elements = scoring_data.getElementsByTagName("Element");
-            for (var i = 0; i < elements.length; i++) {
+            for (var i = 0; i < score_info.length; i++) {
                 var validate = score_info[i].validate;
 
                 if (validate.length > 0) {
@@ -370,15 +366,10 @@
 
         function computeScore() {
             var score = 0;
-            elements = scoring_data.getElementsByTagName("Element");
-            for (var i = 0; i < elements.length; i++) {
-                var score_element = elements[i].getElementsByTagName("Score");
-
-                if (score_element.length > 0) {
-                    var score_script = score_element[0].childNodes[0].nodeValue;
-
+            for (var i = 0; i < score_info.length; i++) {
+                if (score_info[i].score.length > 0) {
                     try {
-                        eval(score_script);
+                        eval(score_info[i].score);
                     } catch (err) {
                         // Okay to get errors for answers that aren't ready
                     }
@@ -400,16 +391,10 @@
                       + "Are you sure you want this?")) {
                 return;
             }
-            elements = scoring_data.getElementsByTagName("Element");
 
-            for (var i = 0; i < elements.length; i++) {
-                var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
-                var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
-
-                var name = normalize(heading + " - " + question);
-                var default_button = $("#" + default_answers[name]);
+            for (var i = 0; i < score_info.length; i++) {
+                var default_button = $("#" + default_answers[score_info[i].name]);
                 default_button.click();
-                // $("#" + name).buttonset("refresh");
             }
         }
 
