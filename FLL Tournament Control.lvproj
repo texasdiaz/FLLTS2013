@@ -81,6 +81,8 @@
 			<Item Name="GetConfiguredSounds.vi" Type="VI" URL="../GetConfiguredSounds.vi"/>
 			<Item Name="IPRegistry.vi" Type="VI" URL="../IPRegistry.vi"/>
 			<Item Name="password.vi" Type="VI" URL="../password.vi"/>
+			<Item Name="MakeImageFreqArray.vi" Type="VI" URL="../MakeImageFreqArray.vi"/>
+			<Item Name="SponsorImageFreqArray.ctl" Type="VI" URL="../SponsorImageFreqArray.ctl"/>
 		</Item>
 		<Item Name="Typedefs" Type="Folder">
 			<Item Name="Error File Queue Contents.ctl" Type="VI" URL="../Error File Queue Contents.ctl"/>
@@ -128,7 +130,7 @@
 		<Item Name="FLL Tournament Display.vi" Type="VI" URL="../FLL Tournament Display.vi"/>
 		<Item Name="FLL" Type="Web Service">
 			<Property Name="Bld_buildSpecName" Type="Str"></Property>
-			<Property Name="Bld_version.build" Type="Int">112</Property>
+			<Property Name="Bld_version.build" Type="Int">120</Property>
 			<Property Name="ws.autoIncrementVersion" Type="Bool">true</Property>
 			<Property Name="ws.disconnectInline" Type="Bool">false</Property>
 			<Property Name="ws.disconnectTypeDefs" Type="Bool">false</Property>
@@ -300,51 +302,6 @@
 					<Property Name="ws.useHeaders" Type="Bool">true</Property>
 					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
 				</Item>
-				<Item Name="GetSponsorLow.vi" Type="VI" URL="../GetSponsorLow.vi">
-					<Property Name="ws.buffered" Type="Bool">true</Property>
-					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
-					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
-					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
-					<Property Name="ws.method" Type="Int">1</Property>
-					<Property Name="ws.outputFormat" Type="Int">2</Property>
-					<Property Name="ws.outputType" Type="Int">1</Property>
-					<Property Name="ws.permissions" Type="Str"></Property>
-					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
-					<Property Name="ws.type" Type="Int">1</Property>
-					<Property Name="ws.uri" Type="Str"></Property>
-					<Property Name="ws.useHeaders" Type="Bool">true</Property>
-					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
-				</Item>
-				<Item Name="GetSponsorMid.vi" Type="VI" URL="../GetSponsorMid.vi">
-					<Property Name="ws.buffered" Type="Bool">true</Property>
-					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
-					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
-					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
-					<Property Name="ws.method" Type="Int">1</Property>
-					<Property Name="ws.outputFormat" Type="Int">2</Property>
-					<Property Name="ws.outputType" Type="Int">1</Property>
-					<Property Name="ws.permissions" Type="Str"></Property>
-					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
-					<Property Name="ws.type" Type="Int">1</Property>
-					<Property Name="ws.uri" Type="Str"></Property>
-					<Property Name="ws.useHeaders" Type="Bool">true</Property>
-					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
-				</Item>
-				<Item Name="GetSponsorTop.vi" Type="VI" URL="../GetSponsorTop.vi">
-					<Property Name="ws.buffered" Type="Bool">true</Property>
-					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
-					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
-					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
-					<Property Name="ws.method" Type="Int">1</Property>
-					<Property Name="ws.outputFormat" Type="Int">2</Property>
-					<Property Name="ws.outputType" Type="Int">1</Property>
-					<Property Name="ws.permissions" Type="Str"></Property>
-					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
-					<Property Name="ws.type" Type="Int">1</Property>
-					<Property Name="ws.uri" Type="Str"></Property>
-					<Property Name="ws.useHeaders" Type="Bool">true</Property>
-					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
-				</Item>
 				<Item Name="GetLogo.vi" Type="VI" URL="../GetLogo.vi">
 					<Property Name="ws.buffered" Type="Bool">true</Property>
 					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
@@ -390,21 +347,6 @@
 					<Property Name="ws.useHeaders" Type="Bool">true</Property>
 					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
 				</Item>
-				<Item Name="Get_Last_Sound.vi" Type="VI" URL="../Get_Last_Sound.vi">
-					<Property Name="ws.buffered" Type="Bool">true</Property>
-					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
-					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
-					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
-					<Property Name="ws.method" Type="Int">1</Property>
-					<Property Name="ws.outputFormat" Type="Int">2</Property>
-					<Property Name="ws.outputType" Type="Int">1</Property>
-					<Property Name="ws.permissions" Type="Str"></Property>
-					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
-					<Property Name="ws.type" Type="Int">1</Property>
-					<Property Name="ws.uri" Type="Str"></Property>
-					<Property Name="ws.useHeaders" Type="Bool">true</Property>
-					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
-				</Item>
 				<Item Name="ScoreEntry.vi" Type="VI" URL="../ScoreEntry.vi">
 					<Property Name="ws.buffered" Type="Bool">true</Property>
 					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
@@ -426,6 +368,36 @@
 					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
 					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
 					<Property Name="ws.method" Type="Int">3</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="GetSponsorLogos.vi" Type="VI" URL="../GetSponsorLogos.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
+				<Item Name="Timekeeper.vi" Type="VI" URL="../Timekeeper.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
 					<Property Name="ws.outputFormat" Type="Int">2</Property>
 					<Property Name="ws.outputType" Type="Int">1</Property>
 					<Property Name="ws.permissions" Type="Str"></Property>
@@ -565,6 +537,12 @@
 				<Item Name="DialogType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogType.ctl"/>
 				<Item Name="General Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/General Error Handler.vi"/>
 				<Item Name="Simple Error Handler.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Simple Error Handler.vi"/>
+				<Item Name="New Zip File.vi" Type="VI" URL="/&lt;vilib&gt;/zip/New Zip File.vi"/>
+				<Item Name="Relative Path To Platform Independent String.vi" Type="VI" URL="/&lt;vilib&gt;/AdvancedString/Relative Path To Platform Independent String.vi"/>
+				<Item Name="Add File to Zip.vi" Type="VI" URL="/&lt;vilib&gt;/zip/Add File to Zip.vi"/>
+				<Item Name="Close Zip File.vi" Type="VI" URL="/&lt;vilib&gt;/zip/Close Zip File.vi"/>
+				<Item Name="List Directory and LLBs.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/libraryn.llb/List Directory and LLBs.vi"/>
+				<Item Name="Recursive File List.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/libraryn.llb/Recursive File List.vi"/>
 			</Item>
 			<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -603,7 +581,7 @@
 				<Property Name="Bld_previewCacheID" Type="Str">{EF7E6A62-7B77-436C-81C6-82D704FD0122}</Property>
 				<Property Name="Bld_supportedLanguage[0]" Type="Str">English</Property>
 				<Property Name="Bld_supportedLanguageCount" Type="Int">1</Property>
-				<Property Name="Bld_version.build" Type="Int">50</Property>
+				<Property Name="Bld_version.build" Type="Int">54</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Server.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/FLL Tournament Server.exe</Property>
@@ -667,7 +645,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{01B6EB58-B92A-4A43-80BA-331183D62DED}</Property>
-				<Property Name="Bld_version.build" Type="Int">10</Property>
+				<Property Name="Bld_version.build" Type="Int">13</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display/FLL Tournament Display.exe</Property>
@@ -889,7 +867,7 @@
 				<Property Name="INST_buildSpecName" Type="Str">FLL Software Installer</Property>
 				<Property Name="INST_defaultDir" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
 				<Property Name="INST_productName" Type="Str">FLL Tournament Software</Property>
-				<Property Name="INST_productVersion" Type="Str">1.0.11</Property>
+				<Property Name="INST_productVersion" Type="Str">1.0.15</Property>
 				<Property Name="INST_webService.count" Type="Int">1</Property>
 				<Property Name="INST_webService[0].itemID" Type="Ref">/My Computer/FLL</Property>
 				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
@@ -970,34 +948,38 @@
 				<Property Name="Source[20].name" Type="Str">profile.xml</Property>
 				<Property Name="Source[20].tag" Type="Ref">/My Computer/profiles/profile.xml</Property>
 				<Property Name="Source[20].type" Type="Str">File</Property>
-				<Property Name="Source[21].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[21].name" Type="Str">topsponsors.xml</Property>
-				<Property Name="Source[21].tag" Type="Ref">/My Computer/Sponsors/topsponsors.xml</Property>
+				<Property Name="Source[21].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[21].name" Type="Str">soundconfig.xml</Property>
+				<Property Name="Source[21].tag" Type="Ref">/My Computer/profiles/soundconfig.xml</Property>
 				<Property Name="Source[21].type" Type="Str">File</Property>
-				<Property Name="Source[22].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[22].name" Type="Str">lowsponsors.xml</Property>
-				<Property Name="Source[22].tag" Type="Ref">/My Computer/Sponsors/lowsponsors.xml</Property>
+				<Property Name="Source[22].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
+				<Property Name="Source[22].name" Type="Str">TimeToRun.wav</Property>
+				<Property Name="Source[22].tag" Type="Ref">/My Computer/sounds/TimeToRun.wav</Property>
 				<Property Name="Source[22].type" Type="Str">File</Property>
-				<Property Name="Source[23].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[23].name" Type="Str">midsponsors.xml</Property>
-				<Property Name="Source[23].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
+				<Property Name="Source[23].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[23].name" Type="Str">dispsoundconfig.xml</Property>
+				<Property Name="Source[23].tag" Type="Ref">/My Computer/profiles/dispsoundconfig.xml</Property>
 				<Property Name="Source[23].type" Type="Str">File</Property>
-				<Property Name="Source[24].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
-				<Property Name="Source[24].name" Type="Str">soundconfig.xml</Property>
-				<Property Name="Source[24].tag" Type="Ref">/My Computer/profiles/soundconfig.xml</Property>
+				<Property Name="Source[24].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
+				<Property Name="Source[24].name" Type="Str">Timekeeper.html</Property>
+				<Property Name="Source[24].tag" Type="Ref">/My Computer/Protected Webpages/Timekeeper.html</Property>
 				<Property Name="Source[24].type" Type="Str">File</Property>
-				<Property Name="Source[25].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
-				<Property Name="Source[25].name" Type="Str">TimeToRun.wav</Property>
-				<Property Name="Source[25].tag" Type="Ref">/My Computer/sounds/TimeToRun.wav</Property>
+				<Property Name="Source[25].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[25].name" Type="Str">lowsponsors.xml</Property>
+				<Property Name="Source[25].tag" Type="Ref">/My Computer/Sponsors/lowsponsors.xml</Property>
 				<Property Name="Source[25].type" Type="Str">File</Property>
-				<Property Name="Source[26].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
-				<Property Name="Source[26].name" Type="Str">dispsoundconfig.xml</Property>
-				<Property Name="Source[26].tag" Type="Ref">/My Computer/profiles/dispsoundconfig.xml</Property>
+				<Property Name="Source[26].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[26].name" Type="Str">midsponsors.xml</Property>
+				<Property Name="Source[26].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
 				<Property Name="Source[26].type" Type="Str">File</Property>
-				<Property Name="Source[27].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
-				<Property Name="Source[27].name" Type="Str">Score_Entry.html</Property>
-				<Property Name="Source[27].tag" Type="Ref">/My Computer/Protected Webpages/Score_Entry.html</Property>
+				<Property Name="Source[27].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[27].name" Type="Str">topsponsors.xml</Property>
+				<Property Name="Source[27].tag" Type="Ref">/My Computer/Sponsors/topsponsors.xml</Property>
 				<Property Name="Source[27].type" Type="Str">File</Property>
+				<Property Name="Source[28].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
+				<Property Name="Source[28].name" Type="Str">Score_Entry.html</Property>
+				<Property Name="Source[28].tag" Type="Ref">/My Computer/Protected Webpages/Score_Entry.html</Property>
+				<Property Name="Source[28].type" Type="Str">File</Property>
 				<Property Name="Source[3].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[3].name" Type="Str">FOGHORN.wav</Property>
 				<Property Name="Source[3].tag" Type="Ref">/My Computer/sounds/FOGHORN.wav</Property>
@@ -1046,7 +1028,7 @@
 				<Property Name="Source[9].ShortcutCount" Type="Int">1</Property>
 				<Property Name="Source[9].tag" Type="Ref">/My Computer/Score Sheets/FLL 2013 Nature's Fury Accessible Score Sheet wChecklist.pdf</Property>
 				<Property Name="Source[9].type" Type="Str">File</Property>
-				<Property Name="SourceCount" Type="Int">28</Property>
+				<Property Name="SourceCount" Type="Int">29</Property>
 			</Item>
 		</Item>
 	</Item>

@@ -16,7 +16,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\nilogo.bmp</Val>
+<Val>%sponsors%\nilogo.bmp</Val>
 </Path>
 </Cluster>
 <Cluster>
@@ -28,7 +28,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\FIRSThorz_RGB.jpg</Val>
+<Val>%sponsors%\FIRSThorz_RGB.jpg</Val>
 </Path>
 </Cluster>
 </Array>

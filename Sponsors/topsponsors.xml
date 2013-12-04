@@ -16,7 +16,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\statoil_horizontal.png</Val>
+<Val>%sponsors%\statoil_horizontal.png</Val>
 </Path>
 </Cluster>
 <Cluster>
@@ -28,7 +28,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\rockwellauto_scaled.jpg</Val>
+<Val>%sponsors%\rockwellauto_scaled.jpg</Val>
 </Path>
 </Cluster>
 </Array>

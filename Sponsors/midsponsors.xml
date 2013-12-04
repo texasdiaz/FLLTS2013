@@ -16,7 +16,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\3mlogo.bmp</Val>
+<Val>%sponsors%\3mlogo.bmp</Val>
 </Path>
 </Cluster>
 <Cluster>
@@ -28,7 +28,7 @@
 </String>
 <Path>
 <Name>Path</Name>
-<Val>C:\ProgramData\FLL\Sponsors\lego_scaled.jpg</Val>
+<Val>%sponsors%\lego_scaled.jpg</Val>
 </Path>
 </Cluster>
 </Array>
