@@ -44,22 +44,22 @@
         <Question>Colors Reached?</Question>
         <Tag>progress</Tag>
         <Option><LabelFull>0 (Not Attempted)</LabelFull><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><LabelFull>1 (White)</LabelFull><Label>1</Label><Value>1</Value></Option>
-        <Option><LabelFull>2 (Purple)</LabelFull><Label>2</Label><Value>2</Value></Option>
-        <Option><LabelFull>3 (Blue)</LabelFull><Label>3</Label><Value>3</Value></Option>
-        <Option><LabelFull>4 (Dk Green)</LabelFull><Label>4</Label><Value>4</Value></Option>
-        <Option><LabelFull>5 (Lt Green)</LabelFull><Label>5</Label><Value>5</Value></Option>
-        <Option><LabelFull>6 (Yellow)</LabelFull><Label>6</Label><Value>6</Value></Option>
-        <Option><LabelFull>7 (Orange)</LabelFull><Label>7</Label><Value>7</Value></Option>
-        <Option><LabelFull>8 (Red)</LabelFull><Label>8</Label><Value>8</Value></Option>
-        <Option><LabelFull>9 (White)</LabelFull><Label>9</Label><Value>9</Value></Option>
-        <Option><LabelFull>10 (Purple)</LabelFull><Label>10</Label><Value>10</Value></Option>
-        <Option><LabelFull>11 (Blue)</LabelFull><Label>11</Label><Value>11</Value></Option>
-        <Option><LabelFull>12 (Dk Green)</LabelFull><Label>12</Label><Value>12</Value></Option>
-        <Option><LabelFull>13 (Lt Green)</LabelFull><Label>13</Label><Value>13</Value></Option>
-        <Option><LabelFull>14 (Yellow)</LabelFull><Label>14</Label><Value>14</Value></Option>
-        <Option><LabelFull>15 (Orange)</LabelFull><Label>15</Label><Value>15</Value></Option>
-        <Option><LabelFull>16 (Red)</LabelFull><Label>16</Label><Value>16</Value></Option>
+        <Option><LabelFull>1 (Red)</LabelFull><Label>1</Label><Value>1</Value></Option>
+        <Option><LabelFull>2 (Orange)</LabelFull><Label>2</Label><Value>2</Value></Option>
+        <Option><LabelFull>3 (Yellow)</LabelFull><Label>3</Label><Value>3</Value></Option>
+        <Option><LabelFull>4 (Lt Green)</LabelFull><Label>4</Label><Value>4</Value></Option>
+        <Option><LabelFull>5 (Dk Green)</LabelFull><Label>5</Label><Value>5</Value></Option>
+        <Option><LabelFull>6 (Blue)</LabelFull><Label>6</Label><Value>6</Value></Option>
+        <Option><LabelFull>7 (Purple)</LabelFull><Label>7</Label><Value>7</Value></Option>
+        <Option><LabelFull>8 (White)</LabelFull><Label>8</Label><Value>8</Value></Option>
+        <Option><LabelFull>9 (Red)</LabelFull><Label>9</Label><Value>9</Value></Option>
+        <Option><LabelFull>10 (Orange)</LabelFull><Label>10</Label><Value>10</Value></Option>
+        <Option><LabelFull>11 (Yellow)</LabelFull><Label>11</Label><Value>11</Value></Option>
+        <Option><LabelFull>12 (Lt Green)</LabelFull><Label>12</Label><Value>12</Value></Option>
+        <Option><LabelFull>13 (Dk Green)</LabelFull><Label>13</Label><Value>13</Value></Option>
+        <Option><LabelFull>14 (Blue)</LabelFull><Label>14</Label><Value>14</Value></Option>
+        <Option><LabelFull>15 (Purple)</LabelFull><Label>15</Label><Value>15</Value></Option>
+        <Option><LabelFull>16 (White)</LabelFull><Label>16</Label><Value>16</Value></Option>
         <Score><![CDATA[score += (this.answers['progress'] || 0) * 2;]]></Score>
     </Element>
 
