@@ -181,6 +181,10 @@ em {
     display: none;
 }
 
+.qinline {
+    display: inline;
+}
+
 .warn {
     font-weight: bold;
     font-size: 1.5em;
