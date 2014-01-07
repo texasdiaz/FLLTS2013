@@ -413,7 +413,10 @@
 
             for (var i = 0; i < elements.length; i++) {
                 qdiv = $('#'+score_info[i].tag + "-div");
-                qdiv.removeClass("qerror").removeClass("qdone");
+                qdiv.removeClass("qerror").removeClass("qdone").removeClass("qwarn");
+                // Remove any previous entry formating
+                var old = $("#Old_" + score_info[i].name);
+                old.removeClass("warn").addClass("old");
             }
             $("#data").addClass("qhidden");
             $("#message").removeClass("qhidden");

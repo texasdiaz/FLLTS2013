@@ -181,6 +181,18 @@ em {
     display: none;
 }
 
+.warn {
+    font-weight: bold;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+.old {
+    font-weight: normal;
+    font-size: 1em;
+    vertical-align: middle;
+}
+
 #timeData {
 	font-size: 5em;
 }
