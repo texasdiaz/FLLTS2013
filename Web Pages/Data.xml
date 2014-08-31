@@ -208,7 +208,7 @@
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['idea_touch'] == 'Yes') {if (this.answers['bulb_up'] == 'No') {score += 25;} else {score += 40;}]]></Score>
+        <Score><![CDATA[if (this.answers['idea_touch'] == 'Yes') {if (this.answers['bulb_up'] == 'Yes') {score += 40;} else {score += 25;}} ]]></Score>
     </Element>
     
     <Element>
