@@ -22,7 +22,6 @@
         var answers = [];
         var default_answers = [];
         var old_answers = [];
-        var answer_tags = [];
         var answer_values = [];
 
         function submitScoreForm() {
@@ -227,9 +226,7 @@
                     prev_heading = heading;
                     section_num++;
                 }
-                var values = [];
-                // var name = normalize(heading + " - " + question);
-                // answer_tags[name] = tag;
+                var name = tag;
                 sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
                 sectionHTML += "<br>";
                 sectionHTML += ("<span id='" + tag + "'>");
@@ -266,7 +263,7 @@
                         question: question,
                         heading: heading,
                         tag: tag,
-                        // name: name,
+                        name: name,
                         score: (score_element.length > 0) ? score_element[0].childNodes[0].nodeValue : "",
                         validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
                     };
@@ -304,9 +301,9 @@
         }
 
         function saveAnswer(element, value) {
-            var tag = answer_tags[element.name];
+            var tag = element.name;
             var qdiv = $('#'+tag + "-div");
-
+            // Translate form input value into something the scoring code likes
             answers[tag] = value;
             if (previousDataExists) {
                 var old = $("#Old_" + element.tag);
