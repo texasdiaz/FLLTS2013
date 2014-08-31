@@ -258,50 +258,36 @@
             <Label>N/A</Label><Value>NA</Value><Default/>
         </Option>
         <Option>
-            <Label>Red</Label><Value>4</Value>
+            <Label>Red 10%</Label><Value>10</Value>
         </Option>
         <Option>
-            <Label>Orange</Label><Value>3</Value>
+            <Label>Orange 16%</Label><Value>16</Value>
         </Option>
         <Option>
-            <Label>Green</Label><Value>2</Value>
+            <Label>Green 22%</Label><Value>22</Value>
         </Option>
         <Option>
-            <Label>Blue</Label><Value>1</Value>
+            <Label>Blue 28%</Label><Value>28</Value>
+        </Option>
+        <Option>
+            <Label>Red 34%</Label><Value>34</Value>
+        </Option>
+        <Option>
+            <Label>Blue 40%</Label><Value>40</Value>
+        </Option>
+        <Option>
+            <Label>Green 46%</Label><Value>46</Value>
+        </Option>
+        <Option>
+            <Label>Orange 52%</Label><Value>52</Value>
+        </Option>
+        <Option>
+            <Label>Red 58%</Label><Value>58</Value>
         </Option>
         <Validate><![CDATA[((this.answers['bar_south'] == 'Yes') &&
                             (this.answers['marker_color'] == 'NA') &&
-                            (this.answers['marker_location'] != undefined) &&
                             (this.answers['marker_ticks'] != undefined) &&
-                           ((this.answers['marker_location'] != 'NA') ||
-                            (this.answers['marker_ticks'] != 'NA'))) ?
-                           {'highlight': true, 'msg':'Must select dial location'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-    
-    <Element>
-        <Heading>Engagement</Heading>
-        <Question>Dial major marker Location</Question>
-        <Tag>marker_location</Tag>
-        <Option>
-            <Label>N/A</Label><Value>NA</Value><Default/>
-        </Option>
-        <Option>
-            <Label>South</Label><Value>-1</Value>
-        </Option>
-        <Option>
-            <Label>Center Red</Label><Value>0</Value>
-        </Option>
-        <Option>
-            <Label>North</Label><Value>1</Value>
-        </Option>
-        <Validate><![CDATA[((this.answers['bar_south'] == 'Yes') &&
-                            (this.answers['marker_location'] == 'NA') &&
-                            (this.answers['marker_color'] != undefined) &&
-                            (this.answers['marker_ticks'] != undefined) &&
-                           ((this.answers['marker_color'] != 'NA') ||
-                            (this.answers['marker_ticks'] != 'NA'))) ?
+                            (this.answers['marker_ticks'] != 'NA')) ?
                            {'highlight': true, 'msg':'Must select dial location'} : // validation failed
                            {'highlight': false, 'msg':''};]]>
         </Validate>
@@ -335,9 +321,7 @@
         <Validate><![CDATA[((this.answers['bar_south'] == 'Yes') &&
                             (this.answers['marker_ticks'] == 'NA') &&
                             (this.answers['marker_color'] != undefined) &&
-                            (this.answers['marker_location'] != undefined) &&
-                           ((this.answers['marker_color'] != 'NA') ||
-                            (this.answers['marker_location'] != 'NA'))) ?
+                            (this.answers['marker_color'] != 'NA')) ?
                            {'highlight': true, 'msg':'Must select dial location'} : // validation failed
                            {'highlight': false, 'msg':''};
                   ]]>
@@ -345,11 +329,9 @@
         <Score><![CDATA[this.answers['engagement'] = 0;
                         if ((this.answers['bar_south'] == 'Yes') &&
                             (this.answers['marker_color'] != 'NA') &&
-                            (this.answers['marker_location'] != 'NA') &&
                             (this.answers['marker_ticks'] != 'NA')) {
-                           this.answers['engagement'] = 34 + ((this.answers['marker_location']*1)
-                                 *  (this.answers['marker_color']*1) * 6)
-                                 +  (this.answers['marker_ticks']*1)};
+                           this.answers['engagement'] = (this.answers['marker_color'] || 0)*1
+                                 +  (this.answers['marker_ticks'] || 0)*1};
                         ]]>
         </Score>
     </Element>
@@ -365,7 +347,7 @@
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['model_rotated'] == 'Yes') {score += 15;}
-                        score += Math.floor((this.answers['engagement']*score)/100);
+                        score += Math.ceil((this.answers['engagement']*score)/100);
                ]]></Score>
     </Element>
 
