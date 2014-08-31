@@ -228,11 +228,11 @@
                     section_num++;
                 }
                 var values = [];
-                var name = normalize(heading + " - " + question);
-                answer_tags[name] = tag;
+                // var name = normalize(heading + " - " + question);
+                // answer_tags[name] = tag;
                 sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
                 sectionHTML += "<br>";
-                sectionHTML += ("<span id='" + name + "'>");
+                sectionHTML += ("<span id='" + tag + "'>");
                 var options = elements[i].getElementsByTagName("Option");
                 for (var j = 0; j < options.length; j++) {
                     if (options[j].getElementsByTagName("LabelFull").length > 0) {
@@ -249,26 +249,24 @@
                     // the right one for the score computation. Ugly hack.
                     // Really need score computation to happen in only one place
                     // or to use the exact same input values.
-                    values[normalize(qlabel)] = qvalue;
+                    // values[normalize(qlabel)] = qvalue;
                     var default_element = options[j].getElementsByTagName("Default");
                     if (default_element.length > 0) {
-                        default_answers[name] = name + j.toString();
+                        default_answers[tag] = tag + j.toString();
                     }
-                    sectionHTML += ("<input type='radio' id='" + name + j.toString() + "' name='" + name + "' value='" + normalize(qlabel) + "'/>");
+                    sectionHTML += ("<input type='radio' id='" + name + j.toString() + "' name='" + name + "' value='" + qvalue + "'/>");
                     sectionHTML += ("<label for='" + name + j.toString() + "'>" + qlabel + "</label>");
                 }
 
-                answer_values[name] = values;
-
                 sectionHTML += ("</span>");
-                sectionHTML += ("<span class='old' id='Old_" + name + "'></span>");
+                sectionHTML += ("<span class='old' id='Old_" + tag + "'></span>");
                 sectionHTML += ("</div>");
 
                 score_info[i] = {
                         question: question,
                         heading: heading,
                         tag: tag,
-                        name: name,
+                        // name: name,
                         score: (score_element.length > 0) ? score_element[0].childNodes[0].nodeValue : "",
                         validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
                     };
@@ -308,11 +306,11 @@
         function saveAnswer(element, value) {
             var tag = answer_tags[element.name];
             var qdiv = $('#'+tag + "-div");
-            // Translate form input value into something the scoring code likes
-            answers[tag] = answer_values[element.name][value];
+
+            answers[tag] = value;
             if (previousDataExists) {
-                var old = $("#Old_" + element.name);
-                if (value !== old_answers[element.name]){
+                var old = $("#Old_" + element.tag);
+                if (value !== old_answers[element.tag]){
                     qdiv.removeClass("qerror").addClass("qwarn");
                     old.removeClass("old").addClass("warn");
                     return;
@@ -338,7 +336,7 @@
                     }
 
                     // Look up the clicked status of named buttonset
-                    var qinput = $("#"+score_info[i].name + " :radio:checked");
+                    var qinput = $("#"+score_info[i].tag + " :radio:checked");
                     var qdiv = $('#'+score_info[i].tag + "-div");
                     if (result.highlight) {
                         // This will switch the style to our error class
@@ -394,7 +392,7 @@
             }
 
             for (var i = 0; i < score_info.length; i++) {
-                var default_button = $("#" + default_answers[score_info[i].name]);
+                var default_button = $("#" + default_answers[score_info[i].tag]);
                 default_button.click();
             }
         }
@@ -415,7 +413,7 @@
                 qdiv = $('#'+score_info[i].tag + "-div");
                 qdiv.removeClass("qerror").removeClass("qdone").removeClass("qwarn");
                 // Remove any previous entry formating
-                var old = $("#Old_" + score_info[i].name);
+                var old = $("#Old_" + score_info[i].tag);
                 old.removeClass("warn").addClass("old");
             }
             $("#data").addClass("qhidden");
@@ -446,7 +444,7 @@
 
             for (var i = 0; i < elements.length; i++) {
                 // Look up the clicked status of named buttonset
-                var qinput = $("#" + score_info[i].name + " :radio:checked");
+                var qinput = $("#" + score_info[i].tag + " :radio:checked");
                 var qdiv = $("#" + normalize(score_info[i].heading));
 
                 if (!qinput.is(":checked")) {
@@ -553,6 +551,7 @@
                                     </button>
                                 </center>
                             </div>
+                            <input type="number" id="total_score" class="qhidden"></input>
                         </td>
                     </tr>
                     <script>
