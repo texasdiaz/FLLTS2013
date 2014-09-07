@@ -2,9 +2,194 @@
 <Scoring_Elements>
 
     <Element>
-        <Heading>Tree Branch</Heading>
-        <Question>East branch closer to mat than cable?</Question>
-        <Tag>tree_branch</Tag>
+        <Heading>Reverse Engineering</Heading>
+        <Question>Basket in Base</Question>
+        <Tag>basket</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['basket'] == 'Yes') {score += 30;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Reverse Engineering</Heading>
+        <Question>Your model is in Base, and is "identical"</Question>
+        <Tag>model</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if ((this.answers['basket'] == 'Yes') && (this.answers['model'] == 'Yes')) {score += 15;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Opening Doors</Heading>
+        <Question>Door opened by pushing handle down</Question>
+        <Tag>door</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['door'] == 'Yes') {score += 15;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Project-Based Learning</Heading>
+        <Question>Loops on scale</Question>
+        <Tag>project</Tag>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
+        <Option><Label>1</Label><Value>20</Value></Option>
+        <Option><Label>2</Label><Value>30</Value></Option>
+        <Option><Label>3</Label><Value>40</Value></Option>
+        <Option><Label>4</Label><Value>50</Value></Option>
+        <Option><Label>5</Label><Value>60</Value></Option>
+        <Option><Label>6</Label><Value>70</Value></Option>
+        <Option><Label>7</Label><Value>80</Value></Option>
+        <Option><Label>8</Label><Value>90</Value></Option>
+        <Score><![CDATA[score += (this.answers['project'] || 0)*1;]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Apprenticeship</Heading>
+        <Question>People bound, model not in base</Question>
+        <Tag>people</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['people'] == 'Yes') {score += 20;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Apprenticeship</Heading>
+        <Question>Model touching Scale’s white circle</Question>
+        <Tag>scale</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if ((this.answers['people'] == 'Yes') && (this.answers['scale'] == 'Yes')) {score += 15;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Search Engine</Heading>
+        <Question>Only Slider caused wheel to spin 1+ times</Question>
+        <Tag>engine1</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['engine1'] == 'Yes') {score += 15;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Search Engine</Heading>
+        <Question>Only correct loop removed</Question>
+        <Tag>engine2</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if ((this.answers['engine1'] == 'Yes') && (this.answers['engine2'] == 'Yes')) {score += 45;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Sports</Heading>
+        <Question>Ball shot from East/North of "Shot Lines" to Net</Question>
+        <Tag>ball_shot</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['ball_shot'] == 'Yes') {score += 30;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Sports</Heading>
+        <Question>Ball touching mat in Net at end of match</Question>
+        <Tag>ball_touch</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if ((this.answers['ball_shot'] == 'Yes') && (this.answers['ball_touch'] == 'Yes')) {score += 30;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Robotics Competition</Heading>
+        <Question>Only Robotics Insert installed</Question>
+        <Tag>insert_installed</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['insert_installed'] == 'Yes') {score += 25;}]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>Robotics Competition</Heading>
+        <Question>Loop no longer touching model*</Question>
+        <Tag>loop_touch</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if ((this.answers['insert_installed'] == 'Yes') && (this.answers['loop_touch'] == 'Yes')) {score += 30;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Using the Right Senses</Heading>
+        <Question>Loop no longer touching model*</Question>
+        <Tag>senses_touch</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['senses_touch'] == 'Yes') {score += 40;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Remote Communication/Learning</Heading>
+        <Question>Referee saw robot pull slider west</Question>
+        <Tag>robot_pull</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['robot_pull'] == 'Yes') {score += 40;}]]></Score>
+    </Element>
+    
+    <Element>
+        <Heading>Thinking Outside the Box</Heading>
+        <Question>Idea model not touching Box, Box never in Base</Question>
+        <Tag>idea_touch</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
@@ -14,371 +199,172 @@
     </Element>
 
     <Element>
-        <Heading>Tree Branch</Heading>
-        <Question>Models upright, TOUCHING mat?</Question>
-        <Tag>cables</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value><Default/>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value>
-        </Option>
-        <Score><![CDATA[if ((this.answers['tree_branch'] == 'Yes') && (this.answers['cables'] == 'Yes')) {score += 30;}]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>House Lift</Heading>
-        <Question>House locked in high position?</Question>
-        <Tag>house</Tag>
+        <Heading>Thinking Outside the Box</Heading>
+        <Question>Bulb faces UP</Question>
+        <Tag>bulb_up</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['house'] == 'Yes') {score += 25;}]]></Score>
+        <Score><![CDATA[if (this.answers['idea_touch'] == 'Yes') {if (this.answers['bulb_up'] == 'Yes') {score += 40;} else {score += 25;}} ]]></Score>
     </Element>
-
+    
     <Element>
-        <Heading>Progress</Heading>
-        <Question>Colors Reached?</Question>
-        <Tag>progress</Tag>
-        <Option><LabelFull>0 (Not Attempted)</LabelFull><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><LabelFull>1 (Red)</LabelFull><Label>1</Label><Value>1</Value></Option>
-        <Option><LabelFull>2 (Orange)</LabelFull><Label>2</Label><Value>2</Value></Option>
-        <Option><LabelFull>3 (Yellow)</LabelFull><Label>3</Label><Value>3</Value></Option>
-        <Option><LabelFull>4 (Lt Green)</LabelFull><Label>4</Label><Value>4</Value></Option>
-        <Option><LabelFull>5 (Dk Green)</LabelFull><Label>5</Label><Value>5</Value></Option>
-        <Option><LabelFull>6 (Blue)</LabelFull><Label>6</Label><Value>6</Value></Option>
-        <Option><LabelFull>7 (Purple)</LabelFull><Label>7</Label><Value>7</Value></Option>
-        <Option><LabelFull>8 (White)</LabelFull><Label>8</Label><Value>8</Value></Option>
-        <Option><LabelFull>9 (Red)</LabelFull><Label>9</Label><Value>9</Value></Option>
-        <Option><LabelFull>10 (Orange)</LabelFull><Label>10</Label><Value>10</Value></Option>
-        <Option><LabelFull>11 (Yellow)</LabelFull><Label>11</Label><Value>11</Value></Option>
-        <Option><LabelFull>12 (Lt Green)</LabelFull><Label>12</Label><Value>12</Value></Option>
-        <Option><LabelFull>13 (Dk Green)</LabelFull><Label>13</Label><Value>13</Value></Option>
-        <Option><LabelFull>14 (Blue)</LabelFull><Label>14</Label><Value>14</Value></Option>
-        <Option><LabelFull>15 (Purple)</LabelFull><Label>15</Label><Value>15</Value></Option>
-        <Option><LabelFull>16 (White)</LabelFull><Label>16</Label><Value>16</Value></Option>
-        <Score><![CDATA[score += (this.answers['progress'] || 0) * 2;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Base Isolation</Heading>
-        <Question>West Tan Bldg Undamaged?</Question>
-        <Tag>isolation1</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value><Default/>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value>
-        </Option>
-    </Element>
-
-    <Element>
-        <Heading>Base Isolation</Heading>
-        <Question>East Tan Bldg Obviously Damaged?</Question>
-        <Tag>isolation2</Tag>
+        <Heading>Community Learning</Heading>
+        <Question>Loop no longer touching model</Question>
+        <Tag>community_touch</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if ((this.answers['isolation1'] == 'Yes') && (this.answers['isolation2'] == 'Yes')) {score += 30;}]]></Score>
+        <Score><![CDATA[if (this.answers['community_touch'] == 'Yes') {score += 25;}]]></Score>
     </Element>
-
+    
     <Element>
-        <Heading>Construction Relocation</Heading>
-        <Question>Any Gray Bldg IN Lt Green Region?</Question>
-        <Tag>relocation</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value><Default/>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value>
-        </Option>
-        <Score><![CDATA[if (this.answers['relocation'] == 'No') {score += 20;}]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Supply Truck</Heading>
-        <Question>Truck TOUCHING Yellow or Lt Blue Region?</Question>
-        <Tag>supply_truck</Tag>
+        <Heading>Cloud Access</Heading>
+        <Question>SD card is UP with correct "key" inserted</Question>
+        <Tag>key_up</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['supply_truck'] == 'Yes') {score += 20;}]]></Score>
+        <Score><![CDATA[if (this.answers['key_up'] == 'Yes') {score += 30;}]]></Score>
     </Element>
-
+    
     <Element>
-        <Heading>Ambulance</Heading>
-        <Question>Ambulance IN Yellow Region, all wheels touching mat?</Question>
-        <Tag>ambulance</Tag>
+        <Heading>Engagement</Heading>
+        <Question>Yellow section moved south</Question>
+        <Tag>bar_south</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['ambulance'] == 'Yes') {score += 25;}]]></Score>
+        <Score><![CDATA[if (this.answers['bar_south'] == 'Yes') {score += 20;}]]></Score>
     </Element>
-
+    
     <Element>
-        <Heading>Cargo Plane</Heading>
-        <Question>Plane Location?</Question>
-        <Tag>cargo_plane</Tag>
+        <Heading>Engagement</Heading>
+        <Question>Dial major marker Color</Question>
+        <Tag>marker_color</Tag>
         <Option>
-            <Label>Lt Blue</Label><Value>Lt_Blue</Value>
+            <Label>N/A</Label><Value>NA</Value><Default/>
         </Option>
         <Option>
-            <Label>Yellow</Label><Value>Yellow</Value>
+            <Label>Red 10%</Label><Value>10</Value>
         </Option>
         <Option>
-            <Label>Neither</Label><Value>Neither</Value><Default/>
+            <Label>Orange 16%</Label><Value>16</Value>
         </Option>
-        <Score><![CDATA[if (this.answers['cargo_plane'] == 'Yellow') {
-                           score += 20;
-                        } else if (this.answers['cargo_plane'] == 'Lt_Blue') {
-                           score += 30;
-                        }]]></Score>
+        <Option>
+            <Label>Green 22%</Label><Value>22</Value>
+        </Option>
+        <Option>
+            <Label>Blue 28%</Label><Value>28</Value>
+        </Option>
+        <Option>
+            <Label>Red 34%</Label><Value>34</Value>
+        </Option>
+        <Option>
+            <Label>Blue 40%</Label><Value>40</Value>
+        </Option>
+        <Option>
+            <Label>Green 46%</Label><Value>46</Value>
+        </Option>
+        <Option>
+            <Label>Orange 52%</Label><Value>52</Value>
+        </Option>
+        <Option>
+            <Label>Red 58%</Label><Value>58</Value>
+        </Option>
+        <Validate><![CDATA[((this.answers['bar_south'] == 'Yes') &&
+                            (this.answers['marker_color'] == 'NA') &&
+                            (this.answers['marker_ticks'] != undefined) &&
+                            (this.answers['marker_ticks'] != 'NA')) ?
+                           {'highlight': true, 'msg':'Must select dial location'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
+    </Element>
+    
+    <Element>
+        <Heading>Engagement</Heading>
+        <Question>Ticks past major marker</Question>
+        <Tag>marker_ticks</Tag>
+        <Option>
+            <Label>N/A</Label><Value>NA</Value><Default/>
+        </Option>
+        <Option>
+            <Label>0</Label><Value>0</Value>
+        </Option>
+        <Option>
+            <Label>1</Label><Value>1</Value>
+        </Option>
+        <Option>
+            <Label>2</Label><Value>2</Value>
+        </Option>
+        <Option>
+            <Label>3</Label><Value>3</Value>
+        </Option>
+        <Option>
+            <Label>4</Label><Value>4</Value>
+        </Option>
+        <Option>
+            <Label>5</Label><Value>5</Value>
+        </Option>
+        <Validate><![CDATA[((this.answers['bar_south'] == 'Yes') &&
+                            (this.answers['marker_ticks'] == 'NA') &&
+                            (this.answers['marker_color'] != undefined) &&
+                            (this.answers['marker_color'] != 'NA')) ?
+                           {'highlight': true, 'msg':'Must select dial location'} : // validation failed
+                           {'highlight': false, 'msg':''};
+                  ]]>
+        </Validate>
+        <Score><![CDATA[this.answers['engagement'] = 0;
+                        if ((this.answers['bar_south'] == 'Yes') &&
+                            (this.answers['marker_color'] != 'NA') &&
+                            (this.answers['marker_ticks'] != 'NA')) {
+                           this.answers['engagement'] = (this.answers['marker_color'] || 0)*1
+                                 +  (this.answers['marker_ticks'] || 0)*1};
+                        ]]>
+        </Score>
+    </Element>
+    
+    <Element>
+        <Heading>Adapting to Changing Conditions</Heading>
+        <Question>Model rotated 90 degrees CCW</Question>
+        <Tag>model_rotated</Tag>
+        <Option>
+            <Label>Yes</Label><Value>Yes</Value>
+        </Option>
+        <Option>
+            <Label>No</Label><Value>No</Value><Default/>
+        </Option>
+        <Score><![CDATA[if (this.answers['model_rotated'] == 'Yes') {score += 15;}
+                        score += Math.ceil((this.answers['engagement']*score)/100);
+               ]]></Score>
     </Element>
 
     <Element>
         <Heading>Penalties</Heading>
-        <Question>Touch-Sprawl Penalties?</Question>
-        <Tag>touch</Tag>
+        <Question>Robot, Sprawl, Junk Penalties</Question>
+        <Tag>penalties</Tag>
         <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>10</Value></Option>
         <Option><Label>2</Label><Value>20</Value></Option>
         <Option><Label>3</Label><Value>30</Value></Option>
         <Option><Label>4</Label><Value>40</Value></Option>
-        <Option><Label>5</Label><Value>53</Value></Option>
-        <Option><Label>6</Label><Value>66</Value></Option>
-        <Option><Label>7</Label><Value>79</Value></Option>
-        <Option><Label>8</Label><Value>92</Value></Option>
-        <Score><![CDATA[score -= (this.answers['touch'] || 0);]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Penalties</Heading>
-        <Question>Small Junk Penalties?</Question>
-        <Tag>small_junk</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Option><Label>8</Label><Value>8</Value></Option>
-        <Option><Label>9</Label><Value>9</Value></Option>
-        <Option><Label>10</Label><Value>10</Value></Option>
-        <Score><![CDATA[score -= (this.answers['small_junk'] || 0) * 5;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Penalties</Heading>
-        <Question>Large Junk Penalties?</Question>
-        <Tag>large_junk</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Option><Label>8</Label><Value>8</Value></Option>
-        <Option><Label>9</Label><Value>9</Value></Option>
-        <Option><Label>10</Label><Value>10</Value></Option>
-        <Score><![CDATA[score -= (this.answers['large_junk'] || 0) * 13;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Runway</Heading>
-        <Question>Nothing But Waves or Plane TOUCHING Mat On Runway?</Question>
-        <Tag>runway</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value><Default/>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value>
-        </Option>
-        <Score><![CDATA[if (this.answers['runway'] == 'Yes') {score += 30;}]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Evacuation Sign</Heading>
-        <Question>Sign is UP, No Strategic Touching?</Question>
-        <Tag>evacuation_sign</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value><Default/>
-        </Option>
-        <Score><![CDATA[if (this.answers['evacuation_sign'] == 'Yes') {score += 30;}]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Code Construction</Heading>
-        <Question>Segments in Tallest Unaided Building in Pink Region?</Question>
-        <Tag>construction</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Option><Label>8</Label><Value>8</Value></Option>
-        <Option><Label>9</Label><Value>9</Value></Option>
-        <Option><Label>10</Label><Value>10</Value></Option>
-        <Option><Label>11</Label><Value>11</Value></Option>
-        <Option><Label>12</Label><Value>12</Value></Option>
-        <Score><![CDATA[score += (this.answers['construction'] || 0) * 5;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Family</Heading>
-        <Question>People IN Largest Group in a Single Region?</Question>
-        <Tag>family1</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
-        <Option><Label>1</Label><Value>0</Value><Default/></Option>
-        <Option><Label>2</Label><Value>33</Value></Option>
-        <Option><Label>3</Label><Value>66</Value></Option>
-        <Score><![CDATA[score += (this.answers['family1'] || 0)*1;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Family</Heading>
-        <Question>People IN Regions containing Bottled Water?</Question>
-        <Tag>water</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Score><![CDATA[score += (this.answers['water'] || 0) * 15;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Family</Heading>
-        <Question>People IN The Yellow Region?</Question>
-        <Tag>yellow_people</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Score><![CDATA[score += (this.answers['yellow_people'] || 0) * 12;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_people']*1 + this.answers['red_people']*1) > 3) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
-    </Element>
-
-    <Element>
-        <Heading>Family</Heading>
-        <Question>People IN The Red Region?</Question>
-        <Tag>red_people</Tag>
-        <Option><Label>0</Label><Value>0</Value></Option>
-	<Option><Label>1</Label><Value>1</Value><Default/></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Score><![CDATA[score += (this.answers['red_people'] || 0) * 18;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_people']*1 + this.answers['red_people']*1) > 3) ? {'highlight': true, 'msg':'Total people cannot exceed 3'} : {'highlight': false, 'msg':''};]]></Validate>
-    </Element>
-
-    <Element>
-        <Heading>Family</Heading>
-        <Question>Pets IN Regions containing People?</Question>
-        <Tag>pets</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Score><![CDATA[score += (this.answers['pets'] || 0) * 15;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Supplies</Heading>
-        <Question>Non-Water Items IN Yellow Region?</Question>
-        <Tag>yellow_supplies</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Option><Label>8</Label><Value>8</Value></Option>
-        <Option><Label>9</Label><Value>9</Value></Option>
-        <Option><Label>10</Label><Value>10</Value></Option>
-        <Option><Label>11</Label><Value>11</Value></Option>
-        <Option><Label>12</Label><Value>12</Value></Option>
-        <Score><![CDATA[score += (this.answers['yellow_supplies'] || 0) * 3;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_supplies']*1 + this.answers['red_supplies']*1) > 12) ? {'highlight': true, 'msg':''} : {'highlight': false, 'msg':''};]]></Validate>
-    </Element>
-
-    <Element>
-        <Heading>Supplies</Heading>
-        <Question>Non-Water Items IN Red Region?</Question>
-        <Tag>red_supplies</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Option><Label>8</Label><Value>8</Value></Option>
-        <Option><Label>9</Label><Value>9</Value></Option>
-        <Option><Label>10</Label><Value>10</Value></Option>
-        <Option><Label>11</Label><Value>11</Value></Option>
-        <Option><Label>12</Label><Value>12</Value></Option>
-        <Score><![CDATA[score += (this.answers['red_supplies'] || 0) * 4;]]></Score>
-        <Validate><![CDATA[((this.answers['yellow_supplies']*1 + this.answers['red_supplies']*1) > 12) ? {'highlight': true, 'msg':'Total supplies cannot exceed 12'} : {'highlight': false, 'msg':''};]]></Validate>
-    </Element>
-
-    <Element>
-        <Heading>Safe Place</Heading>
-        <Question>Robot IN Red Region at End of Match?</Question>
-        <Tag>safe_place</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value><Default/>
-        </Option>
-        <Score><![CDATA[if (this.answers['safe_place'] == 'Yes') {score += 25;}]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Obstacles</Heading>
-        <Question>Best Result Achieved?</Question>
-        <Tag>obstacles</Tag>
-        <Option><Label>None</Label><Value>0</Value><Default/></Option>
-        <Option><Label>Dk Blue</Label><Value>10</Value></Option>
-        <Option><Label>Dk Green</Label><Value>16</Value></Option>
-        <Option><Label>Purple</Label><Value>23</Value></Option>
-        <Option><Label>Red</Label><Value>31</Value></Option>
-        <Score><![CDATA[score += (this.answers['obstacles'] || 0)*1;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>Tsunami</Heading>
-        <Question>All 3 Waves TOUCHING Mat</Question>
-        <Tag>tsunami</Tag>
-        <Option>
-            <Label>Yes</Label><Value>Yes</Value>
-        </Option>
-        <Option>
-            <Label>No</Label><Value>No</Value><Default/>
-        </Option>
-        <Score><![CDATA[if (this.answers['tsunami'] == 'Yes') {score += 20;}]]></Score>
+        <Option><Label>5</Label><Value>50</Value></Option>
+        <Option><Label>6</Label><Value>60</Value></Option>
+        <Option><Label>7</Label><Value>70</Value></Option>
+        <Option><Label>8</Label><Value>80</Value></Option>
+        <Score><![CDATA[score -= (this.answers['penalties'] || 0);]]></Score>
     </Element>
 
 </Scoring_Elements>
