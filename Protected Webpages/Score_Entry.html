@@ -433,10 +433,10 @@
                 // doesn't actually set the value.
                 r.selectedIndex = null;
             }
-
+	    
             // Hide entry mode
             $("#mode").addClass("qhidden").removeClass("qinline");
-
+	    
 	    // Clear answers, otherwise the answers will persist between resets.
 	    answers = [];
 	    // Refresh score on form.
@@ -519,12 +519,12 @@
                                             type="button" onClick="resetForm(true);">Reset Form</button>
                                     <button id="set_defaults"
                                             type="button" onClick="setDefaults();">Set Defaults</button>
-                                    <div id="mode" class="qhidden">
-                                        Mode:
-                                        <select id="Mode" name="Mode" onChange='setFormForMode();'>
-                                            <option>Automatic</option>
-                                            <option>Manual</option>
-                                        </select>
+                                    <div id="mode" class="qhidden" style="display: inline-block">
+                                    Mode:
+                                    <select id="Mode" name="Mode" onChange='setFormForMode();'>
+                                        <option>Automatic</option>
+                                        <option>Manual</option>
+                                    </select>
                                     </div>
                                     Team:
                                     <script>
