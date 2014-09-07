@@ -107,6 +107,10 @@
                     spans[i].innerHTML = "";
                 }
             }
+
+            // Now that we've selected a team, allow Manual entry mode
+            $("#mode").removeClass("qhidden").addClass("qinline");
+
             validate();
         }
 
@@ -274,7 +278,7 @@
                     };
             }
             newHTML += "<div id='" + normalize(heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
-            document.write(newHTML);
+            return(newHTML);
         }
 
         function getNextRound() {
@@ -428,7 +432,10 @@
                 // doesn't actually set the value.
                 r.selectedIndex = null;
             }
-	    
+
+            // Hide entry mode
+            $("#mode").addClass("qhidden").removeClass("qinline");
+
 	    // Clear answers, otherwise the answers will persist between resets.
 	    answers = [];
 	    // Refresh score on form.
@@ -511,11 +518,13 @@
                                             type="button" onClick="resetForm(true);">Reset Form</button>
                                     <button id="set_defaults"
                                             type="button" onClick="setDefaults();">Set Defaults</button>
-                                    Mode:
-                                    <select id="Mode" name="Mode" onChange='setFormForMode();'>
-                                        <option>Automatic</option>
-                                        <option>Manual</option>
-                                    </select>
+                                    <div id="mode" class="qhidden">
+                                        Mode:
+                                        <select id="Mode" name="Mode" onChange='setFormForMode();'>
+                                            <option>Automatic</option>
+                                            <option>Manual</option>
+                                        </select>
+                                    </div>
                                     Team:
                                     <script>
                                         getTeams();
@@ -541,9 +550,6 @@
                                 </div>
                             </div>
                             <div id="data" class="qhidden">
-                                <script>
-                                    getElements();
-                                </script>
                             </div>
                             <div id="unanswered" class="qhidden">
                                 <center>
@@ -573,11 +579,15 @@
                 var e = document.getElementsByName("Mode")[0];
                 mode = e.options[e.selectedIndex].text;
                 if(mode=="Automatic"){
+                    // Clear answers, otherwise the answers will persist between resets.
+                    answers = [];
                     document.getElementById("data").innerHTML=getElements();
                     activateElements();
                     validate();
                 }
                 else if(mode=="Manual"){
+                    // Clear answers, otherwise the answers will persist between resets.
+                    answers = [];
                     document.getElementById("data").innerHTML="Score: <input type='number' name='Score' min='0'><span class='old' id='Old_Score'></span>";
                     validate();
                     setSubmit(true);
@@ -593,6 +603,7 @@
            });
 
            $(document).ready(function() {
+               document.getElementById("data").innerHTML=getElements();
                activateElements();
                validate();
            });
