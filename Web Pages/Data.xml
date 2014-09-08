@@ -347,7 +347,6 @@
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
         <Score><![CDATA[if (this.answers['model_rotated'] == 'Yes') {score += 15;}
-                        score += Math.ceil((this.answers['engagement']*score)/100);
                ]]></Score>
     </Element>
 
@@ -364,7 +363,10 @@
         <Option><Label>6</Label><Value>60</Value></Option>
         <Option><Label>7</Label><Value>70</Value></Option>
         <Option><Label>8</Label><Value>80</Value></Option>
-        <Score><![CDATA[score -= (this.answers['penalties'] || 0);]]></Score>
+        <Score><![CDATA[score -= (this.answers['penalties'] || 0);
+                        score += Math.ceil((this.answers['engagement']*score)/100);
+               ]]>
+        </Score>
     </Element>
 
 </Scoring_Elements>
