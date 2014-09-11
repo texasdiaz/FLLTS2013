@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>FLL Score Entry</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="jquery/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="CurrentTime.js"></script>
+    <script type="text/javascript" src="utilities.js"></script>
+    <link rel="stylesheet" href="jquery/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script  type="text/javascript">
+        BEGIN=true;
+        mode="Automatic";
+        var previousDataExists = new Boolean;
+        var previousData = [];
+        previousData[0]=[];
+        var rules;
+        var scoring_data;
+        var score_info = [];
+        var answers = [];
+        var default_answers = [];
+        var old_answers = [];
+        var start_time = 0;
+        var timer;
+
+        function submitScoreForm() {
+            var theForm = $("form[name='ScoreEntry']");
+            var posting = $.post( theForm.attr("action"), theForm.serialize());
+
+            // Put the results in a div
+            posting.done(function( data ) {
+	      alert("Score Submitted!");
+              resetForm(false);
+            });
+        }
+
+        function checkData(){
+            var errString = "\n";
+            submitScoreForm();
+        }
+
+        function normalize(string) {
+            string = string.replace(/ /g, "_");
+            string = string.replace(/\?/, "");
+            string = string.replace(/,/, "");
+            string = string.replace(/\"/g, "");
+            string = string.replace(/\(/g, "");
+            string = string.replace(/\)/g, "");
+            string = string.replace(/\'/g, "");
+            return string;
+        }
+
+        function setSubmit(status) {
+            if (!BEGIN) {
+                document.getElementById("submitButton").disabled = !(status);
+                if (status) {
+                    $("#unanswered").addClass("qhidden");
+                    $("#submitButton").removeClass('invalid').addClass('valid');
+                } else {
+                    if ($("#data").css("display") == "none") {
+                        // Hide unanswered error message if questions are not
+                        // visible
+                        $("#unanswered").addClass("qhidden");
+                    } else {
+                        $("#unanswered").removeClass("qhidden");
+                    }
+                    $("#submitButton").removeClass('valid').addClass('invalid');
+                }
+            }
+        }
+
+        function validate() {
+
+            if (!validAnswers()) {
+                setSubmit(false);
+                return;
+            }
+
+            computeScore();
+
+            //Ensure all radio button groups have had values set
+            //Walk through the radio buttons, keying off the name and whether it's "checked"
+            var allChanged = true
+            if (!BEGIN) {
+                for (var i = 0; i < score_info.length; i++) {
+                    // Look up the clicked status of named buttonset
+                    var qinput = $("#"+score_info[i].name + " :radio:checked");
+
+                    allChanged = allChanged && qinput.is(":checked");
+                }
+            }
+            if (!allChanged)
+                $("#unanswered").removeClass("qhidden");
+
+            setSubmit(allChanged);
+        }
+
+        function activateElements() {
+            for (var i = 0; i < score_info.length; i++) {
+                // Turn inputs into button sets - pressable buttons rather than radio box
+                $("#" + score_info[i]["name"]).buttonset();
+                $("input[name='" + score_info[i]["name"] + "']").change(function() {
+                    saveAnswer(this, $(this).val());
+                    $(this).addClass("qdone");
+                    validate();
+                });
+            }
+            // Make button click happen with mousedown
+            // Allows for faster entry on computer
+            // This must happen after the buttons have been added to the DOM
+            $('label').on('mousedown', function(event) {
+               switch (event.which) {
+                   case 1:
+                       $(this).click();
+               }
+           });
+        }
+
+        function getElements() {
+            var newHTML = "";
+            var prev_heading = "";
+            var sectionHTML = "";
+            var section_num = 1;
+
+            scoring_data = getXML("Data.xml");
+
+            elements = scoring_data.getElementsByTagName("Element");
+
+            var prev_heading = elements[0].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+            for (var i = 0; i < elements.length; i++) {
+                var question = elements[i].getElementsByTagName("Question")[0].childNodes[0].nodeValue;
+                var heading = elements[i].getElementsByTagName("Heading")[0].childNodes[0].nodeValue;
+                var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
+                var validate = elements[i].getElementsByTagName("Validate");
+                var score_element = elements[i].getElementsByTagName("Score");
+
+                if (heading !== prev_heading) {
+                    // Start new header div
+                    newHTML += "<div id='" + normalize(prev_heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+                    sectionHTML = "";
+                    prev_heading = heading;
+                    section_num++;
+                }
+                var name = tag;
+                sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
+                sectionHTML += "<br>";
+                sectionHTML += ("<span id='" + tag + "'>");
+                var options = elements[i].getElementsByTagName("Option");
+                for (var j = 0; j < options.length; j++) {
+                    if (options[j].getElementsByTagName("LabelFull").length > 0) {
+                        var qlabel = options[j].getElementsByTagName("LabelFull")[0].childNodes[0].nodeValue;
+                    } else {
+                        var qlabel = options[j].getElementsByTagName("Label")[0].childNodes[0].nodeValue;
+                    }
+                    var qvalue = options[j].getElementsByTagName("Value")[0].childNodes[0].nodeValue;
+
+                    // normalize(qlabel) is the input form value expected
+                    // by the webserver. However, that's not the value expected
+                    // by the javascript score computation engine. So, we save
+                    // the "real" value in this table so that we can substitute
+                    // the right one for the score computation. Ugly hack.
+                    // Really need score computation to happen in only one place
+                    // or to use the exact same input values.
+                    // values[normalize(qlabel)] = qvalue;
+                    var default_element = options[j].getElementsByTagName("Default");
+                    if (default_element.length > 0) {
+                        default_answers[tag] = tag + j.toString();
+                    }
+                    sectionHTML += ("<input type='radio' id='" + name + j.toString() + "' name='" + name + "' value='" + qvalue + "'/>");
+                    sectionHTML += ("<label for='" + name + j.toString() + "'>" + qlabel + "</label>");
+                }
+
+                sectionHTML += ("</span>");
+                sectionHTML += ("<span class='old' id='Old_" + tag + "'></span>");
+                sectionHTML += ("</div>");
+
+                score_info[i] = {
+                        question: question,
+                        heading: heading,
+                        tag: tag,
+                        name: name,
+                        score: (score_element.length > 0) ? score_element[0].childNodes[0].nodeValue : "",
+                        validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
+                    };
+            }
+            newHTML += "<div id='" + normalize(heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+            document.write(newHTML);
+        }
+
+        function saveAnswer(element, value) {
+            var tag = element.name;
+            var qdiv = $('#'+tag + "-div");
+            // Translate form input value into something the scoring code likes
+            answers[tag] = value;
+            qdiv.removeClass("qerror").addClass("qdone");
+        }
+
+        function validAnswers() {
+            var result = {};
+            for (var i = 0; i < score_info.length; i++) {
+                var validate = score_info[i].validate;
+
+                if (validate.length > 0) {
+                    try {
+                        result = eval(validate);
+                    } catch (err) {
+                        // Okay to get errors for answers that aren't ready
+                        result = {'highlight': false, 'msg':''};
+                    }
+
+                    // Look up the clicked status of named buttonset
+                    var qinput = $("#"+score_info[i].tag + " :radio:checked");
+                    var qdiv = $('#'+score_info[i].tag + "-div");
+                    if (result.highlight) {
+                        // This will switch the style to our error class
+                        qdiv.removeClass("qdone").addClass("qerror");
+
+                        document.getElementById("CurrentScore").innerHTML = "Error";
+                        if (result.msg !== '') {
+                            document.getElementById("error_status").innerHTML = result.msg;
+                            $('#header').removeClass("header-normal").addClass("header-error");
+                            $('#main').removeClass("main-normal").addClass("main-error");
+                            return(false);
+                        }
+                    } else if (qinput.is(":checked")) {
+                        // Sets style to 'qdone' which is light green
+                        qdiv.removeClass("qerror").addClass("qdone");
+                    } else {
+                        qdiv.removeClass("qerror");
+                    }
+                }
+            }
+            $('#header').removeClass("header-error").addClass("header-normal");
+            $('#main').removeClass("main-error").addClass("main-normal");
+            document.getElementById("error_status").innerHTML = "";
+            return(true);
+        }
+
+        function computeScore() {
+            var score = 0;
+            var code = "";
+            for (var i = 0; i < score_info.length; i++) {
+                if (score_info[i].score.length > 0) {
+                    code = score_info[i].score;
+                    try {
+                        eval(code);
+                    } catch (err) {
+                        // Okay to get errors for answers that aren't ready
+                    }
+                }
+            }
+
+            if (score < 0)
+                score = 0;
+            
+            $('#total_score').val(score);
+
+            document.getElementById("CurrentScore").innerHTML = "Score: " + score;
+        }
+
+        function resetForm(do_confirm) {
+            if (do_confirm && !confirm("Form will be completely reset.\n"
+                      + "Are you sure you want this?")) {
+                return;
+            }
+            elements = scoring_data.getElementsByTagName("Element");
+
+            // This unchecks all radio buttons
+            $("input:radio").prop("checked", false);
+            // Refresh the button so it shows it's new state (unchecked)
+            $("input:radio").button("refresh");
+
+            for (var i = 0; i < elements.length; i++) {
+                qdiv = $('#'+score_info[i].tag + "-div");
+                qdiv.removeClass("qerror").removeClass("qdone").removeClass("qwarn");
+                // Remove any previous entry formating
+                var old = $("#Old_" + score_info[i].tag);
+                old.removeClass("warn").addClass("old");
+            }
+	    
+	    // Clear answers, otherwise the answers will persist between resets.
+	    answers = [];
+	    // Refresh score on form.
+	    computeScore();
+
+            setSubmit(false);
+        }
+
+        function findUnanswered(event) {
+            event.preventDefault();
+
+            var main = $("#main");
+            var content_top = $("#content").offset().top;
+
+            for (var i = 0; i < elements.length; i++) {
+                // Look up the clicked status of named buttonset
+                var qinput = $("#" + score_info[i].tag + " :radio:checked");
+                var qdiv = $("#" + normalize(score_info[i].heading));
+
+                if (!qinput.is(":checked")) {
+                    var offset = qdiv.offset().top;
+                    main.animate({scrollTop: offset-content_top}, 800);
+                    return;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="header" class="header-normal">
+        <div id="title-row">
+            <div id="left-header">
+
+                <div id="CurrentScore">Score: 000</div>
+            </div>
+            <div id="mid-header" align="center">
+                <div id="mid-header-title">
+                    <em>FIRST</em> LEGO League <br />
+                    <em>World Class</em> Score Sheet
+                </div>
+            </div>
+            <div id="right-header" style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
+                <div id="setup">
+                    <button id="timer_button" class="start valid"
+                            type="button" onClick="startTimer();">Start Timer</button>
+                </div>
+                <div id="timer" style="padding-top: 5px;">Time: 2:30</div>
+            </div>
+        </div>
+        <div id="error_status"> </div>
+    </div>
+    <script>
+        function updateTimer(){
+            var current_time = new Date().getTime() / 1000;
+            var diff_time = current_time - start_time;
+            var totalSec = Math.round(150 - diff_time);
+            var minutes = parseInt( totalSec / 60 ) % 60;
+            var seconds = totalSec % 60;
+            document.getElementById("timer").innerHTML= "Time: " +
+                    minutes + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+            if (totalSec <= 0) {
+                startTimer();
+            }
+        }
+        function startTimer(){
+            if (timer == null) {
+                start_time = new Date().getTime() / 1000;
+                timer = setInterval(updateTimer,1000);
+                document.getElementById("timer_button").innerHTML= "Stop Timer";
+                $("#timer_button").removeClass('valid').addClass('invalid');
+            } else {
+                clearInterval(timer);
+                timer = null;
+                document.getElementById("timer_button").innerHTML= "Start Timer";
+                $("#timer_button").removeClass('invalid').addClass('valid');
+            }
+            document.getElementById("timer").innerHTML= "Time: 2:30";
+        }
+    </script>
+    <script type="text/javascript">
+
+    </script>
+    <!-- ======== END OF HEADER ======== -->
+    <div id="main" class="main-normal">
+        <div id="content">
+            <form name='ScoreEntry' action="Process_POST" method="post">
+                <table>
+                    <tr>
+                        <td id="form">
+                            <center>
+                                <div id="setup">
+                                    <button id="reset_form"
+                                            type="button" onClick="resetForm(true);">Reset Form</button>
+                                </div>
+                            </center>
+                            <hr />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="data">
+                                <script>
+                                    getElements();
+                                </script>
+                                <input type="number" id="total_score" name="total_score" class="qhidden" value="0"/>
+                            </div>
+                            <div id="unanswered" class="qhidden">
+                                <center>
+                                    <button class="invalid" style="padding: 50px"
+                                         onClick="findUnanswered(event);">
+                                    Unanswered questions present.
+                                    </button>
+                                </center>
+                            </div>
+                        </td>
+                    </tr>
+                    <script>
+                        BEGIN=false;
+                    </script>
+                    <tr>
+                        <td>
+                            <center><button id="submitButton" class="invalid"
+                                            type="button" onClick="resetForm(true);"
+                                            disabled>Done</button></center>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <script>
+            // Make button click happen with mousedown
+            // Allows for faster entry on computer
+            $('label').on('mousedown', function(event) {
+               switch (event.which) {
+                   case 1:
+                       $(this).click();
+               }
+           });
+
+           $(document).ready(function() {
+               activateElements();
+               validate();
+           });
+        </script>
+    </div>
+</body>
+</html>
