@@ -45,15 +45,22 @@
         <Question>Loops on scale</Question>
         <Tag>project</Tag>
         <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>20</Value></Option>
-        <Option><Label>2</Label><Value>30</Value></Option>
-        <Option><Label>3</Label><Value>40</Value></Option>
-        <Option><Label>4</Label><Value>50</Value></Option>
-        <Option><Label>5</Label><Value>60</Value></Option>
-        <Option><Label>6</Label><Value>70</Value></Option>
-        <Option><Label>7</Label><Value>80</Value></Option>
-        <Option><Label>8</Label><Value>90</Value></Option>
-        <Score><![CDATA[score += (this.answers['project'] || 0)*1;]]></Score>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Score><![CDATA[score += (this.answers['project'] || 0)*1 > 0 ? (this.answers['project'] || 0)*10 + 10 : 0;]]></Score>
+        <Validate><![CDATA[((((this.answers['loop_touch'] == 'No') ? 1 : 0) +
+                             ((this.answers['senses_touch'] == 'No') ? 1 : 0) +
+                             ((this.answers['community_touch'] == 'No') ? 1 : 0) +
+                            (this.answers['project'] || 0)*1) > 8) ?
+                           {'highlight': true, 'msg':'Cannot use more than 8 loops'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
