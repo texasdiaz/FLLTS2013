@@ -65,7 +65,7 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>People bound, model not in base</Question>
+        <Question>People bound</Question>
         <Tag>people</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
@@ -78,7 +78,7 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>Model touching Scale’s white circle</Question>
+        <Question>Model touching Scale’s white circle, not in Base</Question>
         <Tag>scale</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
