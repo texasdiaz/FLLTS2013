@@ -56,6 +56,7 @@
         <Score><![CDATA[score += (this.answers['project'] || 0)*1 > 0 ? (this.answers['project'] || 0)*10 + 10 : 0;]]></Score>
         <Validate><![CDATA[((((this.answers['loop_touch'] == 'No') ? 1 : 0) +
                              ((this.answers['senses_touch'] == 'No') ? 1 : 0) +
+                             ((this.answers['engine_loop'] == 'Yes') ? 2 : 0) +
                              ((this.answers['community_touch'] == 'No') ? 1 : 0) +
                             (this.answers['project'] || 0)*1) > 8) ?
                            {'highlight': true, 'msg':'Cannot use more than 8 loops'} : // validation failed
@@ -105,14 +106,14 @@
     <Element>
         <Heading>Search Engine</Heading>
         <Question>Only correct loop removed</Question>
-        <Tag>engine2</Tag>
+        <Tag>engine_loop</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if ((this.answers['engine1'] == 'Yes') && (this.answers['engine2'] == 'Yes')) {score += 45;}]]></Score>
+        <Score><![CDATA[if ((this.answers['engine1'] == 'Yes') && (this.answers['engine_loop'] == 'Yes')) {score += 45;}]]></Score>
     </Element>
     
     <Element>
