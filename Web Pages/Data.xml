@@ -65,7 +65,7 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>People bound</Question>
+        <Question>Model presented to Referee</Question>
         <Tag>people</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
@@ -78,15 +78,15 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>Model touching Scale’s white circle, not in Base</Question>
-        <Tag>scale</Tag>
+        <Question>People bound, touching circle, not in Base</Question>
+        <Tag>circle</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if ((this.answers['people'] == 'Yes') && (this.answers['scale'] == 'Yes')) {score += 15;}]]></Score>
+        <Score><![CDATA[if ((this.answers['people'] == 'Yes') && (this.answers['circle'] == 'Yes')) {score += 15;}]]></Score>
     </Element>
 
     <Element>
