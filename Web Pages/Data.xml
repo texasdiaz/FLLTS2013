@@ -56,6 +56,7 @@
         <Score><![CDATA[score += (this.answers['project'] || 0)*1 > 0 ? (this.answers['project'] || 0)*10 + 10 : 0;]]></Score>
         <Validate><![CDATA[((((this.answers['loop_touch'] == 'No') ? 1 : 0) +
                              ((this.answers['senses_touch'] == 'No') ? 1 : 0) +
+                             ((this.answers['engine_loop'] == 'Yes') ? 2 : 0) +
                              ((this.answers['community_touch'] == 'No') ? 1 : 0) +
                             (this.answers['project'] || 0)*1) > 8) ?
                            {'highlight': true, 'msg':'Cannot use more than 8 loops'} : // validation failed
@@ -65,7 +66,7 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>People bound</Question>
+        <Question>Model presented to Referee</Question>
         <Tag>people</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
@@ -78,15 +79,15 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>Model touching Scale’s white circle, not in Base</Question>
-        <Tag>scale</Tag>
+        <Question>People bound, touching circle, not in Base</Question>
+        <Tag>circle</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if ((this.answers['people'] == 'Yes') && (this.answers['scale'] == 'Yes')) {score += 15;}]]></Score>
+        <Score><![CDATA[if ((this.answers['people'] == 'Yes') && (this.answers['circle'] == 'Yes')) {score += 15;}]]></Score>
     </Element>
 
     <Element>
@@ -105,14 +106,14 @@
     <Element>
         <Heading>Search Engine</Heading>
         <Question>Only correct loop removed</Question>
-        <Tag>engine2</Tag>
+        <Tag>engine_loop</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
         </Option>
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if ((this.answers['engine1'] == 'Yes') && (this.answers['engine2'] == 'Yes')) {score += 45;}]]></Score>
+        <Score><![CDATA[if ((this.answers['engine1'] == 'Yes') && (this.answers['engine_loop'] == 'Yes')) {score += 45;}]]></Score>
     </Element>
     
     <Element>
@@ -254,7 +255,6 @@
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['bar_south'] == 'Yes') {score += 20;}]]></Score>
     </Element>
     
     <Element>
@@ -372,6 +372,7 @@
         <Option><Label>8</Label><Value>80</Value></Option>
         <Score><![CDATA[score -= (this.answers['penalties'] || 0);
                         score += Math.ceil((this.answers['engagement']*score)/100);
+                        if (this.answers['bar_south'] == 'Yes') {score += 20;}
                ]]>
         </Score>
     </Element>
