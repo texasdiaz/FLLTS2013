@@ -254,7 +254,6 @@
         <Option>
             <Label>No</Label><Value>No</Value><Default/>
         </Option>
-        <Score><![CDATA[if (this.answers['bar_south'] == 'Yes') {score += 20;}]]></Score>
     </Element>
     
     <Element>
@@ -372,6 +371,7 @@
         <Option><Label>8</Label><Value>80</Value></Option>
         <Score><![CDATA[score -= (this.answers['penalties'] || 0);
                         score += Math.ceil((this.answers['engagement']*score)/100);
+                        if (this.answers['bar_south'] == 'Yes') {score += 20;}
                ]]>
         </Score>
     </Element>
