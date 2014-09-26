@@ -79,7 +79,7 @@
 
     <Element>
         <Heading>Apprenticeship</Heading>
-        <Question>People bound, touching circle, not in Base</Question>
+        <Question>Touching circle, not in Base, people bound</Question>
         <Tag>circle</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
@@ -234,7 +234,7 @@
     
     <Element>
         <Heading>Cloud Access</Heading>
-        <Question>SD card is UP with correct "key" inserted</Question>
+        <Question>SD card is UP due to inserted "key"</Question>
         <Tag>key_up</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
@@ -345,7 +345,7 @@
     
     <Element>
         <Heading>Adapting to Changing Conditions</Heading>
-        <Question>Model rotated 90 degrees CCW</Question>
+        <Question>Model rotated 90-ish degrees CCW</Question>
         <Tag>model_rotated</Tag>
         <Option>
             <Label>Yes</Label><Value>Yes</Value>
