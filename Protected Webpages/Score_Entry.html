@@ -211,6 +211,15 @@
                 }
             }
 
+            if (window.devicePixelRatio > 1) {
+                // On high DPI device, make button text bigger
+                myElements = document.getElementsByClassName("ui-button-text");
+                pad_val = window.getComputedStyle(myElements[0]).padding;
+                for (var i = 0; i < myElements.length; i++) {
+                    myElements[i].style.fontSize="2em";
+                }
+            }
+
             // Make button click happen with mousedown
             // Allows for faster entry on computer
             // This must happen after the buttons have been added to the DOM
