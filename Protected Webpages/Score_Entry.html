@@ -198,6 +198,28 @@
                     validate();
                 });
             }
+
+            if (navigator.userAgent.indexOf("Android") != -1) {
+                // Hack for Android Chrome weirdness
+                // Bug is that the padding value is lost when button clicked, so
+                // we'll capture the initial padding value and apply it to all
+                // the buttons when they are created, this seems to work around the issue.
+                myElements = document.getElementsByClassName("ui-button-text");
+                pad_val = window.getComputedStyle(myElements[0]).padding;
+                for (var i = 0; i < myElements.length; i++) {
+                    myElements[i].style.padding=pad_val;
+                }
+            }
+
+            if (window.devicePixelRatio > 1) {
+                // On high DPI device, make button text bigger
+                myElements = document.getElementsByClassName("ui-button-text");
+                pad_val = window.getComputedStyle(myElements[0]).padding;
+                for (var i = 0; i < myElements.length; i++) {
+                    myElements[i].style.fontSize="2em";
+                }
+            }
+
             // Make button click happen with mousedown
             // Allows for faster entry on computer
             // This must happen after the buttons have been added to the DOM
@@ -478,7 +500,7 @@
             </div>
             <div id="mid-header" align="center">
                 <div id="mid-header-title">
-                    <em>FIRST</em> LEGO League <br />
+                    <em>FIRST<sup>&reg;</sup></em> LEGO<sup>&reg;</sup> League <br />
                     <em>World Class</em> Score Sheet
                 </div>
                 <div id="team_name_header">Select Team</div>
