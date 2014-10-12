@@ -130,7 +130,7 @@
 		<Item Name="FLL Tournament Display.vi" Type="VI" URL="../FLL Tournament Display.vi"/>
 		<Item Name="FLL" Type="Web Service">
 			<Property Name="Bld_buildSpecName" Type="Str"></Property>
-			<Property Name="Bld_version.build" Type="Int">137</Property>
+			<Property Name="Bld_version.build" Type="Int">139</Property>
 			<Property Name="ws.autoIncrementVersion" Type="Bool">true</Property>
 			<Property Name="ws.disconnectInline" Type="Bool">false</Property>
 			<Property Name="ws.disconnectTypeDefs" Type="Bool">false</Property>
@@ -562,7 +562,6 @@
 			<Item Name="Score Display - Auto Scale Image (LV).vi" Type="VI" URL="../Score Display - Auto Scale Image (LV).vi"/>
 			<Item Name="Score Display - Load Image (LV).vi" Type="VI" URL="../Score Display - Load Image (LV).vi"/>
 			<Item Name="Score Display - Display Image (LV).vi" Type="VI" URL="../Score Display - Display Image (LV).vi"/>
-			<Item Name="nirviCommon.vi" Type="VI" URL="/&lt;vilib&gt;/express/rvi/timingcommon/nirviCommon.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="FLL Tournament Server" Type="EXE">
@@ -582,7 +581,7 @@
 				<Property Name="Bld_previewCacheID" Type="Str">{EF7E6A62-7B77-436C-81C6-82D704FD0122}</Property>
 				<Property Name="Bld_supportedLanguage[0]" Type="Str">English</Property>
 				<Property Name="Bld_supportedLanguageCount" Type="Int">1</Property>
-				<Property Name="Bld_version.build" Type="Int">6</Property>
+				<Property Name="Bld_version.build" Type="Int">7</Property>
 				<Property Name="Bld_version.major" Type="Int">2</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Server.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/FLL Tournament Server.exe</Property>
@@ -646,7 +645,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{01B6EB58-B92A-4A43-80BA-331183D62DED}</Property>
-				<Property Name="Bld_version.build" Type="Int">3</Property>
+				<Property Name="Bld_version.build" Type="Int">4</Property>
 				<Property Name="Bld_version.major" Type="Int">2</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display/FLL Tournament Display.exe</Property>
@@ -868,7 +867,7 @@
 				<Property Name="INST_buildSpecName" Type="Str">FLL Software Installer</Property>
 				<Property Name="INST_defaultDir" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
 				<Property Name="INST_productName" Type="Str">FLL Tournament Software</Property>
-				<Property Name="INST_productVersion" Type="Str">2.0.8</Property>
+				<Property Name="INST_productVersion" Type="Str">2.0.9</Property>
 				<Property Name="INST_webService.count" Type="Int">1</Property>
 				<Property Name="INST_webService[0].itemID" Type="Ref">/My Computer/FLL</Property>
 				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
