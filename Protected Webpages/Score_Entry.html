@@ -121,6 +121,8 @@
             string = string.replace(/\(/g, "");
             string = string.replace(/\)/g, "");
             string = string.replace(/\'/g, "");
+            string = string.replace(/\//g, "_");
+            string = string.replace(/\:/g, "_");
             return string;
         }
 
