@@ -77,11 +77,12 @@
         <Option><Label>11</Label><Value>11</Value></Option>
         <Option><Label>12</Label><Value>12</Value><Default/></Option>
         <Score><![CDATA[score += (this.answers['m04c'] || 0)*1 > 0 ? (this.answers['m04c'] || 0)*8 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m04c'] || 0)*1 +
-                             (this.answers['m04d'] || 0)*1 +
-                            (this.answers['m04e'] || 0)*1) > 12) ?
-                           {'highlight': true, 'msg':'Black bar count cannot exceed 12.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
+        <Validate><![CDATA[(isEmpty(this.answers['m04c']) || isEmpty(this.answers['m04d']) ||
+                            isEmpty(this.answers['m04e']) ||
+                            (((this.answers['m04c'] || 0)*1 +
+                            (this.answers['m04d'] || 0)*1 +
+                            (this.answers['m04e'] || 0)*1) == 12)) ? {'highlight': false, 'msg':''} :
+                            {'highlight': true, 'msg':'Must have total of 12 Black bars.'};]]>
         </Validate>
     </Element>
     
@@ -99,11 +100,12 @@
         <Option><Label>7</Label><Value>7</Value></Option>
         <Option><Label>8</Label><Value>8</Value></Option>
         <Score><![CDATA[score += (this.answers['m04d'] || 0)*1 > 0 ? (this.answers['m04d'] || 0)*3 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m04c'] || 0)*1 +
-                             (this.answers['m04d'] || 0)*1 +
-                            (this.answers['m04e'] || 0)*1) > 12) ?
-                           {'highlight': true, 'msg':'Black bar count cannot exceed 12.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
+        <Validate><![CDATA[(isEmpty(this.answers['m04c']) || isEmpty(this.answers['m04d']) ||
+                            isEmpty(this.answers['m04e']) ||
+                            (((this.answers['m04c'] || 0)*1 +
+                            (this.answers['m04d'] || 0)*1 +
+                            (this.answers['m04e'] || 0)*1) == 12)) ? {'highlight': false, 'msg':''} :
+                            {'highlight': true, 'msg':'Must have total of 12 Black bars.'};]]>
         </Validate>
     </Element>
     
@@ -125,11 +127,12 @@
         <Option><Label>11</Label><Value>11</Value></Option>
         <Option><Label>12</Label><Value>12</Value></Option>
         <Score><![CDATA[score -= (this.answers['m04e'] || 0)*1 > 0 ? (this.answers['m04e'] || 0)*8 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m04c'] || 0)*1 +
-                             (this.answers['m04d'] || 0)*1 +
-                            (this.answers['m04e'] || 0)*1) > 12) ?
-                           {'highlight': true, 'msg':'Black bar count cannot exceed 12.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
+        <Validate><![CDATA[(isEmpty(this.answers['m04c']) || isEmpty(this.answers['m04d']) ||
+                            isEmpty(this.answers['m04e']) ||
+                            (((this.answers['m04c'] || 0)*1 +
+                            (this.answers['m04d'] || 0)*1 +
+                            (this.answers['m04e'] || 0)*1) == 12)) ? {'highlight': false, 'msg':''} :
+                            {'highlight': true, 'msg':'Must have total of 12 Black bars.'};]]>
         </Validate>
     </Element>
     
