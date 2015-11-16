@@ -24,11 +24,11 @@
 <NumElts>2</NumElts>
 <String>
 <Name>Alias</Name>
-<Val>FIRST</Val>
+<Val>Rockwell Automation</Val>
 </String>
 <Path>
 <Name>Path</Name>
-<Val>%sponsors%\FIRSThorz_RGB.jpg</Val>
+<Val>%sponsors%\rockwellauto_scaled.jpg</Val>
 </Path>
 </Cluster>
 </Array>

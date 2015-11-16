@@ -103,6 +103,8 @@
 		</Item>
 		<Item Name="Schedule" Type="Folder">
 			<Item Name="schedule.csv" Type="Document" URL="../schedule.csv"/>
+			<Item Name="schedule_practice.csv" Type="Document" URL="../schedule_practice.csv"/>
+			<Item Name="schedule_ranking.csv" Type="Document" URL="../schedule_ranking.csv"/>
 		</Item>
 		<Item Name="Score Sheets" Type="Folder" URL="../Score Sheets">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
@@ -120,17 +122,22 @@
 			<Item Name="profile.xml" Type="Document" URL="../profiles/profile.xml"/>
 			<Item Name="soundconfig.xml" Type="Document" URL="../profiles/soundconfig.xml"/>
 			<Item Name="dispsoundconfig.xml" Type="Document" URL="../profiles/dispsoundconfig.xml"/>
+			<Item Name="GetLanguageFile.vi" Type="VI" URL="../GetLanguageFile.vi"/>
 		</Item>
 		<Item Name="Protected Webpages" Type="Folder" URL="../Protected Webpages">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
+		<Item Name="language" Type="Folder" URL="../language">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
 		<Item Name="FLL Tournament Control.vi" Type="VI" URL="../FLL Tournament Control.vi">
 			<Property Name="ws.type" Type="Int">2</Property>
 		</Item>
 		<Item Name="FLL Tournament Display.vi" Type="VI" URL="../FLL Tournament Display.vi"/>
+		<Item Name="FLL Tournament Display Widescreen.vi" Type="VI" URL="../FLL Tournament Display Widescreen.vi"/>
 		<Item Name="FLL" Type="Web Service">
 			<Property Name="Bld_buildSpecName" Type="Str"></Property>
-			<Property Name="Bld_version.build" Type="Int">139</Property>
+			<Property Name="Bld_version.build" Type="Int">161</Property>
 			<Property Name="ws.autoIncrementVersion" Type="Bool">true</Property>
 			<Property Name="ws.disconnectInline" Type="Bool">false</Property>
 			<Property Name="ws.disconnectTypeDefs" Type="Bool">false</Property>
@@ -407,6 +414,21 @@
 					<Property Name="ws.useHeaders" Type="Bool">true</Property>
 					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
 				</Item>
+				<Item Name="data.xml.vi" Type="VI" URL="../data.xml.vi">
+					<Property Name="ws.buffered" Type="Bool">true</Property>
+					<Property Name="ws.includeNameInURL" Type="Bool">true</Property>
+					<Property Name="ws.keepInMemory" Type="Bool">true</Property>
+					<Property Name="ws.loadAtStartup" Type="Bool">true</Property>
+					<Property Name="ws.method" Type="Int">1</Property>
+					<Property Name="ws.outputFormat" Type="Int">2</Property>
+					<Property Name="ws.outputType" Type="Int">1</Property>
+					<Property Name="ws.permissions" Type="Str"></Property>
+					<Property Name="ws.requireAPIKey" Type="Bool">false</Property>
+					<Property Name="ws.type" Type="Int">1</Property>
+					<Property Name="ws.uri" Type="Str"></Property>
+					<Property Name="ws.useHeaders" Type="Bool">true</Property>
+					<Property Name="ws.useStandardURL" Type="Bool">true</Property>
+				</Item>
 			</Item>
 		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -581,7 +603,7 @@
 				<Property Name="Bld_previewCacheID" Type="Str">{EF7E6A62-7B77-436C-81C6-82D704FD0122}</Property>
 				<Property Name="Bld_supportedLanguage[0]" Type="Str">English</Property>
 				<Property Name="Bld_supportedLanguageCount" Type="Int">1</Property>
-				<Property Name="Bld_version.build" Type="Int">7</Property>
+				<Property Name="Bld_version.build" Type="Int">16</Property>
 				<Property Name="Bld_version.major" Type="Int">2</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Server.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/FLL Tournament Server.exe</Property>
@@ -600,7 +622,7 @@
 				<Property Name="Destination[5].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Control/Error Files</Property>
 				<Property Name="Destination[5].preserveHierarchy" Type="Bool">true</Property>
 				<Property Name="DestinationCount" Type="Int">6</Property>
-				<Property Name="Source[0].itemID" Type="Str">{83526895-A8BB-4DBC-A8AF-5EF100382E07}</Property>
+				<Property Name="Source[0].itemID" Type="Str">{2B2B2FE5-03FE-448B-A705-334DF4DD32A0}</Property>
 				<Property Name="Source[0].type" Type="Str">Container</Property>
 				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
 				<Property Name="Source[1].itemID" Type="Ref">/My Computer/FLL Tournament Control.vi</Property>
@@ -621,7 +643,12 @@
 				<Property Name="Source[3].itemID" Type="Ref">/My Computer/sounds</Property>
 				<Property Name="Source[3].sourceInclusion" Type="Str">Include</Property>
 				<Property Name="Source[3].type" Type="Str">Container</Property>
-				<Property Name="SourceCount" Type="Int">4</Property>
+				<Property Name="Source[4].Container.applyInclusion" Type="Bool">true</Property>
+				<Property Name="Source[4].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[4].itemID" Type="Ref">/My Computer/language</Property>
+				<Property Name="Source[4].sourceInclusion" Type="Str">Include</Property>
+				<Property Name="Source[4].type" Type="Str">Container</Property>
+				<Property Name="SourceCount" Type="Int">5</Property>
 				<Property Name="TgtF_fileDescription" Type="Str">FLL Tournament Server</Property>
 				<Property Name="TgtF_internalName" Type="Str">FLL Tournament Server</Property>
 				<Property Name="TgtF_legalCopyright" Type="Str">Copyright © 2013 </Property>
@@ -645,7 +672,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{01B6EB58-B92A-4A43-80BA-331183D62DED}</Property>
-				<Property Name="Bld_version.build" Type="Int">4</Property>
+				<Property Name="Bld_version.build" Type="Int">11</Property>
 				<Property Name="Bld_version.major" Type="Int">2</Property>
 				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display/FLL Tournament Display.exe</Property>
@@ -668,6 +695,45 @@
 				<Property Name="TgtF_productName" Type="Str">FLL Tournament Display</Property>
 				<Property Name="TgtF_targetfileGUID" Type="Str">{A260F096-716C-42DE-B825-676FF7E1057B}</Property>
 				<Property Name="TgtF_targetfileName" Type="Str">FLL Tournament Display.exe</Property>
+			</Item>
+			<Item Name="FLL Tournament Display Widescreen" Type="EXE">
+				<Property Name="App_copyErrors" Type="Bool">true</Property>
+				<Property Name="App_INI_aliasGUID" Type="Str">{5A46E487-37CE-45CD-A14A-887AD260833E}</Property>
+				<Property Name="App_INI_GUID" Type="Str">{7A936D4F-D947-4FCA-BED3-4F49B3A4B201}</Property>
+				<Property Name="App_serverConfig.httpPort" Type="Int">8002</Property>
+				<Property Name="Bld_autoIncrement" Type="Bool">true</Property>
+				<Property Name="Bld_buildCacheID" Type="Str">{10169E8F-D54D-449D-898F-0C39C7E787C3}</Property>
+				<Property Name="Bld_buildSpecName" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="Bld_excludeInlineSubVIs" Type="Bool">true</Property>
+				<Property Name="Bld_excludeLibraryItems" Type="Bool">true</Property>
+				<Property Name="Bld_excludePolymorphicVIs" Type="Bool">true</Property>
+				<Property Name="Bld_localDestDir" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display Widescreen</Property>
+				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
+				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
+				<Property Name="Bld_previewCacheID" Type="Str">{ED4B7BBD-5326-4CB6-A3E7-11ED61C92789}</Property>
+				<Property Name="Bld_version.build" Type="Int">9</Property>
+				<Property Name="Bld_version.major" Type="Int">1</Property>
+				<Property Name="Destination[0].destName" Type="Str">FLL Tournament Display Widescreen.exe</Property>
+				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display Widescreen/FLL Tournament Display Widescreen.exe</Property>
+				<Property Name="Destination[0].preserveHierarchy" Type="Bool">true</Property>
+				<Property Name="Destination[0].type" Type="Str">App</Property>
+				<Property Name="Destination[1].destName" Type="Str">Support Directory</Property>
+				<Property Name="Destination[1].path" Type="Path">../builds/NI_AB_PROJECTNAME/FLL Tournament Display Widescreen/data</Property>
+				<Property Name="DestinationCount" Type="Int">2</Property>
+				<Property Name="Source[0].itemID" Type="Str">{3D3A0A0E-8719-456B-AB2C-54D84BAC9995}</Property>
+				<Property Name="Source[0].type" Type="Str">Container</Property>
+				<Property Name="Source[1].destinationIndex" Type="Int">0</Property>
+				<Property Name="Source[1].itemID" Type="Ref">/My Computer/FLL Tournament Display Widescreen.vi</Property>
+				<Property Name="Source[1].sourceInclusion" Type="Str">TopLevel</Property>
+				<Property Name="Source[1].type" Type="Str">VI</Property>
+				<Property Name="SourceCount" Type="Int">2</Property>
+				<Property Name="TgtF_companyName" Type="Str">National Instruments</Property>
+				<Property Name="TgtF_fileDescription" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="TgtF_internalName" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="TgtF_legalCopyright" Type="Str">Copyright © 2015 National Instruments</Property>
+				<Property Name="TgtF_productName" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="TgtF_targetfileGUID" Type="Str">{46D7C4C8-5B9F-44D1-AEF7-2BC356481303}</Property>
+				<Property Name="TgtF_targetfileName" Type="Str">FLL Tournament Display Widescreen.exe</Property>
 			</Item>
 			<Item Name="FLL Control Software Stress Tester" Type="EXE">
 				<Property Name="App_copyErrors" Type="Bool">true</Property>
@@ -824,7 +890,11 @@
 				<Property Name="Destination[8].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
 				<Property Name="Destination[8].tag" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
 				<Property Name="Destination[8].type" Type="Str">userFolder</Property>
-				<Property Name="DestinationCount" Type="Int">9</Property>
+				<Property Name="Destination[9].name" Type="Str">language</Property>
+				<Property Name="Destination[9].parent" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Destination[9].tag" Type="Str">{CF2F7B24-582A-4852-93C2-7E35AE09A2D5}</Property>
+				<Property Name="Destination[9].type" Type="Str">userFolder</Property>
+				<Property Name="DestinationCount" Type="Int">10</Property>
 				<Property Name="DistPart[0].flavorID" Type="Str">DefaultFull</Property>
 				<Property Name="DistPart[0].productID" Type="Str">{CD4CAB41-CAB7-436F-8D66-A83B95F2F3E6}</Property>
 				<Property Name="DistPart[0].productName" Type="Str">NI LabVIEW Run-Time Engine 2013 f2</Property>
@@ -867,7 +937,7 @@
 				<Property Name="INST_buildSpecName" Type="Str">FLL Software Installer</Property>
 				<Property Name="INST_defaultDir" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
 				<Property Name="INST_productName" Type="Str">FLL Tournament Software</Property>
-				<Property Name="INST_productVersion" Type="Str">2.0.9</Property>
+				<Property Name="INST_productVersion" Type="Str">3.1.4</Property>
 				<Property Name="INST_webService.count" Type="Int">1</Property>
 				<Property Name="INST_webService[0].itemID" Type="Ref">/My Computer/FLL</Property>
 				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
@@ -896,141 +966,176 @@
 				<Property Name="Source[1].name" Type="Str">BUZZER.wav</Property>
 				<Property Name="Source[1].tag" Type="Ref">/My Computer/sounds/BUZZER.wav</Property>
 				<Property Name="Source[1].type" Type="Str">File</Property>
-				<Property Name="Source[10].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
-				<Property Name="Source[10].name" Type="Str">powered-by-labview-horiz-logo-rgb.png</Property>
+				<Property Name="Source[10].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[10].name" Type="Str">3mlogo.bmp</Property>
 				<Property Name="Source[10].Shortcut[0].destIndex" Type="Int">0</Property>
 				<Property Name="Source[10].Shortcut[0].name" Type="Str">FLL 2013 Nature's Fury Score Sheet</Property>
 				<Property Name="Source[10].Shortcut[0].subDir" Type="Str">FLL Tournament Software\ScoreSheets</Property>
-				<Property Name="Source[10].tag" Type="Ref">/My Computer/Images/powered-by-labview-horiz-logo-rgb.png</Property>
+				<Property Name="Source[10].tag" Type="Ref">/My Computer/Sponsors/3mlogo.bmp</Property>
 				<Property Name="Source[10].type" Type="Str">File</Property>
-				<Property Name="Source[11].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
-				<Property Name="Source[11].name" Type="Str">res Fury Logo SM.jpg</Property>
-				<Property Name="Source[11].tag" Type="Ref">/My Computer/Images/res Fury Logo SM.jpg</Property>
+				<Property Name="Source[11].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[11].name" Type="Str">FIRSThorz_RGB.jpg</Property>
+				<Property Name="Source[11].tag" Type="Ref">/My Computer/Sponsors/FIRSThorz_RGB.jpg</Property>
 				<Property Name="Source[11].type" Type="Str">File</Property>
 				<Property Name="Source[12].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[12].name" Type="Str">3mlogo.bmp</Property>
-				<Property Name="Source[12].tag" Type="Ref">/My Computer/Sponsors/3mlogo.bmp</Property>
+				<Property Name="Source[12].name" Type="Str">lego_scaled.jpg</Property>
+				<Property Name="Source[12].tag" Type="Ref">/My Computer/Sponsors/lego_scaled.jpg</Property>
 				<Property Name="Source[12].type" Type="Str">File</Property>
 				<Property Name="Source[13].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[13].name" Type="Str">FIRSThorz_RGB.jpg</Property>
-				<Property Name="Source[13].tag" Type="Ref">/My Computer/Sponsors/FIRSThorz_RGB.jpg</Property>
+				<Property Name="Source[13].name" Type="Str">nilogo.bmp</Property>
+				<Property Name="Source[13].tag" Type="Ref">/My Computer/Sponsors/nilogo.bmp</Property>
 				<Property Name="Source[13].type" Type="Str">File</Property>
 				<Property Name="Source[14].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[14].name" Type="Str">lego_scaled.jpg</Property>
-				<Property Name="Source[14].tag" Type="Ref">/My Computer/Sponsors/lego_scaled.jpg</Property>
+				<Property Name="Source[14].name" Type="Str">rockwellauto_scaled.jpg</Property>
+				<Property Name="Source[14].tag" Type="Ref">/My Computer/Sponsors/rockwellauto_scaled.jpg</Property>
 				<Property Name="Source[14].type" Type="Str">File</Property>
 				<Property Name="Source[15].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[15].name" Type="Str">nilogo.bmp</Property>
-				<Property Name="Source[15].tag" Type="Ref">/My Computer/Sponsors/nilogo.bmp</Property>
+				<Property Name="Source[15].name" Type="Str">statoil_horizontal.png</Property>
+				<Property Name="Source[15].tag" Type="Ref"></Property>
 				<Property Name="Source[15].type" Type="Str">File</Property>
-				<Property Name="Source[16].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[16].name" Type="Str">rockwellauto_scaled.jpg</Property>
-				<Property Name="Source[16].tag" Type="Ref">/My Computer/Sponsors/rockwellauto_scaled.jpg</Property>
+				<Property Name="Source[16].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[16].name" Type="Str">profile.xml</Property>
+				<Property Name="Source[16].tag" Type="Ref">/My Computer/profiles/profile.xml</Property>
 				<Property Name="Source[16].type" Type="Str">File</Property>
-				<Property Name="Source[17].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[17].name" Type="Str">statoil_horizontal.png</Property>
-				<Property Name="Source[17].tag" Type="Ref">/My Computer/Sponsors/statoil_horizontal.png</Property>
+				<Property Name="Source[17].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
+				<Property Name="Source[17].name" Type="Str">soundconfig.xml</Property>
+				<Property Name="Source[17].tag" Type="Ref">/My Computer/profiles/soundconfig.xml</Property>
 				<Property Name="Source[17].type" Type="Str">File</Property>
-				<Property Name="Source[18].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
-				<Property Name="Source[18].name" Type="Str">profile.xml</Property>
-				<Property Name="Source[18].tag" Type="Ref">/My Computer/profiles/profile.xml</Property>
+				<Property Name="Source[18].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
+				<Property Name="Source[18].name" Type="Str">TimeToRun.wav</Property>
+				<Property Name="Source[18].tag" Type="Ref">/My Computer/sounds/TimeToRun.wav</Property>
 				<Property Name="Source[18].type" Type="Str">File</Property>
 				<Property Name="Source[19].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
-				<Property Name="Source[19].name" Type="Str">soundconfig.xml</Property>
-				<Property Name="Source[19].tag" Type="Ref">/My Computer/profiles/soundconfig.xml</Property>
+				<Property Name="Source[19].name" Type="Str">dispsoundconfig.xml</Property>
+				<Property Name="Source[19].tag" Type="Ref">/My Computer/profiles/dispsoundconfig.xml</Property>
 				<Property Name="Source[19].type" Type="Str">File</Property>
 				<Property Name="Source[2].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[2].name" Type="Str">CHARGE.wav</Property>
 				<Property Name="Source[2].tag" Type="Ref">/My Computer/sounds/CHARGE.wav</Property>
 				<Property Name="Source[2].type" Type="Str">File</Property>
-				<Property Name="Source[20].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
-				<Property Name="Source[20].name" Type="Str">TimeToRun.wav</Property>
-				<Property Name="Source[20].tag" Type="Ref">/My Computer/sounds/TimeToRun.wav</Property>
+				<Property Name="Source[20].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
+				<Property Name="Source[20].name" Type="Str">Timekeeper.html</Property>
+				<Property Name="Source[20].tag" Type="Ref">/My Computer/Protected Webpages/Timekeeper.html</Property>
 				<Property Name="Source[20].type" Type="Str">File</Property>
-				<Property Name="Source[21].dest" Type="Str">{F89E367E-819F-4A2F-BFCB-297646AF76F9}</Property>
-				<Property Name="Source[21].name" Type="Str">dispsoundconfig.xml</Property>
-				<Property Name="Source[21].tag" Type="Ref">/My Computer/profiles/dispsoundconfig.xml</Property>
+				<Property Name="Source[21].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[21].name" Type="Str">lowsponsors.xml</Property>
+				<Property Name="Source[21].tag" Type="Ref">/My Computer/Sponsors/lowsponsors.xml</Property>
 				<Property Name="Source[21].type" Type="Str">File</Property>
-				<Property Name="Source[22].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
-				<Property Name="Source[22].name" Type="Str">Timekeeper.html</Property>
-				<Property Name="Source[22].tag" Type="Ref">/My Computer/Protected Webpages/Timekeeper.html</Property>
+				<Property Name="Source[22].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
+				<Property Name="Source[22].name" Type="Str">midsponsors.xml</Property>
+				<Property Name="Source[22].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
 				<Property Name="Source[22].type" Type="Str">File</Property>
 				<Property Name="Source[23].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[23].name" Type="Str">lowsponsors.xml</Property>
-				<Property Name="Source[23].tag" Type="Ref">/My Computer/Sponsors/lowsponsors.xml</Property>
+				<Property Name="Source[23].name" Type="Str">topsponsors.xml</Property>
+				<Property Name="Source[23].tag" Type="Ref">/My Computer/Sponsors/topsponsors.xml</Property>
 				<Property Name="Source[23].type" Type="Str">File</Property>
-				<Property Name="Source[24].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[24].name" Type="Str">midsponsors.xml</Property>
-				<Property Name="Source[24].tag" Type="Ref">/My Computer/Sponsors/midsponsors.xml</Property>
+				<Property Name="Source[24].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
+				<Property Name="Source[24].name" Type="Str">Score_Entry.html</Property>
+				<Property Name="Source[24].tag" Type="Ref">/My Computer/Protected Webpages/Score_Entry.html</Property>
 				<Property Name="Source[24].type" Type="Str">File</Property>
-				<Property Name="Source[25].dest" Type="Str">{F3EF3269-CFC4-417F-83AF-A3D193BD0D0A}</Property>
-				<Property Name="Source[25].name" Type="Str">topsponsors.xml</Property>
-				<Property Name="Source[25].tag" Type="Ref">/My Computer/Sponsors/topsponsors.xml</Property>
+				<Property Name="Source[25].dest" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Source[25].name" Type="Str">schedule_practice.csv</Property>
+				<Property Name="Source[25].tag" Type="Ref">/My Computer/Schedule/schedule_practice.csv</Property>
 				<Property Name="Source[25].type" Type="Str">File</Property>
-				<Property Name="Source[26].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
-				<Property Name="Source[26].name" Type="Str">Score_Entry.html</Property>
-				<Property Name="Source[26].tag" Type="Ref">/My Computer/Protected Webpages/Score_Entry.html</Property>
+				<Property Name="Source[26].dest" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
+				<Property Name="Source[26].name" Type="Str">schedule_ranking.csv</Property>
+				<Property Name="Source[26].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[26].Shortcut[0].name" Type="Str">FLL 2014 World Class Accessible Score Sheet</Property>
+				<Property Name="Source[26].Shortcut[0].subDir" Type="Str">FLL Tournament Software\Scoresheets</Property>
+				<Property Name="Source[26].tag" Type="Ref">/My Computer/Schedule/schedule_ranking.csv</Property>
 				<Property Name="Source[26].type" Type="Str">File</Property>
-				<Property Name="Source[27].dest" Type="Str">{E496D311-33A7-4A7D-804E-D214114BD410}</Property>
-				<Property Name="Source[27].name" Type="Str">FLL 2014 World Class Accessible Score Sheet.pdf</Property>
-				<Property Name="Source[27].Shortcut[0].destIndex" Type="Int">0</Property>
-				<Property Name="Source[27].Shortcut[0].name" Type="Str">FLL 2014 World Class Accessible Score Sheet</Property>
-				<Property Name="Source[27].Shortcut[0].subDir" Type="Str">FLL Tournament Software\Scoresheets</Property>
-				<Property Name="Source[27].ShortcutCount" Type="Int">1</Property>
-				<Property Name="Source[27].tag" Type="Ref">/My Computer/Score Sheets/FLL 2014 World Class Accessible Score Sheet.pdf</Property>
-				<Property Name="Source[27].type" Type="Str">File</Property>
-				<Property Name="Source[28].dest" Type="Str">{561BCB63-3D2C-46B8-8155-8DD59489CFA3}</Property>
-				<Property Name="Source[28].name" Type="Str">Score_Entry.html</Property>
-				<Property Name="Source[28].tag" Type="Ref">/My Computer/Protected Webpages/Score_Entry.html</Property>
+				<Property Name="Source[27].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
+				<Property Name="Source[27].File[0].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
+				<Property Name="Source[27].File[0].name" Type="Str">FLL Tournament Display Widescreen.exe</Property>
+				<Property Name="Source[27].File[0].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[27].File[0].Shortcut[0].name" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="Source[27].File[0].Shortcut[0].subDir" Type="Str">FLL Tournament Software</Property>
+				<Property Name="Source[27].File[0].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[27].File[0].tag" Type="Str">{46D7C4C8-5B9F-44D1-AEF7-2BC356481303}</Property>
+				<Property Name="Source[27].FileCount" Type="Int">1</Property>
+				<Property Name="Source[27].name" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="Source[27].tag" Type="Ref">/My Computer/Build Specifications/FLL Tournament Display Widescreen</Property>
+				<Property Name="Source[27].type" Type="Str">EXE</Property>
+				<Property Name="Source[28].dest" Type="Str">{E496D311-33A7-4A7D-804E-D214114BD410}</Property>
+				<Property Name="Source[28].name" Type="Str">FLL 2015 Trash Trek Accessible Score Sheet.pdf</Property>
+				<Property Name="Source[28].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[28].Shortcut[0].name" Type="Str">FLL 2015 Trash Trek Accessible Score Sheet</Property>
+				<Property Name="Source[28].Shortcut[0].subDir" Type="Str">FLL Tournament Software\Score Sheets</Property>
+				<Property Name="Source[28].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[28].tag" Type="Ref">/My Computer/Score Sheets/FLL 2015 Trash Trek Accessible Score Sheet.pdf</Property>
 				<Property Name="Source[28].type" Type="Str">File</Property>
+				<Property Name="Source[29].dest" Type="Str">{E496D311-33A7-4A7D-804E-D214114BD410}</Property>
+				<Property Name="Source[29].name" Type="Str">FLL 2015 Trash Trek Graphical Score Sheet.pdf</Property>
+				<Property Name="Source[29].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[29].Shortcut[0].name" Type="Str">FLL 2015 Trash Trek Graphical Score Sheet</Property>
+				<Property Name="Source[29].Shortcut[0].subDir" Type="Str">FLL Tournament Software\Score Sheets</Property>
+				<Property Name="Source[29].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[29].tag" Type="Ref">/My Computer/Score Sheets/FLL 2015 Trash Trek Graphical Score Sheet.pdf</Property>
+				<Property Name="Source[29].type" Type="Str">File</Property>
 				<Property Name="Source[3].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[3].name" Type="Str">FOGHORN.wav</Property>
 				<Property Name="Source[3].tag" Type="Ref">/My Computer/sounds/FOGHORN.wav</Property>
 				<Property Name="Source[3].type" Type="Str">File</Property>
+				<Property Name="Source[30].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Source[30].File[0].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
+				<Property Name="Source[30].File[0].name" Type="Str">FLL Tournament Display Widescreen.exe</Property>
+				<Property Name="Source[30].File[0].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[30].File[0].Shortcut[0].name" Type="Str">FLL Tournament Display Widescreen</Property>
+				<Property Name="Source[30].File[0].Shortcut[0].subDir" Type="Str">FLL Tournament Software</Property>
+				<Property Name="Source[30].File[0].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[30].File[0].tag" Type="Str">{46D7C4C8-5B9F-44D1-AEF7-2BC356481303}</Property>
+				<Property Name="Source[30].FileCount" Type="Int">1</Property>
+				<Property Name="Source[30].name" Type="Str">TrashTrek_FNL.jpg</Property>
+				<Property Name="Source[30].tag" Type="Ref">/My Computer/Images/TrashTrek_FNL.jpg</Property>
+				<Property Name="Source[30].type" Type="Str">File</Property>
+				<Property Name="Source[31].dest" Type="Str">{CF2F7B24-582A-4852-93C2-7E35AE09A2D5}</Property>
+				<Property Name="Source[31].name" Type="Str">Data.xml</Property>
+				<Property Name="Source[31].tag" Type="Ref">/My Computer/language/Data.xml</Property>
+				<Property Name="Source[31].type" Type="Str">File</Property>
 				<Property Name="Source[4].dest" Type="Str">{B210D635-C518-450A-A938-CFB10A120E70}</Property>
 				<Property Name="Source[4].name" Type="Str">TheGameBeginsIn321.wav</Property>
 				<Property Name="Source[4].tag" Type="Ref">/My Computer/sounds/TheGameBeginsIn321.wav</Property>
 				<Property Name="Source[4].type" Type="Str">File</Property>
-				<Property Name="Source[5].dest" Type="Str">{C70B1808-7F16-42B6-83AA-5A304E161EC5}</Property>
-				<Property Name="Source[5].name" Type="Str">schedule.csv</Property>
-				<Property Name="Source[5].tag" Type="Ref">/My Computer/Schedule/schedule.csv</Property>
-				<Property Name="Source[5].type" Type="Str">File</Property>
-				<Property Name="Source[6].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
-				<Property Name="Source[6].File[0].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
-				<Property Name="Source[6].File[0].name" Type="Str">FLL Tournament Display.exe</Property>
-				<Property Name="Source[6].File[0].Shortcut[0].destIndex" Type="Int">0</Property>
-				<Property Name="Source[6].File[0].Shortcut[0].name" Type="Str">FLL Tournament Display</Property>
-				<Property Name="Source[6].File[0].Shortcut[0].subDir" Type="Str">FLL Tournament Software</Property>
-				<Property Name="Source[6].File[0].ShortcutCount" Type="Int">1</Property>
-				<Property Name="Source[6].File[0].tag" Type="Str">{A260F096-716C-42DE-B825-676FF7E1057B}</Property>
-				<Property Name="Source[6].FileCount" Type="Int">1</Property>
-				<Property Name="Source[6].name" Type="Str">FLL Tournament Display</Property>
-				<Property Name="Source[6].tag" Type="Ref">/My Computer/Build Specifications/FLL Tournament Display</Property>
-				<Property Name="Source[6].type" Type="Str">EXE</Property>
+				<Property Name="Source[5].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
+				<Property Name="Source[5].File[0].dest" Type="Str">{2961A138-DF0B-4E6F-B240-E1F5AC9F639A}</Property>
+				<Property Name="Source[5].File[0].name" Type="Str">FLL Tournament Display.exe</Property>
+				<Property Name="Source[5].File[0].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[5].File[0].Shortcut[0].name" Type="Str">FLL Tournament Display</Property>
+				<Property Name="Source[5].File[0].Shortcut[0].subDir" Type="Str">FLL Tournament Software</Property>
+				<Property Name="Source[5].File[0].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[5].File[0].tag" Type="Str">{A260F096-716C-42DE-B825-676FF7E1057B}</Property>
+				<Property Name="Source[5].FileCount" Type="Int">1</Property>
+				<Property Name="Source[5].name" Type="Str">FLL Tournament Display</Property>
+				<Property Name="Source[5].tag" Type="Ref">/My Computer/Build Specifications/FLL Tournament Display</Property>
+				<Property Name="Source[5].type" Type="Str">EXE</Property>
+				<Property Name="Source[6].dest" Type="Str">{5C4CE664-1F94-442F-95D9-671DBF3EC3BE}</Property>
+				<Property Name="Source[6].name" Type="Str">TournamentSchedulerManual.pdf</Property>
+				<Property Name="Source[6].Shortcut[0].destIndex" Type="Int">0</Property>
+				<Property Name="Source[6].Shortcut[0].name" Type="Str">TournamentSchedulerManual</Property>
+				<Property Name="Source[6].Shortcut[0].subDir" Type="Str">FLL Tournament Software\BryanLeeScheduler</Property>
+				<Property Name="Source[6].ShortcutCount" Type="Int">1</Property>
+				<Property Name="Source[6].tag" Type="Ref">/My Computer/BryanLeeTS/TournamentSchedulerManual.pdf</Property>
+				<Property Name="Source[6].type" Type="Str">File</Property>
 				<Property Name="Source[7].dest" Type="Str">{5C4CE664-1F94-442F-95D9-671DBF3EC3BE}</Property>
-				<Property Name="Source[7].name" Type="Str">TournamentSchedulerManual.pdf</Property>
+				<Property Name="Source[7].name" Type="Str">TournamentSchedulerv4-22.xls</Property>
 				<Property Name="Source[7].Shortcut[0].destIndex" Type="Int">0</Property>
-				<Property Name="Source[7].Shortcut[0].name" Type="Str">TournamentSchedulerManual</Property>
+				<Property Name="Source[7].Shortcut[0].name" Type="Str">TournamentSchedulerv4-22</Property>
 				<Property Name="Source[7].Shortcut[0].subDir" Type="Str">FLL Tournament Software\BryanLeeScheduler</Property>
 				<Property Name="Source[7].ShortcutCount" Type="Int">1</Property>
-				<Property Name="Source[7].tag" Type="Ref">/My Computer/BryanLeeTS/TournamentSchedulerManual.pdf</Property>
+				<Property Name="Source[7].tag" Type="Ref">/My Computer/BryanLeeTS/TournamentSchedulerv4-22.xls</Property>
 				<Property Name="Source[7].type" Type="Str">File</Property>
-				<Property Name="Source[8].dest" Type="Str">{5C4CE664-1F94-442F-95D9-671DBF3EC3BE}</Property>
-				<Property Name="Source[8].name" Type="Str">TournamentSchedulerv4-22.xls</Property>
-				<Property Name="Source[8].Shortcut[0].destIndex" Type="Int">0</Property>
-				<Property Name="Source[8].Shortcut[0].name" Type="Str">TournamentSchedulerv4-22</Property>
-				<Property Name="Source[8].Shortcut[0].subDir" Type="Str">FLL Tournament Software\BryanLeeScheduler</Property>
-				<Property Name="Source[8].ShortcutCount" Type="Int">1</Property>
-				<Property Name="Source[8].tag" Type="Ref">/My Computer/BryanLeeTS/TournamentSchedulerv4-22.xls</Property>
+				<Property Name="Source[8].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
+				<Property Name="Source[8].name" Type="Str">FLLicon_RGB.jpg</Property>
+				<Property Name="Source[8].tag" Type="Ref">/My Computer/Images/FLLicon_RGB.jpg</Property>
 				<Property Name="Source[8].type" Type="Str">File</Property>
 				<Property Name="Source[9].dest" Type="Str">{F175DF92-1751-48A5-B12B-E92DB2AE08BF}</Property>
-				<Property Name="Source[9].name" Type="Str">FLLicon_RGB.jpg</Property>
+				<Property Name="Source[9].name" Type="Str">powered-by-labview-horiz-logo-rgb.png</Property>
 				<Property Name="Source[9].Shortcut[0].destIndex" Type="Int">0</Property>
 				<Property Name="Source[9].Shortcut[0].name" Type="Str">FLL 2013 Nature's Fury Accessible Score Sheet wChecklist</Property>
 				<Property Name="Source[9].Shortcut[0].subDir" Type="Str">FLL Tournament Software\ScoreSheets</Property>
-				<Property Name="Source[9].tag" Type="Ref">/My Computer/Images/FLLicon_RGB.jpg</Property>
+				<Property Name="Source[9].tag" Type="Ref">/My Computer/Images/powered-by-labview-horiz-logo-rgb.png</Property>
 				<Property Name="Source[9].type" Type="Str">File</Property>
-				<Property Name="SourceCount" Type="Int">28</Property>
+				<Property Name="SourceCount" Type="Int">32</Property>
 			</Item>
 		</Item>
 	</Item>

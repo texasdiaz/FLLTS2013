@@ -6,29 +6,17 @@
 <NumElts>2</NumElts>
 <Array>
 <Name>Image Array</Name>
-<Dimsize>2</Dimsize>
+<Dimsize>1</Dimsize>
 <Cluster>
 <Name>Image Info</Name>
 <NumElts>2</NumElts>
 <String>
 <Name>Alias</Name>
-<Val>StatOil</Val>
+<Val>FIRST</Val>
 </String>
 <Path>
 <Name>Path</Name>
-<Val>%sponsors%\statoil_horizontal.png</Val>
-</Path>
-</Cluster>
-<Cluster>
-<Name>Image Info</Name>
-<NumElts>2</NumElts>
-<String>
-<Name>Alias</Name>
-<Val>Rockwell Automation</Val>
-</String>
-<Path>
-<Name>Path</Name>
-<Val>%sponsors%\rockwellauto_scaled.jpg</Val>
+<Val>%sponsors%\FIRSThorz_RGB.jpg</Val>
 </Path>
 </Cluster>
 </Array>
