@@ -175,10 +175,9 @@
             setSubmit(allChanged);
         }
 
-        function getTeams() {
+        function getTeams(teamsXml) {
             previousDataExists = false;
 
-            teamsXml = getXML("Serve_Team_Data");
             document.write("<select id='Teams' name='Teams' onChange='getNextRound()'>");
             document.write("<option value=[null]>  - choose -  </option>");
             teams = teamsXml.getElementsByTagName("Team");
@@ -237,13 +236,11 @@
            });
         }
 
-        function getElements() {
+        function getElements(scoring_data) {
             var newHTML = "";
             var prev_heading = "";
             var sectionHTML = "";
             var section_num = 1;
-
-            scoring_data = getXML("Data.xml");
 
             elements = scoring_data.getElementsByTagName("Element");
 
@@ -556,7 +553,21 @@
                                     </div>
                                     Team:
                                     <script>
-                                        getTeams();
+                                        function team_handler() {
+                                          if(this.status == 200 &&
+                                            this.responseXML != null) {
+                                            // success!
+                                            getTeams(this.responseXML);
+                                          } else {
+                                            // something went wrong
+                                            
+                                          }
+                                        }
+
+                                        var client = new XMLHttpRequest();
+                                        client.onload = team_handler;
+                                        client.open("GET", "Serve_Team_Data");
+                                        client.send();
                                     </script>
                                     Round:
                                     <select name='Round' onChange='getPreviousData();'>
@@ -583,8 +594,25 @@
                             </div>
                             <div id="data" class="qhidden">
                                 <script>
-                                    getElements();
+                                        function element_handler() {
+                                          if(this.status == 200 &&
+                                            this.responseXML != null) {
+                                            // success!
+                                            getElements(this.responseXML);
+                                            activateElements();
+                                            validate();
+                                          } else {
+                                            // something went wrong
+                                            
+                                          }
+                                        }
+
+                                        var client = new XMLHttpRequest();
+                                        client.onload = element_handler;
+                                        client.open("GET", "Data.xml");
+                                        client.send();
                                 </script>
+                                Loading Data
                             </div>
                             <div id="unanswered" class="qhidden">
                                 <center>
