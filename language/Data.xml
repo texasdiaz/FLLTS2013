@@ -251,16 +251,10 @@
     
     <Element>
 	<Heading>Return Loose Items</Heading>
-	<Question>1xGorilla, 1xBat, 1xFlamingo, 1xFrog, 1xWhiteGecko, 1xShark &amp; Tank, 1xProsthesis</Question>
+	<Question>1xGorilla, 1xBat, 1xFlamingo, 1xFrog, 1xWhiteGecko, 1xShark &amp; Tank, 1xProsthesis,
+                  12xManureSamples, 3xManure, 3xMilk, 8xFood, 1xPet, 1xBee, 1xHoney, 1xSeal, 1xCamera
+        </Question>
         <Tag>m16a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-    </Element>
-    
-    <Element>
-	<Heading>Return Loose Items</Heading>
-	<Question>12xManureSamples, 3xManure, 3xMilk, 8xFood, 1xPet, 1xBee, 1xHoney, 1xSeal, 1xCamera</Question>
-        <Tag>m16b</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
     </Element>
