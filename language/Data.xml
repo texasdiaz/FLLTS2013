@@ -54,6 +54,7 @@
         <Option><Label>3</Label><Value>3</Value></Option>
         <Option><Label>4</Label><Value>4</Value></Option>
         <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>5</Label><Value>6</Value></Option>
         <Score><![CDATA[score += (this.answers['m03'] || 0)*20;]]></Score>
     </Element>
 
