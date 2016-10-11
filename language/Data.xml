@@ -38,15 +38,15 @@
 
     <Element>
 	<Heading>M02 Service Dog Action (* - Robot must cross the fence from West, between barriers)</Heading>
-	<Question>Robot completely crossed fence from West, between barriers*</Question>
+	<Question>Robot completely crossed fence</Question>
         <Tag>m02b</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
     </Element>
 
     <Element>
-	<Heading>M03 Animal Conservation (* - Pairs must be made by rotation of Animal Conservation model)</Heading>
-	<Question>Pairs of Identical Animals completely on same side</Question>
+	<Heading>M03 Animal Conservation (* - Pairs made by rotation of Model)</Heading>
+	<Question>Pairs of Identical Animals completely on same side (Both Fields)*</Question>
         <Tag>m03</Tag>
         <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
@@ -93,20 +93,30 @@
     </Element>
 		
     <Element>
-	<Heading>M06 Milking Automation ( * - Movement of Milk and/or Manure must be made by the red lever )</Heading>
-	<Question>All Milk has rolled out*</Question>
+	<Heading>M06 Milking Automation ( * - Movement made by red lever )</Heading>
+	<Question>Milk AND Manure have all rolled out*</Question>
         <Tag>m06a</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
+        <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
+                            (this.answers['m06b'] || 0)*1) > 1) ?
+                           {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
-	<Heading>M06 Milking Automation ( * - Movement of Milk and/or Manure must be made by the red lever )</Heading>
-	<Question>All Manure has rolled out*</Question>
+	<Heading>M06 Milking Automation ( * - Movement made by red lever )</Heading>
+	<Question>Milk has all rolled out, but NOT Manure*</Question>
         <Tag>m06b</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
         <Score><![CDATA[score += ((this.answers['m06a'] || 0)*1 > 0) ? (((this.answers['m06b'] || 0)*1 > 0) ? 15 : 20) : 0;]]></Score>
+        <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
+                            (this.answers['m06b'] || 0)*1) > 1) ?
+                           {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
@@ -127,7 +137,7 @@
         <Score><![CDATA[score += (this.answers['m08'] || 0)*15;]]></Score>
     </Element>
     
-        <Element>
+    <Element>
 	<Heading>M09 Training and Research ( * - Manure samples must be moved one at a time )</Heading>
 	<Question>Dog &amp; Trainer completely in Training/Research Area</Question>
         <Tag>m09a</Tag>
@@ -164,34 +174,56 @@
 	<Heading>M10 Bee Keeping</Heading>
 	<Question>Bee is on Beehive with NO Honey in Beehive</Question>
         <Tag>m10a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>12</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
+        <Score><![CDATA[score += (this.answers['m10a'] || 0)*1;]]></Score>
+        <Validate><![CDATA[(((this.answers['m10a'] || 0)*1 +
+                            (this.answers['m10b'] || 0)*1) > 15) ?
+                           {'highlight': true, 'msg':'Only one Bee Keeping can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
 	<Heading>M10 Bee Keeping</Heading>
 	<Question>Bee is on Beehive and Honey is completely in Base</Question>
         <Tag>m10b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>15</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m10a'] || 0)*1 > 0) ? (((this.answers['m10b'] || 0)*1 > 0) ? 15 : 12) : 0;]]></Score>
+        <Score><![CDATA[score += (this.answers['m10b'] || 0)*1;]]></Score>
+        <Validate><![CDATA[(((this.answers['m10a'] || 0)*1 +
+                            (this.answers['m10b'] || 0)*1) > 15) ?
+                           {'highlight': true, 'msg':'Only one Bee Keeping can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
 	<Heading>M11 Prosthesis</Heading>
 	<Question>Prosthesis fitted to Pet, NOT held by Ref</Question>
         <Tag>m11a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>9</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
+        <Score><![CDATA[score += (this.answers['m11a'] || 0)*1;]]></Score>
+        <Validate><![CDATA[(((this.answers['m11a'] || 0)*1 +
+                            (this.answers['m11b'] || 0)*1) > 15) ?
+                           {'highlight': true, 'msg':'Only one Prosthese can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
 	<Heading>M11 Prosthesis</Heading>
 	<Question>Prosthesis fitted to Pet and completely in Farm Target</Question>
         <Tag>m11b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>15</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m11a'] || 0)*1 > 0) ? (((this.answers['m11b'] || 0)*1 > 0) ? 15 : 9) : 0;]]></Score>
+        <Score><![CDATA[score += (this.answers['m11b'] || 0)*1;]]></Score>
+        <Validate><![CDATA[(((this.answers['m11a'] || 0)*1 +
+                            (this.answers['m11b'] || 0)*1) > 15) ?
+                           {'highlight': true, 'msg':'Only one Prosthese can be Yes.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
@@ -210,6 +242,11 @@
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
         <Score><![CDATA[score += (this.answers['m13'] || 0)*1;]]></Score>
+        <Validate><![CDATA[((((this.answers['m13'] || 0)*1 > 0) &&
+                            ((this.answers['m14'] || 0)*1) > 1)) ?
+                           {'highlight': true, 'msg':'Cannot have milk in base and on Ramp.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
@@ -225,6 +262,11 @@
         <Option><Label>B</Label><Value>3</Value><Default/></Option>
         <Option><Label>C</Label><Value>4</Value><Default/></Option>
         <Score><![CDATA[score += (this.answers['m14'] || 0)*1;]]></Score>
+        <Validate><![CDATA[((((this.answers['m13'] || 0)*1 > 0) &&
+                            ((this.answers['m14'] || 0)*1) > 1)) ?
+                           {'highlight': true, 'msg':'Cannot have milk in base and on Ramp.'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
     
     <Element>
