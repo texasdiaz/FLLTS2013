@@ -175,9 +175,10 @@
             setSubmit(allChanged);
         }
 
-        function getTeams(teamsXml) {
+        function getTeams() {
             previousDataExists = false;
 
+            teamsXml = getXML("Serve_Team_Data");
             document.write("<select id='Teams' name='Teams' onChange='getNextRound()'>");
             document.write("<option value=[null]>  - choose -  </option>");
             teams = teamsXml.getElementsByTagName("Team");
@@ -236,11 +237,14 @@
            });
         }
 
-        function getElements(scoring_data) {
+        function getElements() {
             var newHTML = "";
             var prev_heading = "";
             var sectionHTML = "";
-            var section_num = 1;
+            var section_num = 1; //Should Start at 1
+	    var AnimalAlliesSectionNum = "";
+
+            scoring_data = getXML("Data.xml");
 
             elements = scoring_data.getElementsByTagName("Element");
 
@@ -251,13 +255,15 @@
                 var tag = elements[i].getElementsByTagName("Tag")[0].childNodes[0].nodeValue;
                 var validate = elements[i].getElementsByTagName("Validate");
                 var score_element = elements[i].getElementsByTagName("Score");
+		AnimalAlliesSectionNum = (section_num == 16) ? "P" : section_num.toString();
 
                 if (heading !== prev_heading) {
                     // Start new header div
-                    newHTML += "<div id='" + normalize(prev_heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+                    newHTML += "<div id='" + normalize(prev_heading) + "' class='qsection'><em>" + AnimalAlliesSectionNum + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
                     sectionHTML = "";
                     prev_heading = heading;
                     section_num++;
+		    AnimalAlliesSectionNum = (section_num == 16) ? "P" : section_num.toString();
                 }
                 var name = tag;
                 sectionHTML += ("<div id='" + tag + "-div' class='qdiv'>" + question);
@@ -301,7 +307,7 @@
                         validate: (validate.length > 0) ? validate[0].childNodes[0].nodeValue : "",
                     };
             }
-            newHTML += "<div id='" + normalize(heading) + "' class='qsection'><em>" + section_num.toString() + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
+            newHTML += "<div id='" + normalize(heading) + "' class='qsection'><em>" + AnimalAlliesSectionNum + " - " + prev_heading + "</em>" + sectionHTML + "</div>";
             return(newHTML);
         }
 
@@ -504,7 +510,7 @@
             <div id="mid-header" align="center">
                 <div id="mid-header-title">
                     <em>FIRST</em> LEGO League <br />
-                    <em>Trash Trek</em> Score Sheet
+                    <em>Animal Allies</em> Score Sheet
                 </div>
                 <div id="team_name_header">Select Team</div>
             </div>
@@ -553,21 +559,7 @@
                                     </div>
                                     Team:
                                     <script>
-                                        function team_handler() {
-                                          if(this.status == 200 &&
-                                            this.responseXML != null) {
-                                            // success!
-                                            getTeams(this.responseXML);
-                                          } else {
-                                            // something went wrong
-                                            
-                                          }
-                                        }
-
-                                        var client = new XMLHttpRequest();
-                                        client.onload = team_handler;
-                                        client.open("GET", "Serve_Team_Data");
-                                        client.send();
+                                        getTeams();
                                     </script>
                                     Round:
                                     <select name='Round' onChange='getPreviousData();'>
@@ -594,25 +586,8 @@
                             </div>
                             <div id="data" class="qhidden">
                                 <script>
-                                        function element_handler() {
-                                          if(this.status == 200 &&
-                                            this.responseXML != null) {
-                                            // success!
-                                            getElements(this.responseXML);
-                                            activateElements();
-                                            validate();
-                                          } else {
-                                            // something went wrong
-                                            
-                                          }
-                                        }
-
-                                        var client = new XMLHttpRequest();
-                                        client.onload = element_handler;
-                                        client.open("GET", "Data.xml");
-                                        client.send();
+                                    getElements();
                                 </script>
-                                Loading Data
                             </div>
                             <div id="unanswered" class="qhidden">
                                 <center>

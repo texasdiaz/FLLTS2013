@@ -295,14 +295,4 @@
         <Option><Label>5</Label><Value>5</Value></Option>
         <Score><![CDATA[score -= (this.answers['m16'] || 0)*6;]]></Score>
     </Element>
-    
-    <Element>
-	<Heading>Return Loose Items</Heading>
-	<Question>1xGorilla, 1xBat, 1xFlamingo, 1xFrog, 1xWhiteGecko, 1xShark &amp; Tank, 1xProsthesis,
-                  12xManureSamples, 3xManure, 3xMilk, 8xFood, 1xPet, 1xBee, 1xHoney, 1xSeal, 1xCamera
-        </Question>
-        <Tag>m16a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-    </Element>
 </Scoring_Elements>
