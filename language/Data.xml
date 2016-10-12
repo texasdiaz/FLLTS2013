@@ -242,7 +242,12 @@
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
         <Score><![CDATA[score += (this.answers['m13'] || 0)*1;]]></Score>
-        <Validate><![CDATA[((((this.answers['m13'] || 0)*1 > 0) &&
+        <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
+                             (this.answers['m06b'] || 0)*1) == 0) &&
+                           (((this.answers['m13'] || 0)*1 +
+                             (this.answers['m14'] || 0)*1) > 0) ?
+                            {'highlight': true, 'msg':'Milk Automation has not scored, cannot have milk in base or on Ramp.'} :
+                           ((((this.answers['m13'] || 0)*1 > 0) &&
                             ((this.answers['m14'] || 0)*1) > 1)) ?
                            {'highlight': true, 'msg':'Cannot have milk in base and on Ramp.'} : // validation failed
                            {'highlight': false, 'msg':''};]]>
