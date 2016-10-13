@@ -3,7 +3,7 @@
 
     <Element>
         <Heading>M01 Shark Shipment (* - Nothing can touch the Shark except the tank)</Heading>
-        <Question>Shark and take are completely in Target</Question>
+        <Question>Shark and tank are completely in Target</Question>
         <Tag>m01a</Tag>
         <Option><Label>None</Label><Value>0</Value><Default/></Option>
         <Option><Label>T1</Label><Value>7</Value></Option>
