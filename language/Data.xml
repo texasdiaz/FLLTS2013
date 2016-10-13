@@ -161,14 +161,14 @@
 	<Question>Manure completely in Training/Research Area*</Question>
         <Tag>m09c</Tag>
         <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Option><Label>6</Label><Value>6</Value></Option>
-        <Option><Label>7</Label><Value>7</Value></Option>
-        <Score><![CDATA[score += (this.answers['m09c'] || 0)*5;]]></Score>
+        <Option><Label>1</Label><Value>5</Value></Option>
+        <Option><Label>2</Label><Value>10</Value></Option>
+        <Option><Label>3</Label><Value>15</Value></Option>
+        <Option><Label>4</Label><Value>20</Value></Option>
+        <Option><Label>5</Label><Value>25</Value></Option>
+        <Option><Label>6</Label><Value>30</Value></Option>
+        <Option><Label>7</Label><Value>40</Value></Option>
+        <Score><![CDATA[score += (this.answers['m09c'] || 0)*1;]]></Score>
     </Element>
 
     <Element>
@@ -275,20 +275,7 @@
         </Validate>
     </Element>
     
-    <Element>
-	<Heading>M15 All Samples</Heading>
-	<Question>All seven Manure Samples completely in Training/Research Area</Question>
-        <Tag>m15</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m15'] || 0)*5;]]></Score>
-        <Validate><![CDATA[((this.answers['m15'] || 0)*1 > 0) && ((this.answers['m09c'] || 0)*1 < 7) ?
-                           {'highlight': true, 'msg':'Cannot have all if M09 manure samples completely in Training/Research Area is not 7'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-
-    <Element>
+     <Element>
 	<Heading>Penalties</Heading>
 	<Question>Number of Manure samples in the white triangle area</Question>
         <Tag>m16</Tag>
