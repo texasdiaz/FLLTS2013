@@ -98,6 +98,7 @@
         <Tag>m06a</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
+        <Score><![CDATA[score += (this.answers['m06a'] || 0)*15;]]></Score>
         <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
                             (this.answers['m06b'] || 0)*1) > 1) ?
                            {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
@@ -111,7 +112,7 @@
         <Tag>m06b</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m06a'] || 0)*1 > 0) ? (((this.answers['m06b'] || 0)*1 > 0) ? 15 : 20) : 0;]]></Score>
+        <Score><![CDATA[score += (this.answers['m06b'] || 0)*20;]]></Score>
         <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
                             (this.answers['m06b'] || 0)*1) > 1) ?
                            {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
