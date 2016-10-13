@@ -160,7 +160,7 @@
 	<Heading>M09 Training and Research ( * - Manure samples must be moved one at a time )</Heading>
 	<Question>Manure completely in Training/Research Area*</Question>
         <Tag>m09c</Tag>
-	<Option><Label>0</Label><Value>0</Value><Default/></Option>
+	<Option><Label>NONE</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
