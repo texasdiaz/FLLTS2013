@@ -3,7 +3,7 @@
 
     <Element>
         <Heading>M01 Shark Shipment (* - Nothing can touch the Shark except the tank)</Heading>
-        <Question>Shark and take are completely in Target</Question>
+        <Question>Shark and tank are completely in Target</Question>
         <Tag>m01a</Tag>
         <Option><Label>None</Label><Value>0</Value><Default/></Option>
         <Option><Label>T1</Label><Value>7</Value></Option>
@@ -98,6 +98,7 @@
         <Tag>m06a</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
+        <Score><![CDATA[score += (this.answers['m06a'] || 0)*15;]]></Score>
         <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
                             (this.answers['m06b'] || 0)*1) > 1) ?
                            {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
@@ -111,7 +112,7 @@
         <Tag>m06b</Tag>
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m06a'] || 0)*1 > 0) ? (((this.answers['m06b'] || 0)*1 > 0) ? 15 : 20) : 0;]]></Score>
+        <Score><![CDATA[score += (this.answers['m06b'] || 0)*20;]]></Score>
         <Validate><![CDATA[(((this.answers['m06a'] || 0)*1 +
                             (this.answers['m06b'] || 0)*1) > 1) ?
                            {'highlight': true, 'msg':'Only one Milking Automation can be Yes.'} : // validation failed
@@ -281,6 +282,10 @@
         <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
         <Option><Label>No</Label><Value>0</Value></Option>
         <Score><![CDATA[score += (this.answers['m15'] || 0)*5;]]></Score>
+        <Validate><![CDATA[((this.answers['m15'] || 0)*1 > 0) && ((this.answers['m09c'] || 0)*1 < 7) ?
+                           {'highlight': true, 'msg':'Cannot have all if M09 manure samples completely in Training/Research Area is not 7'} : // validation failed
+                           {'highlight': false, 'msg':''};]]>
+        </Validate>
     </Element>
 
     <Element>
