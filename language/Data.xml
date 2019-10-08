@@ -2,367 +2,373 @@
 <Scoring_Elements>
 
     <Element>
-        <Heading>M01 Pipe Removal</Heading>
-        <Question>Broken Pipe complete in Base</Question>
-        <Tag>m01</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m01'] || 0)*20;]]></Score>
-    </Element>
-    
-    <Element>
-	<Heading>M02 Flow</Heading>
-	<Question>Big Water is on other team's field</Question>
-        <Tag>m02</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m02'] || 0)*25;]]></Score>
-        <Validate><![CDATA[(
-	                    (this.answers['m02'] || 0)*1  + 
-	                    (this.answers['m07'] || 0)*1  + 
-	                    (this.answers['m13a'] || 0)*1  + 
-	                    (this.answers['m16c'] || 0)*1  + 
-                            (this.answers['m16d'] || 0)*1 > (5 - (1 - (this.answers['m06'] || 0)*1))) ?
-                           {'highlight': true, 'msg':'Too many big waters in use.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Heading>Advantage</Heading>
+        <Question>Your Robot and Equipment fit in the Small Inspection Area</Question>
+        <Tag>m00</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
     </Element>
 
     <Element>
-	<Heading>M03 Pump Addition</Heading>
-	<Question>Pump Addition has contact with the mat completely inside the target area</Question>
+        <Heading>M01 Elevated Places</Heading>
+        <Question>The Robot is Supported by the Bridge</Question>
+        <Tag>m01a</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m01a"] * 20;
+            if (this.answers["m01a"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>M01 Elevated Places</Heading>
+        <Question>Number of flags that are clearly raised any distance, only by the Robot</Question>
+        <Tag>m01b</Tag>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Score><![CDATA[
+            if (this.answers["m01a"] * 1)
+                score += this.answers["m01b"] * 15;
+        ]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>M02 Crane</Heading>
+        <Question>The Hooked Blue Unit is clearly lowered any distance from the Guide Hole</Question>
+        <Tag>m02a</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m02a"] * 20;
+        ]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>M02 Crane</Heading>
+        <Question>The Hooked Blue Unit is Independent and Supported by another Blue Unit</Question>
+        <Tag>m02b</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m02b"] * 15;
+            if (this.answers["m02a"] * 1 || this.answers["m02b"] * 1)
+                score += this.answers["m00"] * 10;
+        ]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>M02 Crane</Heading>
+        <Question><b>And</b> Level 1 is Completely in the Blue Circle</Question>
+        <Tag>m02c</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            if (this.answers["m02b"] * 1)
+                score += this.answers["m02c"] * 15;
+        ]]></Score>
+    </Element>
+
+    <Element>
+        <Heading>M03 Inspection Drone</Heading>
+        <Question>The Inspection Drone is Supported by the axle on the Bridge</Question>
         <Tag>m03</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m03'] || 0)*20;]]></Score>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m03"] * 10;
+            if (this.answers["m03"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M04 Rain</Heading>
-	<Question>At least one Rain is out of the Rain Cloud</Question>
+        <Heading>M04 Design For Wildlife</Heading>
+        <Question>The Bat is Supported by the branch on the Tree</Question>
         <Tag>m04</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m04'] || 0)*20;]]></Score>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m04"] * 10;
+            if (this.answers["m04"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M05 Filter</Heading>
-	<Question>Lock latch is in dropped position</Question>
-        <Tag>m05</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m05'] || 0)*30;]]></Score>
+        <Heading>M05 Treehouse</Heading>
+        <Question>Number of Units Independent and Supported by the Tree’s Large Branches</Question>
+        <Tag>m05a</Tag>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Option><Label>13</Label><Value>13</Value></Option>
+        <Option><Label>14</Label><Value>14</Value></Option>
+        <Option><Label>15</Label><Value>15</Value></Option>
+        <Option><Label>16</Label><Value>16</Value></Option>
+        <!-- TODO: does Hooked Blue Unit not count here? -->
+        <Score><![CDATA[
+            score += this.answers["m05a"] * 10;
+        ]]></Score>
+        <Validate><![CDATA[
+            (this.answers["m05a"] * 1 +
+             this.answers["m05b"] * 1 +
+             (this.answers["m12b"] * 1 - Math.min(Math.floor(this.answers["m12b"] * 1 / 2), 12)) > 16) ?
+                {"highlight": true, "msg": "Too many units in use"} :
+                {"highlight": false, "msg": ""}
+        ]]></Validate>
     </Element>
 
     <Element>
-	<Heading>M06 Water Treatment</Heading>
-	<Question>Big Water is ejected from Water Treatment model</Question>
+        <Heading>M05 Treehouse</Heading>
+        <Question>Number of Units Independent and Supported by the Tree’s Small Branches</Question>
+        <Tag>m05b</Tag>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Option><Label>13</Label><Value>13</Value></Option>
+        <Option><Label>14</Label><Value>14</Value></Option>
+        <Option><Label>15</Label><Value>15</Value></Option>
+        <Option><Label>16</Label><Value>16</Value></Option>
+        <!-- TODO: does Hooked Blue Unit not count here? -->
+        <Score><![CDATA[
+            score += this.answers["m05b"] * 15;
+            if (this.answers["m05a"] * 1 || this.answers["m05b"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
+        <Validate><![CDATA[
+            (this.answers["m05a"] * 1 +
+             this.answers["m05b"] * 1 +
+             (this.answers["m12b"] * 1 - Math.min(Math.floor(this.answers["m12b"] * 1 / 2), 12)) > 16) ?
+                {"highlight": true, "msg": "Too many units in use"} :
+                {"highlight": false, "msg": ""}
+        ]]></Validate>
+    </Element>
+
+    <Element>
+        <Heading>M06 Traffic Jam</Heading>
+        <Question>The Traffic Jam is lifted, its moving part is Independent, and it is Supported only by its hinges</Question>
         <Tag>m06</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m06'] || 0)*20;]]></Score>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m06"] * 10;
+            if (this.answers["m06"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M07 Fountain</Heading>
-	<Question>Middle layer is raised</Question>
+        <Heading>M07 Swing</Heading>
+        <Question>The Swing is released</Question>
         <Tag>m07</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m07'] || 0)*20;]]></Score>
-        <Validate><![CDATA[(
-	                    (this.answers['m02'] || 0)*1  + 
-	                    (this.answers['m07'] || 0)*1  + 
-	                    (this.answers['m13a'] || 0)*1  + 
-	                    (this.answers['m16c'] || 0)*1  + 
-                            (this.answers['m16d'] || 0)*1 > (5 - (1 - (this.answers['m06'] || 0)*1))) ?
-                           {'highlight': true, 'msg':'Too many big waters in use.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m07"] * 20;
+            if (this.answers["m07"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M08 Manhole Covers</Heading>
-	<Question>Manhole cover(s) are flipped over past vertical</Question>
-        <Tag>m08a</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
-        <Option><Label>2</Label><Value>2</Value></Option>
-        <Score><![CDATA[score += (this.answers['m08a'] || 0)*15;]]></Score>
+        <Heading>M08 Elevator</Heading>
+        <Question>The Elevator’s moving parts are Independent and Supported only by its hinges, in the following position</Question>
+        <Tag>m08</Tag>
+        <Option><Label>Neither</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Blue Car Down</Label><Value>15</Value></Option>
+        <Option><Label>Balanced</Label><Value>20</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m08"] * 1;
+            if (this.answers["m08"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
-    
+
     <Element>
-	<Heading>M08 Manhole Covers</Heading>
-	<Question>Both covers are flipped over and completely in separate Tripod target</Question>
-        <Tag>m08b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m08a'] || 0) == 2 ? (this.answers['m08b'] || 0)*30 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m08b'] || 0)*1 && 
-                            ((this.answers['m08a'] || 0)*1) < 2)) ?
-                           {'highlight': true, 'msg':'Both Manhole covers must be flipped to score bonus.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-    
-    <Element>
-	<Heading>M09 Tripod</Heading>
-	<Question>All the Tripod's feet are touching the mat</Question>
+        <Heading>M09 Safety Factor</Heading>
+        <Question>The Test Building is Independent and Supported only by the blue beams</Question>
         <Tag>m09a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
     </Element>
 
     <Element>
-	<Heading>M09 Tripod</Heading>
-	<Question>Tripod is partially in a Tripod target</Question>
+        <Heading>M09 Safety Factor</Heading>
+        <Question>Number of blue beams knocked out at least half way</Question>
         <Tag>m09b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m09a'] || 0)*1 && (this.answers['m09b'] || 0)*1 ? 15 : 0;]]></Score>
-        <Validate><![CDATA[((this.answers['m09b'] || 0)*1 && 
-                            (this.answers['m09c'] || 0)*1) ?
-                           {'highlight': true, 'msg':'Tripod cannot be both partially and completely in target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Option><Label>0</Label><Value>0</Value><Default/></Option>
+        <Option><Label>1</Label><Value>1</Value></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Option><Label>4</Label><Value>4</Value></Option>
+        <Option><Label>5</Label><Value>5</Value></Option>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Score><![CDATA[
+            if (this.answers["m09a"] * 1) {
+                score += this.answers["m09b"] * 10;
+                if (this.answers["m09b"] * 1)
+                    score += this.answers["m00"] * 5;
+            }
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M09 Tripod</Heading>
-	<Question>Tripod is completely in a Tripod target</Question>
-        <Tag>m09c</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m09a'] || 0)*1 && (this.answers['m09c'] || 0)*1 ? 20 : 0;]]></Score>
-        <Validate><![CDATA[((this.answers['m09b'] || 0)*1 && 
-                            (this.answers['m09c'] || 0)*1) ?
-                           {'highlight': true, 'msg':'Tripod cannot be both partially and completely in target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Heading>M10 Steel Construction</Heading>
+        <Question>The Steel Structure is standing, and is Independent and Supported only by its hinges</Question>
+        <Tag>m10</Tag>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m10"] * 20;
+            if (this.answers["m10"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M10 Pipe Replacement</Heading>
-	<Question>New pipe is installed where Broken Pipe was</Question>
-        <Tag>m10a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-    </Element>
-
-    <Element>
-	<Heading>M10 Pipe Replacement</Heading>
-	<Question>This New Pipe has full/flat contact with the mat</Question>
-        <Tag>m10b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m10a'] || 0)*1) && ((this.answers['m10b'] || 0)*1) ? 20 : 0;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>M11 Pipe Construction</Heading>
-	<Question>New Pipe has full/flat contact with the mat</Question>
+        <Heading>M11 Innovative Architecture</Heading>
+        <Question>The Structure is bigger than a Blue Building Unit and built from the team’s white LEGO bricks</Question>
         <Tag>m11a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Yes</Label><Value>1</Value></Option>
     </Element>
 
     <Element>
-	<Heading>M11 Pipe Construction</Heading>
-	<Question>This New Pipe is partially in its target</Question>
+        <Heading>M11 Innovative Architecture</Heading>
+        <Question>The Structure is in any Circle</Question>
         <Tag>m11b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m11a'] || 0)*1) && ((this.answers['m11b'] || 0)*1) ? 15 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m11b'] || 0)*1  &&
-                            (this.answers['m11c'] || 0)*1) ) ?
-                           {'highlight': true, 'msg':'Pipe cannot be both partially and completely in its target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Option><Label>No</Label><Value>0</Value><Default/></Option>
+        <Option><Label>Partly</Label><Value>10</Value></Option>
+        <Option><Label>Completely</Label><Value>15</Value></Option>
+        <Score><![CDATA[
+            if (this.answers["m11a"] * 1) {
+                score += this.answers["m11b"] * 1;
+                if (this.answers["m11b"] * 1)
+                    score += this.answers["m00"] * 5;
+            }
+        ]]></Score>
     </Element>
 
     <Element>
-	<Heading>M11 Pipe Construction</Heading>
-	<Question>This New Pipe is completely in its target</Question>
-        <Tag>m11c</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += ((this.answers['m11a'] || 0)*1) && ((this.answers['m11c'] || 0)*1) ? 20 : 0;]]></Score>
-        <Validate><![CDATA[(((this.answers['m11b'] || 0)*1  &&
-                            (this.answers['m11c'] || 0)*1) ) ?
-                           {'highlight': true, 'msg':'Pipe cannot be both partially and completely in its target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Heading>M12 Design &amp; Build</Heading>
+        <Question>Number of Circles with a color-matching Unit, flat down on the Mat, and Completely in Circle</Question>
+        <Tag>m12a</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value><Default/></Option>
+        <Option><Label>2</Label><Value>2</Value></Option>
+        <Option><Label>3</Label><Value>3</Value></Option>
+        <Score><![CDATA[
+            score += this.answers["m12a"] * 10;
+        ]]></Score>
+        <Validate><![CDATA[
+            ((2 * this.answers["m12a"] * 1 - Math.min(this.answers["m12a"] * 1, 1)) > this.answers["m12b"] * 1) ?
+                {"highlight": true, "msg": "Too small height sum"} :
+                {"highlight": false, "msg": ""}
+        ]]></Validate>
     </Element>
 
     <Element>
-	<Heading>M12 Sludge</Heading>
-	<Question>Sludge touching visible wood of a drawn garden box</Question>
-        <Tag>m12</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m12'] || 0)*30;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>M13 Flower</Heading>
-	<Question>Flower is raised</Question>
-        <Tag>m13a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m13a'] || 0)*30;]]></Score>
-        <Validate><![CDATA[(
-	                    (this.answers['m02'] || 0)*1  + 
-	                    (this.answers['m07'] || 0)*1  + 
-	                    (this.answers['m13a'] || 0)*1  + 
-	                    (this.answers['m16c'] || 0)*1  + 
-                            (this.answers['m16d'] || 0)*1 > (5 - (1 - (this.answers['m06'] || 0)*1))) ?
-                           {'highlight': true, 'msg':'Too many big waters in use.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-
-    <Element>
-	<Heading>M13 Flower</Heading>
-	<Question>At least one rain is in the purple part, touching nothing bug Flower model</Question>
-        <Tag>m13b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m13a'] || 0)*1 && (this.answers['m13b'] || 0)*1 ? 30 : 0;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>M14 Water Well</Heading>
-	<Question>Water Well contacting mat partially inside target area</Question>
-        <Tag>m14a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m14a'] || 0)*15;]]></Score>
-        <Validate><![CDATA[((((this.answers['m14a'] || 0)*1 > 0) &&
-                            ((this.answers['m14b'] || 0)*1) > 0)) ?
-                           {'highlight': true, 'msg':'Well cannot be both partially and completely within target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-    
-    <Element>
-	<Heading>M14 Water Well</Heading>
-	<Question>Water Well contacting mat completely inside target area</Question>
-        <Tag>m14b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-	// TODO: fix up validation and score
-        <Score><![CDATA[score += (this.answers['m14b'] || 0)*25;]]></Score>
-        <Validate><![CDATA[((((this.answers['m14a'] || 0)*1 > 0) &&
-                            ((this.answers['m14b'] || 0)*1) > 0)) ?
-                           {'highlight': true, 'msg':'Well cannot be both partially and completely within target.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-    
-    <Element>
-	<Heading>M15 Fire</Heading>
-	<Question>Fire is dropped</Question>
-        <Tag>m15</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m15'] || 0)*25;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>M16 Water Collection</Heading>
-	<Question>Water Target is East of Off-Limits line</Question>
-        <Tag>m16a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-    </Element>
-
-    <Element>
-	<Heading>M16 Water Collection</Heading>
-	<Question>At least one Rain is touching mat in the Water Target</Question>
-        <Tag>m16b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m16a'] || 0)*1 && (this.answers['m16b'] || 0)*1 ? 10 : 0;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>M16 Water Collection</Heading>
-	<Question>Big Water touching mat in the Water Target</Question>
-        <Tag>m16c</Tag>
-        <Option><Label>0</Label><Value>0</Value><Default/></Option>
-        <Option><Label>1</Label><Value>1</Value></Option>
+        <Heading>M12 Design &amp; Build</Heading>
+        <Question>Sum of height Levels of Independent Stacks at least partly in any Circle</Question>
+        <Tag>m12b</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>1</Value><Default/></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
         <Option><Label>4</Label><Value>4</Value></Option>
         <Option><Label>5</Label><Value>5</Value></Option>
-        <Score><![CDATA[score += (this.answers['m16a'] || 0)*1 > 0 ? (this.answers['m16c'] || 0)*10 : 0;]]></Score>
-        <Validate><![CDATA[(
-	                    (this.answers['m02'] || 0)*1  + 
-	                    (this.answers['m07'] || 0)*1  + 
-	                    (this.answers['m13a'] || 0)*1  + 
-	                    (this.answers['m16c'] || 0)*1  + 
-                            (this.answers['m16d'] || 0)*1 > (5 - (1 - (this.answers['m06'] || 0)*1))) ?
-                           {'highlight': true, 'msg':'Too many big waters in use.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
+        <Option><Label>6</Label><Value>6</Value></Option>
+        <Option><Label>7</Label><Value>7</Value></Option>
+        <Option><Label>8</Label><Value>8</Value></Option>
+        <Option><Label>9</Label><Value>9</Value></Option>
+        <Option><Label>10</Label><Value>10</Value></Option>
+        <Option><Label>11</Label><Value>11</Value></Option>
+        <Option><Label>12</Label><Value>12</Value></Option>
+        <Option><Label>13</Label><Value>13</Value></Option>
+        <Option><Label>14</Label><Value>14</Value></Option>
+        <Option><Label>15</Label><Value>15</Value></Option>
+        <Option><Label>16</Label><Value>16</Value></Option>
+        <Option><Label>17</Label><Value>17</Value></Option>
+        <Option><Label>18</Label><Value>18</Value></Option>
+        <Option><Label>19</Label><Value>19</Value></Option>
+        <Option><Label>20</Label><Value>20</Value></Option>
+        <Option><Label>21</Label><Value>21</Value></Option>
+        <Option><Label>22</Label><Value>22</Value></Option>
+        <Option><Label>23</Label><Value>23</Value></Option>
+        <Option><Label>24</Label><Value>24</Value></Option>
+        <Option><Label>25</Label><Value>25</Value></Option>
+        <Option><Label>26</Label><Value>26</Value></Option>
+        <Option><Label>27</Label><Value>27</Value></Option>
+        <Option><Label>28</Label><Value>28</Value></Option>
+        <!-- TODO: does Hooked Blue Unit not count here? -->
+        <Score><![CDATA[
+            score += this.answers["m12b"] * 5;
+            if (this.answers["m12a"] * 1 || this.answers["m12b"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
+        <Validate><![CDATA[
+            (this.answers["m05a"] * 1 +
+             this.answers["m05b"] * 1 +
+             (this.answers["m12b"] * 1 - Math.min(Math.floor(this.answers["m12b"] * 1 / 2), 12)) > 16) ?
+                {"highlight": true, "msg": "Too many units in use"} :
+             ((2 * this.answers["m12a"] * 1 - Math.min(this.answers["m12a"] * 1, 1)) > this.answers["m12b"] * 1) ?
+                {"highlight": true, "msg": "Too small height sum"} :
+                {"highlight": false, "msg": ""}
+        ]]></Validate>
     </Element>
 
     <Element>
-        <Heading>M16 Water Collection</Heading>
-	<Question>At least one pair of Big Waters stacked in Water Target</Question>
-        <Tag>m16d</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m16a'] || 0)*1 && (this.answers['m16d'] || 0)*1 ? 30 : 0;]]></Score>
-        <Validate><![CDATA[(
-	                    (this.answers['m02'] || 0)*1  + 
-	                    (this.answers['m07'] || 0)*1  + 
-	                    (this.answers['m13a'] || 0)*1  + 
-	                    (this.answers['m16c'] || 0)*1  + 
-                            (this.answers['m16d'] || 0)*1 > (5 - (1 - (this.answers['m06'] || 0)*1))) ?
-                           {'highlight': true, 'msg':'Too many big waters in use.'} : // validation failed
-                           {'highlight': false, 'msg':''};]]>
-        </Validate>
-    </Element>
-
-    <Element> 
-        <Heading>M17 Slingshot</Heading>
-	<Question>Slingshot is completely in the Slingshot target</Question>
-        <Tag>m17a</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m17a'] || 0)*20;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>M17 Slingshot</Heading>
-	<Question>Rain AND Dirty Water completely in the Slingshot target</Question>
-        <Tag>m17b</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m17a'] || 0)*1 && (this.answers['m17b'] || 0)*1 ? 15 : 0;]]></Score>
-    </Element>
-
-    <Element>
-        <Heading>M18 Faucet</Heading>
-	<Question>Water level is more blue than white</Question>
-        <Tag>m18</Tag>
-        <Option><Label>Yes</Label><Value>1</Value><Default/></Option>
-        <Option><Label>No</Label><Value>0</Value></Option>
-        <Score><![CDATA[score += (this.answers['m18'] || 0)*25;]]></Score>
-    </Element>
-
-    <Element>
-	<Heading>Penalties</Heading>
-	<Question>Penalty discs in the white triangle area</Question>
-        <Tag>m19</Tag>
+        <Heading>M13 Sustainability Upgrades</Heading>
+        <Question>Number of Upgrades that are Independent and Supported only by a Stack which is at least partly in a Circle</Question>
+        <Tag>m13</Tag>
         <Option><Label>0</Label><Value>0</Value><Default/></Option>
         <Option><Label>1</Label><Value>1</Value></Option>
         <Option><Label>2</Label><Value>2</Value></Option>
         <Option><Label>3</Label><Value>3</Value></Option>
-        <Option><Label>4</Label><Value>4</Value></Option>
-        <Option><Label>5</Label><Value>5</Value></Option>
-        <Score><![CDATA[score -= (this.answers['m19'] || 0)*5;]]></Score>
+        <Score><![CDATA[
+            score += this.answers["m13"] * 10;
+            if (this.answers["m13"] * 1)
+                score += this.answers["m00"] * 5;
+        ]]></Score>
     </Element>
+
+    <Element>
+        <Heading>M14 Precision</Heading>
+        <Question>Number of Precision Tokens left on the field</Question>
+        <Tag>m14</Tag>
+        <Option><Label>0</Label><Value>0</Value></Option>
+        <Option><Label>1</Label><Value>5</Value></Option>
+        <Option><Label>2</Label><Value>10</Value></Option>
+        <Option><Label>3</Label><Value>20</Value></Option>
+        <Option><Label>4</Label><Value>30</Value></Option>
+        <Option><Label>5</Label><Value>45</Value></Option>
+        <Option><Label>6</Label><Value>60</Value><Default/></Option>
+        <Score><![CDATA[
+            score += this.answers["m14"] * 1;
+        ]]></Score>
+    </Element>
+
 </Scoring_Elements>
